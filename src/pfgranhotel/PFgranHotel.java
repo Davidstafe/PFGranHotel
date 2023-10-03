@@ -5,20 +5,21 @@
  */
 package pfgranhotel;
 
-/**
- *
- * @author david
- */
+import pfgranhotel.accesoDatos.HuespedData;
+import pfgranhotel.entidades.Huesped;
+
+
 public class PFgranHotel {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code application logic her
         
-        System.out.println("Hola mundo qye tal");
-        ///dasdasd
+        
+        Huesped h = new Huesped(12345, "Cordoba", "Eduardo", "Paz 223", "aCor@gmail.com", 123123, true);
+        HuespedData hd = new HuespedData();
+        
+        hd.guardarHuesped(h);
     }
    
 }

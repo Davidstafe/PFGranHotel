@@ -17,11 +17,12 @@ public class Huesped {
     private String domicilio;
     private String correo;
     private int celular;
+    private boolean estado;
 
     public Huesped() {
     }
 
-    public Huesped(int idHuesped, int dni, String apellido, String nombres, String domicilio, String correo, int celular) {
+    public Huesped(int idHuesped, int dni, String apellido, String nombres, String domicilio, String correo, int celular,boolean estado) {
         this.idHuesped = idHuesped;
         this.dni = dni;
         this.apellido = apellido;
@@ -29,15 +30,18 @@ public class Huesped {
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
+        
     }
 
-    public Huesped(int dni, String apellido, String nombres, String domicilio, String correo, int celular) {
+    public Huesped(int dni, String apellido, String nombres, String domicilio, String correo, int celular,boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombres = nombres;
         this.domicilio = domicilio;
         this.correo = correo;
         this.celular = celular;
+        this.estado = estado;
     }
 
     public int getIdHuesped() {
@@ -96,10 +100,20 @@ public class Huesped {
         this.celular = celular;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Huesped{" + "idHuesped=" + idHuesped + ", dni=" + dni + ", apellido=" + apellido + ", nombres=" + nombres + ", domicilio=" + domicilio + ", correo=" + correo + ", celular=" + celular + '}';
+        return "Huesped{" + "idHuesped=" + idHuesped + ", dni=" + dni + ", apellido=" + apellido + ", nombres=" + nombres + ", domicilio=" + domicilio + ", correo=" + correo + ", celular=" + celular + ", estado=" + estado + '}';
     }
+    
+
     
     
     
