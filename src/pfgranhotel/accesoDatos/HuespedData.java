@@ -84,10 +84,10 @@ public class HuespedData {
     }
     
     ///modificacion de huesped
-    public void modificacionHuesped(Huesped huesped){
+    /*public void modificacionHuesped(Huesped huesped){
         
         String sql= "UPDATE `huesped` SET `DNI`= ? ,`Apellido`= ? ,`Nombres`= ?,"
-                + "`Domicilio`=?,`Correo`=?,`Celular`=?,`Estado`=? WHERE huesped.idHuesped=?";
+                + "`Domicilio`=?,`Correo`=?,`Celular`=?,`Estado`=? WHERE Huesped.idHuesped=?";
         
         PreparedStatement ps;
         try {
@@ -118,9 +118,37 @@ public class HuespedData {
             
             JOptionPane.showMessageDialog(null,"ERROR"+ ex);
 
+        }*/
+        public void modificarHuesped(Huesped huesped) {
+            ///////////////******CHEQUEAR MAÑANA XQ NO FUNCION**********//////////////////////
+        try {
+            String sql = "UPDATE huesped SET dni = ?, Apellido = ?,Nombres=?,domicilio=?,"
+                    + "correo=? , celular=?,estado=? WHERE huesped.idHuesped = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, huesped.getDni());
+            ps.setString(2, huesped.getApellido());
+            ps.setString(3, huesped.getNombres());
+            ps.setString(4, huesped.getDomicilio());
+            ps.setString(5, huesped.getCorreo());
+            ps.setInt(6, huesped.getCelular());
+            ps.setBoolean(7, huesped.isEstado());
+
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "huesped modificada exitosamente" );
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "huesped no existe" );
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla huesped ");
         }
-        
-        
-        
+
     }
+        
+        
+    
 }

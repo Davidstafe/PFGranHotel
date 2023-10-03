@@ -28,7 +28,8 @@ public class PFgranHotel {
         ///hd.bajaHuesped(12345);
         
         ///MODIFICAMOS UN HUESPED
-        hd.modificacionHuesped(h);
+        hd.modificarHuesped(h);
+      
     }
    
 }
