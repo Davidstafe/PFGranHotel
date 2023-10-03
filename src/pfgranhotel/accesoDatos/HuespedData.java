@@ -22,6 +22,8 @@ public class HuespedData {
     public HuespedData() {
         con =Conexion.getConexion();
          }
+    
+    ///guardar huesped
     public void guardarHuesped(Huesped huesped){
       String sql="INSERT INTO `huesped`( `DNI`, `Apellido`, `Nombres`, `Domicilio`, `Correo`, `Celular`, Estado)"
               +" VALUES (?,?,?,?,?,?,?) ";
@@ -53,4 +55,71 @@ public class HuespedData {
        
     
 }
+    
+    ///cambio de estado
+    public void bajaHuesped(int dni){
+        
+        String sql="  UPDATE Huesped SET Estado =0 WHERE DNI= ? ";
+        
+        PreparedStatement ps;
+        
+        try {
+            ps=con.prepareStatement(sql);
+            
+            ps.setInt(1,dni);
+            ps.executeUpdate();
+            
+            int filas=ps.executeUpdate();
+            if(filas == 1){
+                 JOptionPane.showMessageDialog(null,"Huesped dado de baja exitosamente");
+
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Huesped no encontrado "+ ex);
+        }
+    }
+    
+    ///modificacion de huesped
+    public void modificacionHuesped(Huesped huesped){
+        
+        String sql= "UPDATE `huesped` SET `DNI`= ? ,`Apellido`= ? ,`Nombres`= ?,"
+                + "`Domicilio`=?,`Correo`=?,`Celular`=?,`Estado`=? WHERE huesped.idHuesped=?";
+        
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(8,huesped.getIdHuesped());
+            ps.setInt(1, huesped.getDni());
+            ps.setString(2, huesped.getApellido());
+            ps.setString(3, huesped.getNombres());
+            ps.setString(4, huesped.getDomicilio());
+            ps.setString(5, huesped.getCorreo());
+            ps.setInt(6, huesped.getCelular());
+            ps.setBoolean(7, huesped.isEstado());
+            ps.executeUpdate();
+          
+            int filas=ps.executeUpdate();
+            
+            if(filas==1){
+                
+                JOptionPane.showMessageDialog(null,"Huesped modificado exitosamente "+ ps);
+            }else{
+                JOptionPane.showMessageDialog(null, "dasdasd");
+                
+            }
+                
+            
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null,"ERROR"+ ex);
+
+        }
+        
+        
+        
+    }
 }
