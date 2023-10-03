@@ -10,8 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import pfgranhotel.entidades.Huesped;
 
