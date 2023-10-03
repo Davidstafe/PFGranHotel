@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entidad;
+package pfgranhotel.accesoDatos;
 
 /**
  *
- * @author david
+ * @author basti
  */
-public class Huesped {
+public class HuespedData {
     
 }
