@@ -5,6 +5,7 @@
  */
 package pfgranhotel;
 
+import jdk.nashorn.internal.runtime.Debug;
 import pfgranhotel.accesoDatos.HuespedData;
 import pfgranhotel.entidades.Huesped;
 
@@ -16,19 +17,23 @@ public class PFgranHotel {
         // TODO code application logic her
         
         ///creamos un huesped
-        Huesped h = new Huesped(12345, "Cordoba", "Julian", "avellaneda 223", "aCor@gmail.com", 123123, true);
+        Huesped h = new Huesped(2,3036555, "Cordoba", "Marcelo", "avellaneda 253", "aCor@gmail.com", 1564563, false);
         HuespedData hd = new HuespedData();
-        
+ /////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------       
         ///GUARDAR HUESPED
-        ///hd.guardarHuesped(h);
+//       hd.guardarHuesped(h);
         
-        
+//++++++++++++++++++++++++++++++++++-----------------------------------------------+++++++++++++++++++++++++++++++++++++++        
         
         ///BAJAMOS UN HUESPED
         ///hd.bajaHuesped(12345);
-        
+    //------------------------------------------+++++++++++++++++++++++++++++++++++++++++--------------------------------------    
         ///MODIFICAMOS UN HUESPED
-        hd.modificarHuesped(h);
+//      hd.modificarHuesped(h);
+//+++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------*****************************************
+
+//trae el listado de los huespedes
+hd.listarHuesped();
       
     }
    
