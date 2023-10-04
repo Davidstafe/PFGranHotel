@@ -136,8 +136,51 @@ public class HuespedData {
         return huesped;
     }
 
-    public void buscarHuesped(int dni){
-          String sql = "  UPDATE Huesped  WHERE DNI= ? "; 
+    public void buscarHuesped(int dni) {
+        String sql = "SELECT * FROM `huesped` WHERE dni=? ";
+        Huesped huesped = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                huesped = new Huesped();
+                huesped.setDni(dni);
+                huesped.setIdHuesped(rs.getInt("idHuesped"));
+                huesped.setApellido(rs.getString("Apellido"));
+                huesped.setNombres(rs.getString("Nombres"));
+                huesped.setDomicilio(rs.getString("Domicilio"));
+                huesped.setCorreo(rs.getString("Correo"));
+                huesped.setCelular(rs.getInt("Celular"));
+                huesped.setEstado(rs.getBoolean("Estado"));
+                
+                JOptionPane.showMessageDialog(null, "huesped encontrado"+huesped);
+            }else{
+                  JOptionPane.showMessageDialog(null, "huesped no encontrado");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar");
+        }
+
+    }
+
+    public void eliminarHuesped(int dni){
+        String sql="DELETE FROM `huesped` WHERE dni=?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            int filas=ps.executeUpdate();
+            if (filas>1) {
+                JOptionPane.showMessageDialog(null, "Huesped borrado");
+            }else{
+                 JOptionPane.showMessageDialog(null, "Huesped  no borrado"); 
+                
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error del sistema");
+        }
         
         
     }
