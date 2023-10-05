@@ -9,8 +9,6 @@ package pfgranhotel.accesoDatos;
  *
  * @author basti
  */
-public class HabitacionData {
-    private Conecction con=null;
-    private tipoDeHabitacion tipo;
+class Conecction {
     
 }
