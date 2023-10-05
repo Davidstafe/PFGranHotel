@@ -33,7 +33,11 @@ public class PFgranHotel {
 //+++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------*****************************************
 
 //trae el listado de los huespedes
-hd.listarHuesped();
+//hd.listarHuesped();
+
+
+
+hd.buscarHuesped(3036555);
       
     }
    
