@@ -17,11 +17,11 @@ public class PFgranHotel {
         // TODO code application logic her
         
         ///creamos un huesped
-        Huesped h = new Huesped(2,3036555, "Cordoba", "Marcelo", "avellaneda 253", "aCor@gmail.com", 1564563, false);
+        Huesped h = new Huesped(2,987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
         HuespedData hd = new HuespedData();
  /////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------       
         ///GUARDAR HUESPED
-//       hd.guardarHuesped(h);
+      hd.guardarHuesped(h);
         
 //++++++++++++++++++++++++++++++++++-----------------------------------------------+++++++++++++++++++++++++++++++++++++++        
         
@@ -37,7 +37,7 @@ public class PFgranHotel {
 
 
 
-hd.buscarHuesped(3036555);
+///hd.buscarHuesped(3036555);
       
     }
    
