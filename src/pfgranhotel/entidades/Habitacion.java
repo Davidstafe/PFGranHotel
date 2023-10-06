@@ -13,6 +13,7 @@ public class Habitacion {
     private int idHabitacion;
     private TipoDeHabitacion tipo;
     private boolean estado;
+    
 
     public Habitacion() {
     }

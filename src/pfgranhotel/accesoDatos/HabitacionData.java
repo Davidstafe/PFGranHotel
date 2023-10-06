@@ -11,6 +11,6 @@ package pfgranhotel.accesoDatos;
  */
 public class HabitacionData {
     private Conecction con=null;
-    private tipoDeHabitacion tipo;
+    private TipoDeHabitacionData tipo;
     
 }
