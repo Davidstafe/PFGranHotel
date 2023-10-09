@@ -18,7 +18,7 @@ public class Habitacion extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     private HabitacionData hd;
-    private List<Habitacion>lisH;
+//    private List<Habitacion>lisH;
     
             
     
@@ -209,7 +209,7 @@ public class Habitacion extends javax.swing.JInternalFrame {
     private void cargarTabla(){
         
         ///como hago para traer todas las habitaciones por numero de cada una-.
-        for(Habitacion th: ){
+//        for(Habitacion th: ){
             
             
         }
