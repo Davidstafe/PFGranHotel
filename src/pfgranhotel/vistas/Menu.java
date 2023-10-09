@@ -5,6 +5,9 @@
  */
 package pfgranhotel.vistas;
 
+import java.sql.Connection;
+import pfgranhotel.accesoDatos.Conexion;
+
 /**
  *
  * @author HP
@@ -14,8 +17,16 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+      private Connection con = null;
     public Menu() {
         initComponents();
+        
+        con = Conexion.getConexion();
+    
+
+    
+       
+    
     }
 
     /**
@@ -68,6 +79,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setText("Reserva");
 
         jMenuItem1.setText("Huesped");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Facturaciòn");
@@ -126,7 +142,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+//         TODO add your handling code here:
+       
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
@@ -140,6 +157,16 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+          jDesktopPane1.removeAll();
+       jDesktopPane1.repaint();
+        registroHuesped vistaRegistroHuesped = new registroHuesped();
+        vistaRegistroHuesped.setVisible(true);
+       jDesktopPane1.add(vistaRegistroHuesped);
+        jDesktopPane1.moveToFront(vistaRegistroHuesped);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

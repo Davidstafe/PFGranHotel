@@ -46,7 +46,7 @@ public class HuespedData {
             if (rs.next()) {
                 huesped.setIdHuesped(rs.getInt(1));
             }
-            JOptionPane.showMessageDialog(null, "Huesped guardado");
+//            JOptionPane.showMessageDialog(null, "Huesped guardado");
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, "Error en guardar huesped " + ex);
@@ -69,7 +69,7 @@ public class HuespedData {
 
             int filas = ps.executeUpdate();
             if (filas == 1) {
-                JOptionPane.showMessageDialog(null, "Huesped dado de baja exitosamente");
+//                JOptionPane.showMessageDialog(null, "Huesped dado de baja exitosamente");
 
             }
 
@@ -136,7 +136,7 @@ public class HuespedData {
         return huesped;
     }
 
-    public void buscarHuesped(int dni) {
+    public Huesped buscarHuesped(int dni) {
         String sql = "SELECT * FROM `huesped` WHERE dni=? ";
         Huesped huesped = null;
         try {
@@ -154,15 +154,16 @@ public class HuespedData {
                 huesped.setCelular(rs.getInt("Celular"));
                 huesped.setEstado(rs.getBoolean("Estado"));
                 
-                JOptionPane.showMessageDialog(null, "huesped encontrado"+huesped);
+//                JOptionPane.showMessageDialog(null, "huesped encontrado");
             }else{
-                  JOptionPane.showMessageDialog(null, "huesped no encontrado");
+//                  JOptionPane.showMessageDialog(null, "huesped no encontrado");
             }
+            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar");
         }
-
+return huesped;
     }
 
     public void eliminarHuesped(int dni){
