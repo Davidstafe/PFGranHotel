@@ -1,32 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pfgranhotel.entidades;
 
-/**
- *
- * @author basti
- */
+
 public class Habitacion {
     private int idHabitacion;
     private TipoDeHabitacion tipo;
     private boolean estado;
+    private boolean mant;
     
 
     public Habitacion() {
     }
 
-    public Habitacion(TipoDeHabitacion tipo, boolean estado) {
+    public Habitacion(TipoDeHabitacion tipo, boolean estado,boolean mant) {
         this.tipo = tipo;
         this.estado = estado;
+        this.mant  =mant;
     }
 
-    public Habitacion(int idHabitacion, TipoDeHabitacion tipo, boolean estado) {
+    public Habitacion(int idHabitacion, TipoDeHabitacion tipo, boolean estado, boolean mant) {
         this.idHabitacion = idHabitacion;
         this.tipo = tipo;
         this.estado = estado;
+        this.mant = mant;
     }
 
     public int getIdHabitacion() {
@@ -53,9 +49,18 @@ public class Habitacion {
         this.estado = estado;
     }
 
+    public boolean isMant() {
+        return mant;
+    }
+
+    public void setMant(boolean mant) {
+        this.mant = mant;
+    }
+    
+
     @Override
     public String toString() {
-        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipo=" + tipo + ", estado=" + estado + '}';
+        return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipo=" + tipo + ", estado=" + estado + ", mant " + mant+'}';
     }
     
     

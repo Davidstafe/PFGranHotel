@@ -6,7 +6,9 @@
 package pfgranhotel.vistas;
 
 import java.sql.Connection;
+import java.util.Locale;
 import pfgranhotel.accesoDatos.Conexion;
+import pfgranhotel.accesoDatos.HabitacionData;
 
 /**
  *
@@ -156,6 +158,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        HabitacionVistas vistaHab= new HabitacionVistas();
+        vistaHab.setVisible(true);
+        jDesktopPane1.add(vistaHab);
+        jDesktopPane1.moveToFront(vistaHab);
+        
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
