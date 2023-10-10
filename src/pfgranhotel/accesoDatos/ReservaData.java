@@ -11,6 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pfgranhotel.entidades.Huesped;
 import pfgranhotel.entidades.Reserva;
@@ -62,5 +66,29 @@ public class ReservaData {
         }
 
     }
+    
+    public List<Reserva> reservar(){
+    List<Reserva> reserva =new ArrayList<>();
+    String sql="SELECT `idReserva`, `DNI`, `idHabitacion` FROM `reserva`";
+    
+      try {
+            PreparedStatement ps= con.prepareStatement(sql);
+          ResultSet rs=ps.executeQuery();
+            while (rs.next()) {  
+                Reserva res= new Reserva();
+                System.out.println("idReserva "+rs.getInt("idReserva") );
+                System.out.println("DNI "+rs.getInt("DNI"));
+                System.out.println("idHabitacion "+rs.getInt("idHabitacion"));
+                }
+            ps.close();
+              } catch (SQLException ex) {
+            Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    return reserva;
+ }
+                
+            }
 
-}
+//mmm

@@ -1,18 +1,22 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pfgranhotel;
 
 import jdk.nashorn.internal.runtime.Debug;
-import pfgranhotel.accesoDatos.*;
-
+import pfgranhotel.accesoDatos.HuespedData;
 import pfgranhotel.entidades.*;
-
 
 
 public class PFgranHotel {
 
    
     public static void main(String[] args) {
-        // TODO code application logic her
+        Reserva  res= new Reserva();
+        
+        
         
         ///creamos un huesped
 //        Huesped h = new Huesped(2,987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
@@ -38,17 +42,8 @@ public class PFgranHotel {
 
 ///hd.buscarHuesped(3036555);
       
+
+///
     }
-    
-    
-    ///////************ CREAMOS UNA HABITACION ***************\\\\\\\\
-//    TipoDeHabitacion tipo=new TipoDeHabitacion(5, 3, "2 simple y 1matrimonial", "Estandar triple", 1, true);
-//    Habitacion hab= new Habitacion(tipo, true, true);
-//    HabitacionData hda=new HabitacionData();
-//    
-//    hda.c
-//    
-//    
-    
-    
+   
 }
