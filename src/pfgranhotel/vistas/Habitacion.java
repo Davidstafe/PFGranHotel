@@ -222,4 +222,4 @@ public class Habitacion extends javax.swing.JInternalFrame {
     2)LUEGO CON ESTE LIST PODRIA CARGAR LA TABLA CON DICHOS DATOS, AGREGANDOLOS
     
     */
-}
+//}
