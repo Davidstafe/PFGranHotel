@@ -17,23 +17,22 @@ import pfgranhotel.entidades.Huesped;
 
 public class HabitacionData {
     
-    private HabitacionData habD=new HabitacionData();
+//    private HabitacionData habD=new HabitacionData();
     private TipoDeHabitacionData tH;
     private Connection con=null;
 
     public HabitacionData() {
         con = Conexion.getConexion();
     }
-    
-    public void crearHabitacion(Habitacion habitacion){
-        
-        
+
+    public void crearHabitacion(Habitacion habitacion) {
+
         String sql = "INSERT INTO `habitacion `(  `idTipo`, `estado`, `Mantenimiento`)"
                 + " VALUES (?,?,?) ";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, RETURN_GENERATED_KEYS);
-            ps.setInt(1,habitacion.getTipo().getIdTipo());
+            ps.setInt(1, habitacion.getTipo().getIdTipo());
             ps.setBoolean(2, habitacion.isEstado());
             ps.setBoolean(3, habitacion.isEstado());
             ps.executeUpdate();
@@ -42,7 +41,7 @@ public class HabitacionData {
             if (rs.next()) {
                 habitacion.setEstado(rs.getBoolean(1));
             }
-           JOptionPane.showMessageDialog(null, "habitacion creada");
+            JOptionPane.showMessageDialog(null, "habitacion creada");
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, "Error en habitacion creada" + ex);

@@ -22,8 +22,8 @@ import pfgranhotel.entidades.Reserva;
 public class ReservaData {
 
     private Connection con = null;
-    private HuespedData hData;
-    private HabitacionData habData;
+    private HuespedData hData=new HuespedData();
+    private HabitacionData habData=new HabitacionData();
 
     public ReservaData() {
         con = Conexion.getConexion();
@@ -37,7 +37,7 @@ public class ReservaData {
 
     public void guardarReserva(Reserva reserva) throws SQLException {
 
-        String sql = "INSERT INTO 'reserva'( 'idHuesped', 'idHabitacion', 'fechaIn','fechaOut', 'precioTotal', 'cantPersonas', 'estado')"
+        String sql = "INSERT INTO reserva( idHuesped, idHabitacion, fechaIn,fechaOut, precioTotal, cantPersonas, estado)"
                 + " VALUES (?,?,?,?,?,?,?)";
 
         /// Marce, verificà que no me haya mandado alguna cagada
@@ -54,7 +54,7 @@ public class ReservaData {
             ps.executeUpdate();
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                reserva.setIdReserva(rs.getInt("idReserva"));
+                reserva.setIdReserva(rs.getInt(1));
 
                 JOptionPane.showMessageDialog(null, "Reserva  realizada");
             } else {
