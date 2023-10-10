@@ -5,10 +5,62 @@
  */
 package pfgranhotel.accesoDatos;
 
-/**
- *
- * @author basti
- */
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import pfgranhotel.entidades.Huesped;
+import pfgranhotel.entidades.Reserva;
+
 public class ReservaData {
-    
+
+    private Connection con = null;
+    private HuespedData hData;
+    private HabitacionData habData;
+
+    public ReservaData() {
+        con = Conexion.getConexion();
+
+    }
+
+    public ReservaData(HuespedData hData, HabitacionData habData) {
+        this.hData = hData;
+        this.habData = habData;
+    }
+
+    public void guardarReserva(Reserva reserva) throws SQLException {
+
+        String sql = "INSERT INTO 'reserva'( 'idHuesped', 'idHabitacion', 'fechaIn','fechaOut', 'precioTotal', 'cantPersonas', 'estado')"
+                + " VALUES (?,?,?,?,?,?,?)";
+
+        /// Marce, verificà que no me haya mandado alguna cagada
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, reserva.getHuesped().getIdHuesped());
+            ps.setInt(2, reserva.getHabitacion().getIdHabitacion());
+            ps.setDate(3, Date.valueOf(reserva.getFechaIn()));
+            ps.setDate(4, Date.valueOf(reserva.getFechaOut()));
+            ps.setDouble(5, reserva.getPrecioTotal());
+            ps.setInt(6, reserva.getCantPersonas());
+            ps.setBoolean(7, reserva.isEstado());
+
+            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                reserva.setIdReserva(rs.getInt("idReserva"));
+
+                JOptionPane.showMessageDialog(null, "Reserva  realizada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva no realizada");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al realizar reserva");
+        }
+
+    }
+
 }
