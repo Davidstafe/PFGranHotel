@@ -7,24 +7,25 @@ package pfgranhotel.vistas;
 
 import java.awt.List;
 import javax.swing.table.DefaultTableModel;
-import pfgranhotel.accesoDatos.HabitacionData;
+import pfgranhotel.entidades.Habitacion;
 
 
 /**
  *
  * @author HP
  */
-public class Habitacion extends javax.swing.JInternalFrame {
+public class HabitacionVistas extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-    private HabitacionData hd;
-    private List<Habitacion>lisH;
+    ///private HabitacionData hd;
+    ///private List<Habitacion>lisH;
     
             
     
-    public Habitacion() {
+    public HabitacionVistas() {
         initComponents();
         armarTabla();
+       // cargarTabla();
     }
 
     /**
@@ -166,7 +167,12 @@ public class Habitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+                                           
+       
+
+          
+//      
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
@@ -206,15 +212,16 @@ public class Habitacion extends javax.swing.JInternalFrame {
         jtHab.setModel(modelo);
     }
     
-    private void cargarTabla(){
+    /**private void cargarTabla(){
         
         ///como hago para traer todas las habitaciones por numero de cada una-.
-        for(Habitacion th: ){
+        for(Habitacion habitacion: lisH ){
+            jchab.addItem(lisH);
             
             
         }
         
-    }
+    }*/
 /*
     1)DEBERIA TENER UN LISTAR HABITACION PARA HACERLA RECORRER EN MI FOR DE CARGAR
     TABLA Y ALLI LLAMAR A TODAS LAS HABITACIONES.
