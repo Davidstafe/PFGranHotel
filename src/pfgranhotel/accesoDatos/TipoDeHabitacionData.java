@@ -5,10 +5,25 @@
  */
 package pfgranhotel.accesoDatos;
 
+import java.sql.Connection;
+
 /**
  *
  * @author basti
  */
 public class TipoDeHabitacionData {
     
+    private TipoDeHabitacionData thd;
+    private Connection con=null;
+    
+    public TipoDeHabitacionData(){
+    
+        con=Conexion.getConexion();
+        
+       /// public void TipoDeHabitacionData(){
+            
+            
+        }    
 }
+    
+

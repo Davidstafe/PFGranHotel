@@ -51,9 +51,9 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jbCrear = new javax.swing.JButton();
-        jbBaja = new javax.swing.JButton();
-        jbMod = new javax.swing.JButton();
+
+        setMinimumSize(new java.awt.Dimension(50, 50));
+        setPreferredSize(new java.awt.Dimension(1000, 862));
 
         jtHab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,27 +91,6 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
             }
         });
 
-        jbCrear.setText("Crear habitacion");
-        jbCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCrearActionPerformed(evt);
-            }
-        });
-
-        jbBaja.setText("Baja habitacion");
-        jbBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBajaActionPerformed(evt);
-            }
-        });
-
-        jbMod.setText("Modificacion");
-        jbMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbModActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,26 +101,19 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                         .addGap(236, 236, 236)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jbCrear)
-                        .addGap(60, 60, 60)
-                        .addComponent(jbBaja)
-                        .addGap(68, 68, 68)
-                        .addComponent(jbMod))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(50, 50, 50)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jRadioButton1)
                         .addGap(87, 87, 87)
-                        .addComponent(jRadioButton2)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jRadioButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(50, 50, 50)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,12 +129,7 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCrear)
-                    .addComponent(jbBaja)
-                    .addComponent(jbMod))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(406, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,18 +148,6 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbBajaActionPerformed
-
-    private void jbModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbModActionPerformed
-
-    private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbCrearActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -202,9 +157,6 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jbBaja;
-    private javax.swing.JButton jbCrear;
-    private javax.swing.JButton jbMod;
     private javax.swing.JTable jtHab;
     // End of variables declaration//GEN-END:variables
 

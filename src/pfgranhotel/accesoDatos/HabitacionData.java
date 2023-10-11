@@ -27,7 +27,7 @@ public class HabitacionData {
 
     public void crearHabitacion(Habitacion habitacion) {
 
-        String sql = "INSERT INTO `habitacion `(  `idTipo`, `estado`, `Mantenimiento`)"
+        String sql = "INSERT INTO `habitacion`( `idTipo`, `estado`, `Mantenimiento`)"
                 + " VALUES (?,?,?) ";
         PreparedStatement ps;
         try {
