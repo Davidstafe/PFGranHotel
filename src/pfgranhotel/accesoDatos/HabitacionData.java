@@ -1,7 +1,6 @@
 
 package pfgranhotel.accesoDatos;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,15 +10,13 @@ import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-import pfgranhotel.entidades.Habitacion;
-import pfgranhotel.entidades.Huesped;
-
+import pfgranhotel.entidades.*;
 
 public class HabitacionData {
-    
+
 //    private HabitacionData habD=new HabitacionData();
     private TipoDeHabitacionData tH;
-    private Connection con=null;
+    private Connection con = null;
 
     public HabitacionData() {
         con = Conexion.getConexion();
@@ -27,7 +24,7 @@ public class HabitacionData {
 
     public void crearHabitacion(Habitacion habitacion) {
 
-        String sql = "INSERT INTO `habitacion `(  `idTipo`, `estado`, `Mantenimiento`)"
+        String sql = "INSERT INTO habitacion (  idTipo, estado, Mantenimiento)"
                 + " VALUES (?,?,?) ";
         PreparedStatement ps;
         try {
@@ -48,31 +45,33 @@ public class HabitacionData {
         }
 
     }
-    }
-    /*public List<Habitacion> listarHabitaciones(){
+     public ArrayList<Habitacion> listarHabitaciones(){
         
         try {
-            List<Habitacion> habitaciones = new ArrayList<>();
+            ArrayList<Habitacion> habitat = new ArrayList<>();
             
-            String sql="Select * from habitacion where";///como llamo a todas las habitaciones, tanto libres como ocupadas.
+            String sql="Select * from habitacion where estado=1";///como llamo a todas las habitaciones, tanto libres como ocupadas.
             
             PreparedStatement ps= con.prepareStatement(sql);
             ResultSet rs= ps.executeQuery();
             
             while(rs.next()){
             
-            Habitacion habitacion = new Habitacion(); ///esto era para crear una nueva habitacion??? o para llamar una nueva habitacion.
-            habitacion.setIdHabitacion(rs.getInt("idHabitacion"));
-            habitacion.setEstado(rs.getBoolean("idTipo"));
-            habitacion.setMant(rs.getBoolean("mant"));
-            habitaciones.add(habitacion);
+            Habitacion h = new Habitacion(); ///esto era para crear una nueva habitacion??? o para llamar una nueva habitacion.
+            h.setIdHabitacion(rs.getInt("idHabitacion"));
+            h.setEstado(rs.getBoolean("idTipo"));
+            h.setMant(rs.getBoolean("mant"));
+            habitat.add(h);
                     }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"error al listar habitaciones"+ ex);
-        }*/
+        }
     
-     
-    
+return habitat;
+    }
+}
+
+
    
 
 

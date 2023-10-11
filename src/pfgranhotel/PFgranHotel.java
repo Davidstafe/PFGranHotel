@@ -19,14 +19,14 @@ public class PFgranHotel {
         HuespedData hd = new HuespedData();
         HabitacionData w = new HabitacionData();
         ReservaData r = new ReservaData();
-        Huesped h = new Huesped(2, 987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
+//        Huesped h = new Huesped(2, 987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
 //        hd.guardarHuesped(h);
         TipoDeHabitacion d = new TipoDeHabitacion(1,4, 4, "King", "simple", 20000, true);
         
-        Habitacion a = new Habitacion(1,d, true, true);
-//        w.crearHabitacion(a);
-        Reserva res = new Reserva(h, a, LocalDate.of(2020, Month.MARCH, 25), LocalDate.of(2021, Month.MARCH, 25), 40000, 4, true);
-        r.guardarReserva(res);
+        Habitacion a = new Habitacion(d, true, true);
+       w.crearHabitacion(a);
+//        Reserva res = new Reserva(h, a, LocalDate.of(2020, Month.MARCH, 25), LocalDate.of(2021, Month.MARCH, 25), 40000, 4, true);
+//        r.guardarReserva(res);
 
         ///creamos un huesped
 //        Huesped h = new Huesped(2,987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
