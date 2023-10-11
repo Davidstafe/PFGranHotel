@@ -45,33 +45,52 @@ public class HabitacionData {
         }
 
     }
-     public ArrayList<Habitacion> listarHabitaciones(){
+     public ArrayList<Habitacion> listarHabitaciones() {
+        ArrayList<Habitacion> habitat = new ArrayList<>();
+
+        String sql = "Select * from habitacion where estado=1";///como llamo a todas las habitaciones, tanto libres como ocupadas.
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Habitacion h = new Habitacion(); ///esto era para crear una nueva habitacion??? o para llamar una nueva habitacion.
+                h.setIdHabitacion(rs.getInt("idHabitacion"));
+                h.setEstado(rs.getBoolean("idTipo"));
+                h.setMant(rs.getBoolean("mant"));
+                habitat.add(h);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al listar habitaciones" + ex);
+        }
+
+        return habitat;
+    }
+    public void bajaHabitacion(int idHabitacion){
+        
+        String sql="UPDATE Habitacion SET Estado =0 WHERE idHabitacion= ? ";
         
         try {
-            ArrayList<Habitacion> habitat = new ArrayList<>();
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,idHabitacion);
+           int filas= ps.executeUpdate();
+            if (filas>1) {
+                JOptionPane.showMessageDialog(null, "Habitacion dada de baja");
+            }else{
+                     JOptionPane.showMessageDialog(null, "Habitacion en estado de alta");
+            }
             
-            String sql="Select * from habitacion where estado=1";///como llamo a todas las habitaciones, tanto libres como ocupadas.
-            
-            PreparedStatement ps= con.prepareStatement(sql);
-            ResultSet rs= ps.executeQuery();
-            
-            while(rs.next()){
-            
-            Habitacion h = new Habitacion(); ///esto era para crear una nueva habitacion??? o para llamar una nueva habitacion.
-            h.setIdHabitacion(rs.getInt("idHabitacion"));
-            h.setEstado(rs.getBoolean("idTipo"));
-            h.setMant(rs.getBoolean("mant"));
-            habitat.add(h);
-                    }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"error al listar habitaciones"+ ex);
+              JOptionPane.showMessageDialog(null, "Error ");
         }
-    
-return habitat;
+        
+        
     }
+    
 }
-
-
    
 
 

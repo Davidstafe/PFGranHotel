@@ -37,6 +37,12 @@ public class HuespedxHabitacion extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Consulta Huesped/Habitaciòn");
 
+        jCSelHuesp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCSelHuespActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Selecciòn de Huesped");
 
         jTConsulta.setModel(new javax.swing.table.DefaultTableModel(
@@ -94,6 +100,10 @@ public class HuespedxHabitacion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jCSelHuespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCSelHuespActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCSelHuespActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
