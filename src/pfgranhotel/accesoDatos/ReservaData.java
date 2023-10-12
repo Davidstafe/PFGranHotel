@@ -123,10 +123,17 @@ PreparedStatement ps = con.prepareStatement(sql);
     // habitaciònxHuesped
     
     public void habitacionxHuesped(Reserva reserva) throws SQLException{
-        String sql = "SELECT idHabitacion FROM 'habitacion' JOIN 'reserva' ON habitacion.idHabitacion= reserva.idHabitacion AND reserva.DNI=?";
-           
+        String sql = "SELECT idHabitacion,fechaIn,fechaOut FROM 'huesped' "
+                + "join 'reserva' on reserva.idHuesped= huesped.idHuesped AND DNI = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet resultado= ps.executeQuery();
+        while(resultado.next()) {
+            
+          //  System.out.println("Habitaciòn:" + resultado.getInt("idHabitacion"));
+           // System.out.println("Fecha de Inicio : " + resultado.set
         
     }
 }
+}
 
-//mmm
+//mmm//
