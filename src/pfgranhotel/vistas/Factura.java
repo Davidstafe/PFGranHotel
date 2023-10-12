@@ -5,17 +5,22 @@
  */
 package pfgranhotel.vistas;
 
+import javax.swing.JOptionPane;
+import pfgranhotel.accesoDatos.*;
+import pfgranhotel.entidades.*;
+
 /**
  *
  * @author HP
  */
 public class Factura extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Factura
-     */
+   private HuespedData hues;
+   private Huesped h;
     public Factura() {
         initComponents();
+        hues=new HuespedData();
+        h=new Huesped();
     }
 
     /**
@@ -58,6 +63,11 @@ public class Factura extends javax.swing.JInternalFrame {
         jLResultado.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
 
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("VISA");
@@ -72,6 +82,16 @@ public class Factura extends javax.swing.JInternalFrame {
         jRadioButton4.setText("EFECTIVO");
 
         jBuscar.setText("Buscar");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+        jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jBuscarKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,6 +181,39 @@ public class Factura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+       Huesped h=hues.buscarHuesped(Integer.parseInt(jTFDNI.getText()));
+        if (h!=null) {
+            JOptionPane.showMessageDialog(null, "Huesped encontrado");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Huesped no encontrado");
+        }
+    }//GEN-LAST:event_jBuscarActionPerformed
+
+    private void jBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyTyped
+        int key = evt.getKeyChar();
+
+    boolean numeros = key >= 48 && key <= 57;
+        
+    if (!numeros)
+    {
+        evt.consume();
+    }
+
+    if (jTFDNI.getText().trim().length() == 10) {
+        evt.consume();
+    }
+    }//GEN-LAST:event_jBuscarKeyTyped
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+private void calcularDia(){
+    
+    
+    
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
