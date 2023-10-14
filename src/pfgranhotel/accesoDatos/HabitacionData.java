@@ -89,6 +89,10 @@ public class HabitacionData {
         
         
     }
+    public void traerHabitacionxTipo(){
+        String sql="SELECT * FROM habitacion JOIN tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and tipodeHabitacion LIKE '?' and habitacion.estado=?;";
+    }
+    
     
 }
    
