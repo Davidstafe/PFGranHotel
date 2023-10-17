@@ -5,10 +5,10 @@
  */
 package pfgranhotel.vistas;
 
-import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import pfgranhotel.accesoDatos.HabitacionData;
-import pfgranhotel.entidades.Habitacion;
+import pfgranhotel.accesoDatos.*;
+import pfgranhotel.entidades.*;
 
 
 /**
@@ -17,21 +17,26 @@ import pfgranhotel.entidades.Habitacion;
  */
 public class HabitacionVistas extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo;
 
     private HabitacionData hd;
-//    private List<Habitacion>lisH;
+    private TipoDeHabitacionData tpd;
+    private ArrayList<TipoDeHabitacion> tha;
+    private ArrayList<Habitacion> hab;
+    private ReservaData res;
 
-    ///private HabitacionData hd;
-    ///private List<Habitacion>lisH;
-
-    
-            
-    
     public HabitacionVistas() {
         initComponents();
+        hd = new HabitacionData();
+        tpd = new TipoDeHabitacionData();
+        res = new ReservaData();
+
+        hab = (ArrayList<Habitacion>) hd.listarHabitaciones();
+        tha = (ArrayList<TipoDeHabitacion>) tpd.listhabN();
+        modelo = new DefaultTableModel();
         armarTabla();
-       // cargarTabla();
+        cargarHabitaciones();
+
     }
 
     /**
@@ -43,14 +48,15 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtHab = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRlibre = new javax.swing.JRadioButton();
+        jRocupada = new javax.swing.JRadioButton();
+        jBsalir = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jBmodificar = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(50, 50));
         setPreferredSize(new java.awt.Dimension(1000, 862));
@@ -73,23 +79,39 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("Habitaciones");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habitaciones", "Estandar simple", "Estandar Doble", "Estandar Triple", "Suite Lujo", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jRlibre.setText("Libre");
+        jRlibre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jRlibreActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Libre");
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Ocupada");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        jRocupada.setText("Ocupada");
+        jRocupada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jRocupadaActionPerformed(evt);
             }
         });
+
+        jBsalir.setText("Salir");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBox2MouseClicked(evt);
+            }
+        });
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jBmodificar.setText("Modificar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,19 +123,25 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                         .addGap(236, 236, 236)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jRadioButton1)
-                        .addGap(87, 87, 87)
-                        .addComponent(jRadioButton2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(50, 50, 50)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                                .addGap(81, 81, 81)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(73, 73, 73)
+                                    .addComponent(jRlibre)
+                                    .addGap(239, 239, 239)
+                                    .addComponent(jRocupada))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jBmodificar)
+                        .addGap(205, 205, 205)
+                        .addComponent(jBsalir)))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,45 +150,63 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRlibre)
+                    .addComponent(jRocupada))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(406, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBsalir)
+                    .addComponent(jBmodificar))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-                                           
+    private void jRocupadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRocupadaActionPerformed
+        borrarFilas();
+        jRlibre.setSelected(false);
+        habporTipo();
+    }//GEN-LAST:event_jRocupadaActionPerformed
        
-
-          
-//      
+       
         
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void jRlibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRlibreActionPerformed
+         borrarFilas();
+        jRocupada.setSelected(false);
+        habporNoTipo();
+    }//GEN-LAST:event_jRlibreActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+     dispose();
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
+       
+    }//GEN-LAST:event_jComboBox2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBsalir;
+    private javax.swing.JComboBox<TipoDeHabitacion> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRlibre;
+    private javax.swing.JRadioButton jRocupada;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtHab;
     // End of variables declaration//GEN-END:variables
 
-    private void armarTabla(){
+  private void armarTabla() {
         ///seteamos cada columna para q aparezcan los sig titulos.
         modelo.addColumn("código");
         modelo.addColumn("cantidad de personas");
@@ -169,26 +215,55 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         modelo.addColumn("precio por noche");
         jtHab.setModel(modelo);
     }
-    
-    /**private void cargarTabla(){
-        
-        ///como hago para traer todas las habitaciones por numero de cada una-.
-<<<<<<< HEAD:src/pfgranhotel/vistas/Habitacion.java
-//        for(Habitacion th: ){
-=======
-        for(Habitacion habitacion: lisH ){
-            jchab.addItem(lisH);
->>>>>>> 19ffb206e53f646f09b5402cd4edcf24e40e81e5:src/pfgranhotel/vistas/HabitacionVistas.java
-            
-            
+
+    private void cargarHabitaciones() {
+
+        for (TipoDeHabitacion tip : tha) {
+            jComboBox2.addItem(tip);
         }
-        
-    }*/
-/*
-    1)DEBERIA TENER UN LISTAR HABITACION PARA HACERLA RECORRER EN MI FOR DE CARGAR
-    TABLA Y ALLI LLAMAR A TODAS LAS HABITACIONES.
+
+    }
+    private void borrarFilas() {
+        int ind = modelo.getRowCount() - 1;
+        for (int i = ind; i > -1; i--) {
+            modelo.removeRow(i);
+        }
+    }
+////ESTOS DOS METODOS SON PARA BUSCAR POR IDHABITACION
+//    private void habitacionesTabla() {
+//        Habitacion a = (Habitacion) jComboBox1.getSelectedItem();
+//        tha = (ArrayList) tpd.obtenertipoxhab(a.getIdHabitacion());
+//        for (TipoDeHabitacion tip : tha) {
+//            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getCantCamas(), tip.getTipoDeCamas(), tip.getPrecio(),});
+//        }
+//    }
+//
+//    private void habitacioNotabla() {
+//        Habitacion a = (Habitacion) jComboBox1.getSelectedItem();
+//        tha = (ArrayList) tpd.obtenertipoxNhab(a.getIdHabitacion());
+//        for (TipoDeHabitacion tip : tha) {
+//            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getCantCamas(), tip.getTipoDeCamas(), tip.getPrecio(),});
+//        }
+//    }
+
+
+    public void habporTipo() {
+        TipoDeHabitacion a = (TipoDeHabitacion) jComboBox2.getSelectedItem();
+        tha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());
+        for (TipoDeHabitacion tip : tha) {
+            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getCantCamas(), tip.getTipoDeCamas(), tip.getPrecio(),tip.isEstado()});
+        }
+
+    }
     
-    2)LUEGO CON ESTE LIST PODRIA CARGAR LA TABLA CON DICHOS DATOS, AGREGANDOLOS
+    public void habporNoTipo() {
+        TipoDeHabitacion a = (TipoDeHabitacion) jComboBox2.getSelectedItem();
+        tha = (ArrayList) tpd.obtenerNoHabi(a.getTipoDeHabitacion());
+        for (TipoDeHabitacion tip : tha) {
+            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getCantCamas(), tip.getTipoDeCamas(), tip.getPrecio(),tip.isEstado()});
+        }
     
-    */
-}
+} 
+    
+}  
+

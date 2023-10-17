@@ -24,7 +24,7 @@ public class PFgranHotel {
         TipoDeHabitacion d = new TipoDeHabitacion(1,4, 4, "King", "simple", 20000, true);
         
         Habitacion a = new Habitacion(d, true, true);
-       w.crearHabitacion(a);
+//       w.BuscarHabitacion(6);
 //        Reserva res = new Reserva(h, a, LocalDate.of(2020, Month.MARCH, 25), LocalDate.of(2021, Month.MARCH, 25), 40000, 4, true);
 //        r.guardarReserva(res);
 
