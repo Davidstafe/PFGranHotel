@@ -24,7 +24,7 @@ public class TipoDeHabitacionData {
     
     private TipoDeHabitacionData thd;
     private Connection con=null;
-    
+    private HabitacionData ad;
     public TipoDeHabitacionData(){
     
         con=Conexion.getConexion();
@@ -286,6 +286,7 @@ ps.close();
              ResultSet rs = ps.executeQuery();
              while (rs.next()) {
                  TipoDeHabitacion h = new TipoDeHabitacion();
+//                 Habitacion a=ad.BuscarHabitacion(rs.getInt("idHabitacion"));
 //                 h.setTipoDeHabitacion(rs.getString("TipoDeHabitacion"));
                  h.setIdTipo(rs.getInt("idTipo"));
                  h.setCantPers(rs.getInt("cantPers"));
@@ -307,7 +308,7 @@ ps.close();
         //busca habitacion por tipo y estado
      public ArrayList<TipoDeHabitacion> obtenerHabi(String tipoDeHabitacion)   {
         ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
-        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo  FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=1";
+        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo ,habitacion.idhabitacion FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=1";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
              
