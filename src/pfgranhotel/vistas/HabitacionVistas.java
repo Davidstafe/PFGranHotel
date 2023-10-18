@@ -161,7 +161,7 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBsalir)
                     .addComponent(jBmodificar))
-                .addContainerGap(480, Short.MAX_VALUE))
+                .addContainerGap(492, Short.MAX_VALUE))
         );
 
         pack();

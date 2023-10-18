@@ -84,7 +84,7 @@
                   <Component id="jBsalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBmodificar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="480" max="32767" attributes="0"/>
+              <EmptySpace pref="492" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,9 +126,6 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRlibre">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="default"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Libre"/>
       </Properties>
       <Events>
@@ -137,9 +134,6 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRocupada">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="default"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Ocupada"/>
       </Properties>
       <Events>
