@@ -159,65 +159,65 @@ public class TipoDeHabitacionData {
 //    }
 // //SELECT idHabitacion,habitacion.estado,mantenimiento,tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.tipoDeHabitacion,tipodehabitacion.precio FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and tipodehabitacion.tipoDeHabitacion like 'simple';   
 //   
-//  public ArrayList<TipoDeHabitacion>listhab(){
-//      
-//            ArrayList<TipoDeHabitacion> tipoHab = new ArrayList<>();
-//      String sql = "SELECT * FROM tipoDeHabitacion WHERE TipoDeHabitacion estado=0";
-//
-//      PreparedStatement ps;
-//      try {
-//          ps = con.prepareStatement(sql);
-//          ResultSet rs = ps.executeQuery();
-//
-//          while (rs.next()) {
-//              TipoDeHabitacion thab = new TipoDeHabitacion();
-//              thab.setIdTipo(rs.getInt("idTipo"));
-//              thab.setCantPers(rs.getInt("cantPers"));
-//              thab.setCantCamas(rs.getInt("cantCamas"));
-//              thab.setTipoDeCamas(rs.getString("tipoDeCamas"));
-//              thab.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
-//              thab.setPrecio(rs.getInt("precio"));
-//              thab.setEstado(rs.getBoolean("estado"));
-//              tipoHab.add(thab);  ///xq no me lo agrega????    :(
-//
-//          }
-//
-//      } catch (SQLException ex) {
-//          JOptionPane.showMessageDialog(null, "Error al listar las habitaciones simples" + ex);
-//      }
-//      return tipoHab;
-//  }
-//  public TipoDeHabitacion buscarThaHabitacion(String tipoDeHabitacion){
-//     String sql="SELECT*from tipoDeHabitacion where tipoDeHabitacion like ?"; 
-//      TipoDeHabitacion tp=null;
-//        try {
-//            PreparedStatement ps=con.prepareStatement(sql);
-//            ps.setString(1, tipoDeHabitacion);
-//             ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//             tp = new TipoDeHabitacion();
-//              tp.setIdTipo(rs.getInt("idTipo"));
-//              tp.setCantPers(rs.getInt("cantPers"));
-//              tp.setCantCamas(rs.getInt("cantCamas"));
-//              tp.setTipoDeCamas(rs.getString("tipoDeCamas"));
-//              tp.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
-//              tp.setPrecio(rs.getInt("precio"));
-//              tp.setEstado(rs.getBoolean("estado"));
-//                     
-//               JOptionPane.showMessageDialog(null, "huesped encontrado");
-//        }else{
-//                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
-//           }
-//           ps.close();
-//     
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al cargar");
-//        }
-//      
-//      
-//  return tp;
-//  }
-//
+  public ArrayList<TipoDeHabitacion>listhab(){
+      
+            ArrayList<TipoDeHabitacion> tipoHab = new ArrayList<>();
+      String sql = "SELECT * FROM tipoDeHabitacion WHERE TipoDeHabitacion estado=0";
+
+      PreparedStatement ps;
+      try {
+          ps = con.prepareStatement(sql);
+          ResultSet rs = ps.executeQuery();
+
+          while (rs.next()) {
+              TipoDeHabitacion thab = new TipoDeHabitacion();
+              thab.setIdTipo(rs.getInt("idTipo"));
+              thab.setCantPers(rs.getInt("cantPers"));
+              thab.setCantCamas(rs.getInt("cantCamas"));
+              thab.setTipoDeCamas(rs.getString("tipoDeCamas"));
+              thab.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
+              thab.setPrecio(rs.getInt("precio"));
+              thab.setEstado(rs.getBoolean("estado"));
+              tipoHab.add(thab);  ///xq no me lo agrega????    :(
+
+          }
+
+      } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al listar las habitaciones simples" + ex);
+      }
+      return tipoHab;
+  }
+  public TipoDeHabitacion buscarThaHabitacion(String tipoDeHabitacion){
+     String sql="SELECT*from tipoDeHabitacion where tipoDeHabitacion like ?"; 
+      TipoDeHabitacion tp=null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, tipoDeHabitacion);
+             ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+             tp = new TipoDeHabitacion();
+              tp.setIdTipo(rs.getInt("idTipo"));
+              tp.setCantPers(rs.getInt("cantPers"));
+              tp.setCantCamas(rs.getInt("cantCamas"));
+              tp.setTipoDeCamas(rs.getString("tipoDeCamas"));
+              tp.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
+              tp.setPrecio(rs.getInt("precio"));
+              tp.setEstado(rs.getBoolean("estado"));
+                     
+               JOptionPane.showMessageDialog(null, "huesped encontrado");
+        }else{
+                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
+           }
+           ps.close();
+     
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar");
+        }
+      
+      
+  return tp;
+  }
+
 public ArrayList<TipoDeHabitacion>listhabN(){
       
             ArrayList<TipoDeHabitacion> tipoHab = new ArrayList<>();
