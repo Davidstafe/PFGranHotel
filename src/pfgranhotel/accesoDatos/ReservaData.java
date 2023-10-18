@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
+import pfgranhotel.entidades.Habitacion;
 import pfgranhotel.entidades.Huesped;
 import pfgranhotel.entidades.Reserva;
 
@@ -107,33 +108,54 @@ public class ReservaData {
     }
 
     //HUESPED POR HABITACIÒN 
-    public void huespedxHabitacion (Reserva reserva)throws SQLException {
+    public List<Reserva> huespedxHabitacion (int idHabitacion)throws SQLException {
+         ArrayList<Reserva> reservas = new ArrayList<>();
       String sql= "SELECT DNI, Apellido FROM 'huesped' JOIN 'reserva' ON huesped.idHuesped=reserva.idHuesped AND habitacion.idHabitacion =?";  
-      
+    try{  
 PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet resultado= ps.executeQuery();
+        ResultSet rs= ps.executeQuery();
+        ps.setInt(1, idHabitacion);     
+        while(rs.next()) {
+              Reserva r = new Reserva();  
+              Huesped h= hData.buscarHuesped(rs.getInt("DNI"));
+               h.setApellido(rs.getString("Apellido"));
+          
+            reservas.add(r);
             
-        while(resultado.next()) {
             
-            System.out.println("DNI:" + resultado.getInt("DNI"));
-            System.out.println("Apellido:" + resultado.getString("Apellido"));
-        }      
-}
-    
+        }   ps.close();    
+}catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al obtener el huesped"+ex.getMessage());
+    }  return reservas;  
+    }
     // habitaciònxHuesped
     
-    public void habitacionxHuesped(Reserva reserva) throws SQLException{
+    public List<Reserva> habitacionxHuesped(int DNI) throws SQLException {
+        ArrayList<Reserva> reservas = new ArrayList<>();
         String sql = "SELECT idHabitacion,fechaIn,fechaOut FROM 'huesped' "
                 + "join 'reserva' on reserva.idHuesped= huesped.idHuesped AND DNI = ?";
+        try{
         PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet resultado= ps.executeQuery();
-        while(resultado.next()) {
-            
-          //  System.out.println("Habitaciòn:" + resultado.getInt("idHabitacion"));
-           // System.out.println("Fecha de Inicio : " + resultado.set
+       ps.setInt(1, DNI);
+        ResultSet rs= ps.executeQuery();
+        while(rs.next()) {
+          Reserva r = new Reserva();  
+          Habitacion h=habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+                  
+         r.setFechaIn(rs.getDate("fechaIn").toLocalDate());
+         r.setFechaOut(rs.getDate("fechaOut").toLocalDate());
+          reservas.add(r);
+          
+       
+          
+          
         
     }
+        ps.close();
+}catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al obtener habitaciones"+ex.getMessage());
 }
+       
+  return reservas;  }
 }
-
 //mmm//
