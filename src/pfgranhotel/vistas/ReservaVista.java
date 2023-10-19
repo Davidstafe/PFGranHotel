@@ -5,16 +5,23 @@
  */
 package pfgranhotel.vistas;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 /**
  *
  * @author HP
  */
-public class Reservas extends javax.swing.JInternalFrame {
+public class ReservaVista extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Reservas
      */
-    public Reservas() {
+    public ReservaVista() {
         initComponents();
     }
 
@@ -30,8 +37,8 @@ public class Reservas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jDateCheckIn = new com.toedter.calendar.JDateChooser();
-        jDateCheckOut = new com.toedter.calendar.JDateChooser();
+        jDateIn = new com.toedter.calendar.JDateChooser();
+        jDateOut = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jCBMayores = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -70,15 +77,15 @@ public class Reservas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Check Out");
 
-        jDateCheckIn.addMouseListener(new java.awt.event.MouseAdapter() {
+        jDateIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jDateCheckInMouseClicked(evt);
+                jDateInMouseClicked(evt);
             }
         });
 
-        jDateCheckOut.addMouseListener(new java.awt.event.MouseAdapter() {
+        jDateOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jDateCheckOutMouseClicked(evt);
+                jDateOutMouseClicked(evt);
             }
         });
 
@@ -247,7 +254,7 @@ public class Reservas extends javax.swing.JInternalFrame {
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel3)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jDateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(jLabel6))
                                             .addGap(118, 118, 118)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +267,7 @@ public class Reservas extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel1)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jDateIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(17, 17, 17)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9)
@@ -303,7 +310,7 @@ public class Reservas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(jLabel2)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,12 +323,12 @@ public class Reservas extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel1)
-                                        .addComponent(jDateCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jDateIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel9))
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jDateCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel10)
                                 .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -390,20 +397,33 @@ public class Reservas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jDateCheckInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateCheckInMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDateCheckInMouseClicked
+    private void jDateInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateInMouseClicked
+      if (jDateIn!=null){
+          ZoneId zoneIdDefault = null;
+          ZonedDateTime in=jDateIn.getDate().toInstant().atZone(zoneIdDefault);
+          
+      }
+        
+    }//GEN-LAST:event_jDateInMouseClicked
 
-    private void jDateCheckOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateCheckOutMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDateCheckOutMouseClicked
+    private void jDateOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateOutMouseClicked
+      if (jDateOut!=null){
+          ZoneId zoneIdDefault = null;
+          ZonedDateTime out =jDateOut.getDate().toInstant().atZone(zoneIdDefault);
+          
+      } 
+    }//GEN-LAST:event_jDateOutMouseClicked
 
     private void jCBMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMayoresActionPerformed
-        // TODO add your handling code here:
+      if (jCBMayores!=null){
+          int may = (int) jCBMayores.getSelectedItem();
+      }
     }//GEN-LAST:event_jCBMayoresActionPerformed
 
     private void jCBMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMenoresActionPerformed
-        // TODO add your handling code here:
+       if (jCBMayores!=null){
+          int men = (int) jCBMenores.getSelectedItem();
+      }
     }//GEN-LAST:event_jCBMenoresActionPerformed
 
     private void jCBDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDNIActionPerformed
@@ -469,8 +489,8 @@ public class Reservas extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jCBMenores;
     private javax.swing.JComboBox<String> jCBTCam;
     private javax.swing.JComboBox<String> jCBTHab;
-    private com.toedter.calendar.JDateChooser jDateCheckIn;
-    private com.toedter.calendar.JDateChooser jDateCheckOut;
+    private com.toedter.calendar.JDateChooser jDateIn;
+    private com.toedter.calendar.JDateChooser jDateOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -496,4 +516,20 @@ public class Reservas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTListado;
     private javax.swing.JTextField jThabitacion;
     // End of variables declaration//GEN-END:variables
+
+private void diferenciaFechas(){
+   LocalDate in = null ;
+   LocalDate out = null;
+   
+   int difDias = (int) ChronoUnit.DAYS.between(out,in);
+    
+   
+}
+private void cantPersonas(){
+    int may = 0;
+    int men = 0;
+    
+ int total= may+men;
+    System.out.println("total"+total);
+}
 }
