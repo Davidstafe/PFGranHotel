@@ -45,6 +45,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jColorChooser1 = new javax.swing.JColorChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -214,9 +215,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Total Estadìa ");
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Habitaciòn reservada");
 
         jBCalcu.setText("Calcular");
@@ -509,6 +511,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jCBMayores;
     private javax.swing.JComboBox<String> jCBMenores;
     private javax.swing.JComboBox<String> jCBTHab;
+    private javax.swing.JColorChooser jColorChooser1;
     private com.toedter.calendar.JDateChooser jDateIn;
     private com.toedter.calendar.JDateChooser jDateOut;
     private javax.swing.JLabel jLCalcRes;
