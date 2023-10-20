@@ -247,10 +247,11 @@ public ArrayList<TipoDeHabitacion>listhabN(){
       }
       return tipoHab;
   }
-        //busca habitacion por idHabitacion y estado
+        //busca habitacion por idHabitacion y estado=1
      public ArrayList<TipoDeHabitacion> obtenertipoxhab(int idHabitacion)   {
         ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
-        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo ,tipodehabitacion.estado FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and habitacion.idhabitacion= ? and  habitacion.estado=1";
+        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo ,tipodehabitacion.estado"
+                + " FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and habitacion.idhabitacion= ? and  habitacion.estado=1";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
              ps.setInt(1, idHabitacion);
@@ -276,10 +277,11 @@ ps.close();
 
         return tipo;
     }
-      //busca habitacion por idHabitacion y estado
+      //busca habitacion por idHabitacion y estado =0
      public ArrayList<TipoDeHabitacion> obtenertipoxNhab(int idHabitacion)   {
         ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
-        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and habitacion.idhabitacion= ? and habitacion.estado=0";
+        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo "
+                + "FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and habitacion.idhabitacion= ? and habitacion.estado=0";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
              ps.setInt(1, idHabitacion);
@@ -305,10 +307,11 @@ ps.close();
 
         return tipo;
     }
-        //busca habitacion por tipo y estado
+        //busca habitacion por tipo y estado=1
      public ArrayList<TipoDeHabitacion> obtenerHabi(String tipoDeHabitacion)   {
         ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
-        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo ,habitacion.idhabitacion FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=1";
+        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo ,habitacion.idhabitacion"
+                + " FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=1";
          try {
              PreparedStatement ps = con.prepareStatement(sql);
              
@@ -335,10 +338,11 @@ ps.close();
         return tipo;
 
 }
-    //Busca habitacion por tipo y estado 
+    //Busca habitacion por tipo y estado =0
     public ArrayList<TipoDeHabitacion> obtenerNoHabi(String tipoDeHabitacion) {
         ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
-        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=0";
+        String sql = "SELECT tipodehabitacion.cantPers,tipodehabitacion.cantCamas,tipodehabitacion.tipoDeCamas,tipodehabitacion.precio,tipodehabitacion.idTipo "
+                + "FROM `habitacion`join tipodehabitacion on tipodehabitacion.idTipo=habitacion.idTipo and  tipoDeHabitacion.tipoDeHabitacion= ?  and habitacion.estado=0";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 

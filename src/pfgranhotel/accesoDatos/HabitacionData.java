@@ -121,7 +121,33 @@ public class HabitacionData {
 return hab;
     }
    
+public void modificarHabitacion(Habitacion habitacion){
+    try{     
+    String sql = "UPDATE `habitacion` SET `idHabitacion`=?,`idTipo`=?,`estado`=?,`mantenimiento`=? WHERE habitacion.idHabitacion=?"
+                    + "correo=? , celular=?,estado=? WHERE huesped.idHuesped = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, habitacion.getIdHabitacion());
+//            ps.setString(2, habitacion.getTipo);
+            ps.setBoolean(3, habitacion.isEstado());
+            ps.setBoolean(4, habitacion.isMant());
+           
+            int exito = ps.executeUpdate();
 
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Habitacion modificada exitosamente");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "habitacoin no existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de habitaciones " + ex);
+        }
+
+    }
+    
+}
 
                 
-}
+
