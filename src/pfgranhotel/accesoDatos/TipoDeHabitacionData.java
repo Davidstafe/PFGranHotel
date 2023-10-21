@@ -400,6 +400,7 @@ public class TipoDeHabitacionData {
         }
         
     }
-
+    
+    ////metodo para modificar los datos de tipo de habitacion   
 
 }

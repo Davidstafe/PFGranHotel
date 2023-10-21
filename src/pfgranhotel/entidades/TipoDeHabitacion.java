@@ -40,7 +40,7 @@ public class TipoDeHabitacion {
         this.estado = estado;
     }
 
-    public int getIdTipo() {
+     public int getIdTipo() {
         return idTipo;
     }
 

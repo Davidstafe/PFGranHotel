@@ -2,6 +2,7 @@
 package pfgranhotel.vistas;
 
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.ir.CatchNode;
 import pfgranhotel.accesoDatos.TipoDeHabitacionData;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
@@ -15,7 +16,7 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
     public TipoDeHabVistas() {
         thab=new TipoDeHabitacionData();
         initComponents();
-        limpiar();
+        ///limpiar();
     }
 
     
@@ -78,6 +79,11 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         });
 
         jbMod.setText("Modificar");
+        jbMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModActionPerformed(evt);
+            }
+        });
 
         jbElim.setText("Eliminar");
 
@@ -222,6 +228,40 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
            thab.guardarHab(thabi);
         }
     }//GEN-LAST:event_jbCrearActionPerformed
+
+    private void jbModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+        
+            
+        //   TipoDeHabitacion thabMod= new TipoDeHabitacion((Integer.parseInt(jtCantpers.getText())),(Integer.parseInt(jtCantpers.getText())), jtTiposCamas.getText(),jtTipoHab.getText(),(Integer.parseInt(jtCantpers.getText()),(Integer.parseInt(jtPrecio.getText()));
+        if (jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
+                || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        } else {
+            // Asumiendo que los campos sean numéricos, usa Integer.parseInt o Double.parseDouble
+            int cantidadPersonas = Integer.parseInt(jtCantpers.getText());
+            int cantidadCamas = Integer.parseInt(jtCantCamas.getText());
+            double precio = Double.parseDouble(jtPrecio.getText());
+
+            TipoDeHabitacion thabi = new TipoDeHabitacion(cantidadPersonas, cantidadCamas, jtTiposCamas.getText(), jtTipoHab.getText(), precio, true);
+            // Luego, haz lo que necesites con thabi, como guardar en una lista o base de datos.
+        
+            JOptionPane.showMessageDialog(null,"habitacion modificada");
+        
+        
+        }} catch (NumberFormatException e){
+               JOptionPane.showMessageDialog(null, "Ingresar numeros en los campos" + e);
+            jtCantCamas.setText("");
+            jtCantpers.setText("");
+            jtPrecio.setText("");
+                }
+             
+        
+        
+
+    }//GEN-LAST:event_jbModActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
