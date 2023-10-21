@@ -52,7 +52,7 @@ public class HabitacionData {
     public ArrayList<Habitacion> listarHabitaciones() {
         ArrayList<Habitacion> habitat = new ArrayList<>();
 
-        String sql = "Select idHabitacion from habitacion ";///como llamo a todas las habitaciones, tanto libres como ocupadas.
+        String sql = "Select idH    abitacion from habitacion ";///como llamo a todas las habitaciones, tanto libres como ocupadas.
 
         try {
 
