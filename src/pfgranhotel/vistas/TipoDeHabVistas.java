@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pfgranhotel.vistas;
 
 import javax.swing.JOptionPane;
+import pfgranhotel.accesoDatos.TipoDeHabitacionData;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
 /**
@@ -14,9 +11,9 @@ import pfgranhotel.entidades.TipoDeHabitacion;
  */
 public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
-    private TipoDeHabitacion thab;
+    private TipoDeHabitacionData thab;
     public TipoDeHabVistas() {
-        thab=new TipoDeHabitacion();
+        thab=new TipoDeHabitacionData();
         initComponents();
         limpiar();
     }
@@ -222,13 +219,11 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
         } else{
             TipoDeHabitacion thabi= new TipoDeHabitacion((jtCantpers.getText()),jtCantCamas.getText(), jtTiposCamas.getText(), jtTipoHab.getText(), jtPrecio.getText(),jbCrear.isSelected());
-            if(thab.){
-                
-            }
+           thab.guardarHab(thabi);
         }
     }//GEN-LAST:event_jbCrearActionPerformed
 
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
