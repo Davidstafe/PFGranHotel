@@ -560,7 +560,7 @@ private void cantPersonas(){
 ///Calcular Estadìa
  private void calcularEstadia(){
      
- double estadia = diferenciaFechas()*cantPersonas()* habitacion.
+ ///double estadia = diferenciaFechas()*cantPersonas()* habitacion.
  }
 
 
