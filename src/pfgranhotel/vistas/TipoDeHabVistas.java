@@ -6,6 +6,7 @@
 package pfgranhotel.vistas;
 
 import javax.swing.JOptionPane;
+import pfgranhotel.accesoDatos.TipoDeHabitacionData;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
 /**
@@ -14,9 +15,9 @@ import pfgranhotel.entidades.TipoDeHabitacion;
  */
 public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
-    private TipoDeHabitacion thab;
+    private TipoDeHabitacionData thab;
     public TipoDeHabVistas() {
-        thab=new TipoDeHabitacion();
+        thab=new TipoDeHabitacionData();
         initComponents();
         limpiar();
     }
@@ -216,18 +217,42 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
         // TODO add your handling code here:
-//        
-//        if(jtCantpers.getText().isEmpty() || jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
-//               || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()  ){
-//            JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
-//        } else{
-//            TipoDeHabitacion thabi= new TipoDeHabitacion((jtCantpers.getText()),jtCantCamas.getText(), jtTiposCamas.getText(), jtTipoHab.getText(), jtPrecio.getText(),jbCrear.isSelected());
-////            if(thab.){
-//                
-//            }
-//        }
+        
+        if(jtCantpers.getText().isEmpty() || jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
+               || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()  ){
+            JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
+        } else{
+            TipoDeHabitacion thabi= new TipoDeHabitacion((jtCantpers.getText()),jtCantCamas.getText(), jtTiposCamas.getText(), jtTipoHab.getText(), jtPrecio.getText(),jbCrear.isSelected());
+           thab.guardarHab(thabi);
+        }
     }//GEN-LAST:event_jbCrearActionPerformed
+     private void jbModActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+        try{
+        //   TipoDeHabitacion thabMod= new TipoDeHabitacion((Integer.parseInt(jtCantpers.getText())),(Integer.parseInt(jtCantpers.getText())), jtTiposCamas.getText(),jtTipoHab.getText(),(Integer.parseInt(jtCantpers.getText()),(Integer.parseInt(jtPrecio.getText()));
+        if (jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
+                || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        } else {
+            // Asumiendo que los campos sean numéricos, usa Integer.parseInt o Double.parseDouble
+            int cantidadPersonas = Integer.parseInt(jtCantpers.getText());
+            int cantidadCamas = Integer.parseInt(jtCantCamas.getText());
+            double precio = Double.parseDouble(jtPrecio.getText());
 
+            TipoDeHabitacion thabi = new TipoDeHabitacion(cantidadPersonas, cantidadCamas, jtTiposCamas.getText(), jtTipoHab.getText(), precio, true);
+            // Luego, haz lo que necesites con thabi, como guardar en una lista o base de datos.
+        
+            JOptionPane.showMessageDialog(null,"habitacion modificada");
+        
+        
+        }} catch (NumberFormatException e){     //////////****** COMO HAGO PARA HACER LO MISMO PIDIENDO SOLO LETRAS EN LOS STRING???
+            /// para  asegurarme q solo ingrese numeros en los int
+               JOptionPane.showMessageDialog(null, "Ingresar numeros en los campos" );
+            jtCantCamas.setText("");
+            jtCantpers.setText("");
+            jtPrecio.setText("");
+                }
+     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

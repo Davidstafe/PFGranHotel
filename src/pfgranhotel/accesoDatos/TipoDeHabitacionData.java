@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -243,5 +244,32 @@ ps.close();
 
 }
     //Busca habitacion por tipo y estado =0
-  
+     
+      public void guardarHab(TipoDeHabitacion tipoDeHabitacion){
+        String sql="INSERT INTO `tipodehabitacion`( `cantPers`, `cantCamas`, `tipoDeCamas`, `tipoDeHabitacion`, `precio`) VALUES "
+                + "(?,?,?,?,?)";  
+        PreparedStatement ps;
+        try {
+            ps=con.prepareStatement(sql,RETURN_GENERATED_KEYS);
+            ps.setInt(1,tipoDeHabitacion.getCantPers());
+            ps.setInt(2, tipoDeHabitacion.getCantCamas());
+            ps.setString(3,tipoDeHabitacion.getTipoDeCamas());
+            ps.setString(4,tipoDeHabitacion.getTipoDeHabitacion());
+            ps.setDouble(5, tipoDeHabitacion.getPrecio());
+            ps.executeUpdate();
+            
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                tipoDeHabitacion.setIdTipo(rs.getInt(1));///lo guarda por tipo de habitacion
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"ERROR al guardar habitacion"+ e);
+        }
+        
+    }
+
+
 }
+  
+
