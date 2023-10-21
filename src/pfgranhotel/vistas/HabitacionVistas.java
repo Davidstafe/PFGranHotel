@@ -18,7 +18,7 @@ import pfgranhotel.entidades.*;
 public class HabitacionVistas extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo;
-
+    private DefaultTableModel modeloH;
     private HabitacionData hd;
     private TipoDeHabitacionData tpd;
     private ArrayList<TipoDeHabitacion> tha;
@@ -34,8 +34,11 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         hab = (ArrayList<Habitacion>) hd.listarHabitaciones();
         tha = (ArrayList<TipoDeHabitacion>) tpd.listhabN();
         modelo = new DefaultTableModel();
+        modeloH = new DefaultTableModel();
         armarTabla();
         cargarHabitaciones();
+        armarTabla2();
+        cargarHabi();
 
     }
 
@@ -58,7 +61,9 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jBmodificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jThabi = new javax.swing.JTable();
+        jCTipo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(50, 50));
         setPreferredSize(new java.awt.Dimension(1000, 862));
@@ -115,7 +120,7 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
 
         jBmodificar.setText("Modificar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jThabi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -126,32 +131,29 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+        jThabi.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTable1AncestorAdded(evt);
+                jThabiAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jThabi);
+
+        jCTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTipoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Seleccione el codigo de la habitacion :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel1)
-                        .addGap(81, 81, 81)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 433, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -161,34 +163,51 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
                         .addGap(104, 104, 104)
                         .addComponent(jBmodificar)
                         .addGap(211, 211, 211)
-                        .addComponent(jBsalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jRlibre)
-                        .addGap(175, 175, 175)
-                        .addComponent(jRocupada)))
+                        .addComponent(jBsalir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(61, 61, 61)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jRlibre)
+                                .addComponent(jLabel1))
+                            .addGap(109, 109, 109)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRocupada)))))
+                .addGap(0, 395, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                    .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRlibre)
                     .addComponent(jRocupada))
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBmodificar)
                     .addComponent(jBsalir))
@@ -199,17 +218,17 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRocupadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRocupadaActionPerformed
-//        borrarFilas();
-//        jRlibre.setSelected(false);
-//        habporTipo();
+        borrarFilas2();
+        jRlibre.setSelected(false);
+      xTipoOcu();
     }//GEN-LAST:event_jRocupadaActionPerformed
        
        
         
     private void jRlibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRlibreActionPerformed
-//         borrarFilas();
-//        jRocupada.setSelected(false);
-//        habporNoTipo();
+         borrarFilas2();
+        jRocupada.setSelected(false);
+       xTipoDeso();
     }//GEN-LAST:event_jRlibreActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
@@ -226,26 +245,32 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_jComboBox2MouseClicked
 
-    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+    private void jThabiAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jThabiAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1AncestorAdded
+    }//GEN-LAST:event_jThabiAncestorAdded
+
+    private void jCTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JComboBox<Habitacion> jCTipo;
     private javax.swing.JComboBox<TipoDeHabitacion> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton jRlibre;
     private javax.swing.JRadioButton jRocupada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jThabi;
     private javax.swing.JTable jtHab;
     // End of variables declaration//GEN-END:variables
 
-  private void armarTabla() {
+    private void armarTabla() {
         ///seteamos cada columna para q aparezcan los sig titulos.
         modelo.addColumn("código");
         modelo.addColumn("cantidad de personas");
@@ -255,6 +280,21 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         jtHab.setModel(modelo);
     }
 
+    private void borrarFilas() {
+        int ind = modelo.getRowCount() - 1;
+        for (int i = ind; i > -1; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    private void armarTabla2() {
+        ///seteamos cada columna para q aparezcan los sig titulos.
+        modeloH.addColumn("Numero de habitacion");
+        modeloH.addColumn("Estado de la habitacion");
+        modeloH.addColumn("codigo");
+        jThabi.setModel(modeloH);
+    }
+
     private void cargarHabitaciones() {
 
         for (TipoDeHabitacion tip : tha) {
@@ -262,11 +302,26 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         }
 
     }
-    private void borrarFilas() {
-        int ind = modelo.getRowCount() - 1;
+    
+   
+
+  
+
+    private void borrarFilas2() {
+        int ind = modeloH.getRowCount() - 1;
         for (int i = ind; i > -1; i--) {
-            modelo.removeRow(i);
+            modeloH.removeRow(i);
         }
+    }
+
+    private void cargarHabi() {
+        
+
+        for (Habitacion tip : hab) {
+            jCTipo.addItem(tip);
+        }
+     
+
     }
 ////ESTOS DOS METODOS SON PARA BUSCAR POR IDHABITACION
 //    private void habitacionesTabla() {
@@ -294,15 +349,23 @@ public class HabitacionVistas extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    public void habporNoTipo() {
-        TipoDeHabitacion a = (TipoDeHabitacion) jComboBox2.getSelectedItem();
-        tha = (ArrayList) tpd.obtenerNoHabi(a.getTipoDeHabitacion());
-        for (TipoDeHabitacion tip : tha) {
-            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getCantCamas(), tip.getTipoDeCamas(), tip.getPrecio(),tip.isEstado()});
+//    
+    public void xTipoDeso() {
+        
+        Habitacion a = (Habitacion) jCTipo.getSelectedItem();
+        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
+        for (Habitacion h : hab) {
+            modeloH.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(),h.getTipo()});
         }
     
-} 
+}  
+    public void xTipoOcu() {
+     Habitacion a = (Habitacion) jCTipo.getSelectedItem();
+        hab = (ArrayList) hd.obtenerhabiIdhabD(a.getIdHabitacion());
+        for (Habitacion h : hab) {
+            modeloH.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(),h.getTipo()});
+        }
     
 }  
 
+}

@@ -17,8 +17,8 @@ import pfgranhotel.entidades.*;
 public class HabitacionData {
 
 //    private HabitacionData habD=new HabitacionData();
-    private TipoDeHabitacionData tH;
-    private TipoDeHabitacion tp;
+    private TipoDeHabitacionData tH=new TipoDeHabitacionData();
+  
     private Connection con = null;
 
     public HabitacionData() {
@@ -52,7 +52,7 @@ public class HabitacionData {
     public ArrayList<Habitacion> listarHabitaciones() {
         ArrayList<Habitacion> habitat = new ArrayList<>();
 
-        String sql = "Select idH    abitacion from habitacion ";///como llamo a todas las habitaciones, tanto libres como ocupadas.
+        String sql = "Select idHabitacion from habitacion ";///como llamo a todas las habitaciones, tanto libres como ocupadas.
 
         try {
 
@@ -107,30 +107,29 @@ public class HabitacionData {
                 hab.setMant(rs.getBoolean("mantenimiento"));
                 hab.setEstado(rs.getBoolean("estado"));
 //                hab.setTipo(tp.setIdTipo(rs.getInt("tipo")));               
-         
-                
-              JOptionPane.showMessageDialog(null, "habitacion encontrada");
-            }else{
-                  JOptionPane.showMessageDialog(null, "habitacion no encontrado");
+
+                JOptionPane.showMessageDialog(null, "habitacion encontrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "habitacion no encontrado");
             }
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar");
         }
-return hab;
+        return hab;
     }
-   
-public void modificarHabitacion(Habitacion habitacion){
-    try{     
-    String sql = "UPDATE `habitacion` SET `idHabitacion`=?,`idTipo`=?,`estado`=?,`mantenimiento`=? WHERE habitacion.idHabitacion=?"
+
+    public void modificarHabitacion(Habitacion habitacion) {
+        try {
+            String sql = "UPDATE `habitacion` SET `idHabitacion`=?,`idTipo`=?,`estado`=?,`mantenimiento`=? WHERE habitacion.idHabitacion=?"
                     + "correo=? , celular=?,estado=? WHERE huesped.idHuesped = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, habitacion.getIdHabitacion());
 //            ps.setString(2, habitacion.getTipo);
             ps.setBoolean(3, habitacion.isEstado());
             ps.setBoolean(4, habitacion.isMant());
-           
+
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -146,7 +145,62 @@ public void modificarHabitacion(Habitacion habitacion){
         }
 
     }
-    
+
+    public ArrayList<Habitacion> obtenerhabiIdhabi(int idhabitacion) {
+        ArrayList<Habitacion> tipo = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion WHERE idhabitacion=? and estado=1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idhabitacion);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Habitacion h = new Habitacion();
+                h.setIdHabitacion(idhabitacion);
+                h.setEstado(rs.getBoolean("Estado"));
+                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
+                h.setTipo(a);
+                tipo.add(h);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de datos" + ex);
+        }
+        
+        return tipo;
+        
+    }  
+     public ArrayList<Habitacion> obtenerhabiIdhabD(int idHabitacion) {
+        ArrayList<Habitacion> tipo = new ArrayList<>();
+        String sql = "SELECT * FROM habitacion where idtipo=? and estado=0";
+         try {
+             PreparedStatement ps = con.prepareStatement(sql);
+
+             ps.setInt(1, idHabitacion);
+             ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+
+                 Habitacion h = new Habitacion();
+
+                 h.setIdHabitacion(rs.getInt("idhabitacion"));
+                 h.setEstado(rs.getBoolean("Estado"));
+                 TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
+                 h.setTipo(a);
+                 
+                 tipo.add(h);
+
+             }
+             ps.close();
+         } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "Error de datos" + ex);
+        }
+
+        return tipo;
+
+    }
+
+
 }
 
                 

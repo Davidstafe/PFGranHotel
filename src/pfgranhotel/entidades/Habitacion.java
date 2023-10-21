@@ -39,6 +39,7 @@ public class Habitacion {
 
     public void setTipo(TipoDeHabitacion tipo) {
         this.tipo = tipo;
+    
     }
 
     public boolean isEstado() {
@@ -60,7 +61,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "idHabitacion : " + idHabitacion ;
+        return "Numero de : " + idHabitacion ;
     }
     
     

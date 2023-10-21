@@ -216,16 +216,16 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
         // TODO add your handling code here:
-        
-        if(jtCantpers.getText().isEmpty() || jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
-               || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()  ){
-            JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
-        } else{
-            TipoDeHabitacion thabi= new TipoDeHabitacion((jtCantpers.getText()),jtCantCamas.getText(), jtTiposCamas.getText(), jtTipoHab.getText(), jtPrecio.getText(),jbCrear.isSelected());
-            if(thab.){
-                
-            }
-        }
+//        
+//        if(jtCantpers.getText().isEmpty() || jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
+//               || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()  ){
+//            JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
+//        } else{
+//            TipoDeHabitacion thabi= new TipoDeHabitacion((jtCantpers.getText()),jtCantCamas.getText(), jtTiposCamas.getText(), jtTipoHab.getText(), jtPrecio.getText(),jbCrear.isSelected());
+////            if(thab.){
+//                
+//            }
+//        }
     }//GEN-LAST:event_jbCrearActionPerformed
 
     
