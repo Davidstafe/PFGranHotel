@@ -44,10 +44,10 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         jrLibre = new javax.swing.JRadioButton();
         jrOcupada = new javax.swing.JRadioButton();
         jbCrear = new javax.swing.JButton();
-        jbMod = new javax.swing.JButton();
         jbElim = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jbMod = new javax.swing.JButton();
 
         jLabel1.setText("ABM HABITACION");
 
@@ -81,8 +81,6 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
             }
         });
 
-        jbMod.setText("Modificar");
-
         jbElim.setText("Eliminar");
 
         jButton1.setText("Salir");
@@ -96,6 +94,13 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jbMod.setText("Modificar");
+        jbMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModActionPerformed(evt);
             }
         });
 
@@ -142,12 +147,12 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jbCrear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbMod)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbMod)
+                        .addGap(12, 12, 12)
                         .addComponent(jbElim, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -188,10 +193,10 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCrear)
-                    .addComponent(jbMod)
                     .addComponent(jbElim)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jbMod))
                 .addGap(0, 13, Short.MAX_VALUE))
         );
 
@@ -226,10 +231,12 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
            thab.guardarHab(thabi);
         }
     }//GEN-LAST:event_jbCrearActionPerformed
-     private void jbModActionPerformed(java.awt.event.ActionEvent evt) {                                      
+
+    private void jbModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModActionPerformed
         // TODO add your handling code here:
-        try{
-        //   TipoDeHabitacion thabMod= new TipoDeHabitacion((Integer.parseInt(jtCantpers.getText())),(Integer.parseInt(jtCantpers.getText())), jtTiposCamas.getText(),jtTipoHab.getText(),(Integer.parseInt(jtCantpers.getText()),(Integer.parseInt(jtPrecio.getText()));
+         try{
+           TipoDeHabitacion thabMod= new TipoDeHabitacion((Integer.parseInt(jtCantpers.getText())),Integer.parseInt(jtCantpers.getText()),jtTiposCamas.getText(),jtTipoHab.getText(),
+                   Integer.parseInt(jtCantpers.getText()));
         if (jtCantpers.getText().isEmpty() || jtCantCamas.getText().isEmpty()
                 || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos");
@@ -238,10 +245,7 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
             int cantidadPersonas = Integer.parseInt(jtCantpers.getText());
             int cantidadCamas = Integer.parseInt(jtCantCamas.getText());
             double precio = Double.parseDouble(jtPrecio.getText());
-
-            TipoDeHabitacion thabi = new TipoDeHabitacion(cantidadPersonas, cantidadCamas, jtTiposCamas.getText(), jtTipoHab.getText(), precio, true);
-            // Luego, haz lo que necesites con thabi, como guardar en una lista o base de datos.
-        
+            
             JOptionPane.showMessageDialog(null,"habitacion modificada");
         
         
@@ -252,7 +256,10 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
             jtCantpers.setText("");
             jtPrecio.setText("");
                 }
-     }
+    }//GEN-LAST:event_jbModActionPerformed
+    
+        
+        
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
