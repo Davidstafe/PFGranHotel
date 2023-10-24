@@ -12,9 +12,12 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pfgranhotel.accesoDatos.TipoDeHabitacionData;
+import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.Habitacion;
+import pfgranhotel.entidades.Huesped;
+import pfgranhotel.entidades.Reserva;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
 /**
@@ -24,6 +27,10 @@ import pfgranhotel.entidades.TipoDeHabitacion;
 public class ReservaVista extends javax.swing.JInternalFrame {
   private TipoDeHabitacionData tpd;
     private ArrayList<TipoDeHabitacion> tipha;
+    
+    ReservaData rdat= new ReservaData();
+        HuespedData hdat = new HuespedData();
+        HabitacionData habDat= new HabitacionData();
      //private ArrayList<Habitacion> hab;
  private DefaultTableModel modelo;
  
@@ -32,6 +39,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         diferenciaFechas();
         cantPersonas();
         armarTitulos();
+        
         
     }
 
@@ -460,7 +468,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBDNIActionPerformed
 
     private void jCBTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTHabActionPerformed
-         // TODO add your handling code here:
+        habporTipo();
+        borrarFilas();
+        
     }//GEN-LAST:event_jCBTHabActionPerformed
 
     private void jTListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListadoMouseClicked
@@ -480,7 +490,15 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFDNIActionPerformed
 
     private void jBAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBAltaMouseClicked
-        // TODO add your handling code here:
+     Huesped h = new Huesped(Integer.parseInt(jTFDNI.getText()),jTApellido.getText(),jTFNombre.getText());
+   
+                if (hdat.buscarHuesped(Integer.parseInt(jTFDNI.getText())) == null) {
+
+                    hdat.guardarHuesped(h);
+
+                    JOptionPane.showMessageDialog(null, "Reserva guardada");
+
+                } 
     }//GEN-LAST:event_jBAltaMouseClicked
 
     private void jBBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBBajaMouseClicked
@@ -560,7 +578,7 @@ private void cantPersonas(){
 ///Calcular Estadìa
  private void calcularEstadia(){
      
- ///double estadia = diferenciaFechas()*cantPersonas()* habitacion.
+ 
  }
 
 
@@ -574,13 +592,22 @@ private void cantPersonas(){
         jTListado.setModel(modelo);
 
 }
-// private void cargarHabitacion() {
-//        for (Habitacion habit: hab) {
-//            jCBTHab.addItem(habit);
+ 
+   private void armarTabla2() {
+        ///seteamos cada columna para q aparezcan los sig titulos.
+        modelo.addColumn("Numero de habitacion");
+        modelo.addColumn("Estado de la habitacion");
+        modelo.addColumn("codigo");
+        jTable1.setModel(modelo);
+    }
+
+//    private void cargarHabitaciones() {
+//
+//        for (TipoDeHabitacion tip : tha) {
+//            jComboBox2.addItem(tip);
 //        }
 //
-//    } 
-//  
+//    }
   
   
   
@@ -595,4 +622,19 @@ private void cantPersonas(){
         }
 /// como pedir idhabitacion?
     }
+    private void borrarFilas() {
+        int ind = modelo.getRowCount() - 1;
+        for (int i = ind; i > -1; i--) {
+            modelo.removeRow(i);
+        }
+    }
+//     public void xTipoDeso() {
+//        
+//        Habitacion a = (Habitacion) jCTipo.getSelectedItem();
+//        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
+//        for (Habitacion h : hab) {
+//            modeloH.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(),h.getTipo()});
+//        }
+//    
+//}  
 }

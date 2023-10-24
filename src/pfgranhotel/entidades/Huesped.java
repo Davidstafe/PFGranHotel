@@ -22,6 +22,11 @@ public class Huesped {
     public Huesped() {
     }
 
+    public Huesped (int dni, String apellido,String nombres){
+         this.dni = dni;
+        this.apellido = apellido;
+        this.nombres = nombres;
+    }
     public Huesped(int idHuesped, int dni, String apellido, String nombres, String domicilio, String correo, int celular,boolean estado) {
         this.idHuesped = idHuesped;
         this.dni = dni;
