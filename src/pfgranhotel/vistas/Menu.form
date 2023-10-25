@@ -77,10 +77,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmABMhab">
               <Properties>
-                <Property name="text" type="java.lang.String" value="ABM Habitacion"/>
+                <Property name="text" type="java.lang.String" value="ABM Tipo habitacion"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmABMhabActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ABM Habitacion"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

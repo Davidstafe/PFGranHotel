@@ -298,7 +298,7 @@ private HuespedData hues;
         }
 //        limpiar();
     }//GEN-LAST:event_jBuscarActionPerformed
-    
+        
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
 //guarda huesped nuevo
         try {

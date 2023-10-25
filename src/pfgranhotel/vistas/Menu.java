@@ -53,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jmHab = new javax.swing.JMenuItem();
         jmABMhab = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         jMenu4.setText("jMenu4");
 
@@ -117,13 +118,21 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jmHab);
 
-        jmABMhab.setText("ABM Habitacion");
+        jmABMhab.setText("ABM Tipo habitacion");
         jmABMhab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmABMhabActionPerformed(evt);
             }
         });
         jMenu3.add(jmABMhab);
+
+        jMenuItem4.setText("ABM Habitacion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
 
@@ -193,6 +202,16 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(tHabVistas);
     }//GEN-LAST:event_jmABMhabActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ABM_habitacion abmHab = new ABM_habitacion();
+        abmHab.setVisible(true);
+        jDesktopPane1.add(abmHab);
+        jDesktopPane1.moveToFront(abmHab);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,6 +258,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jmABMhab;
     private javax.swing.JMenuItem jmHab;
