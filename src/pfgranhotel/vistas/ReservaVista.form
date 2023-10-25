@@ -60,8 +60,8 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jCBMayores" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jCBMayores" min="-2" pref="36" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -85,14 +85,14 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jDateIn" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                                  <Component id="jDateIn" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jDateOut" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jDateOut" min="-2" pref="104" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="79" pref="39" max="32767" attributes="0"/>
+                                          <EmptySpace min="79" pref="27" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -120,15 +120,13 @@
                                           <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTFDNI" max="32767" attributes="0"/>
-                                              <Component id="jTFNombre" max="32767" attributes="0"/>
-                                              <Component id="jTApellido" min="-2" pref="130" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jTApellido" pref="146" max="32767" attributes="0"/>
+                                          <Component id="jTFNombre" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jTFDNI" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
@@ -354,7 +352,7 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Standar Simple"/>
+            <StringItem index="0" value="Simple"/>
             <StringItem index="1" value="Doble"/>
             <StringItem index="2" value="Triple"/>
             <StringItem index="3" value="Suite de Lujo"/>

@@ -25,22 +25,33 @@ import pfgranhotel.entidades.TipoDeHabitacion;
  * @author HP
  */
 public class ReservaVista extends javax.swing.JInternalFrame {
-  private TipoDeHabitacionData tpd;
+
+    private TipoDeHabitacionData tpd;
     private ArrayList<TipoDeHabitacion> tipha;
+
+    ReservaData rdat = new ReservaData();
+    HuespedData hdat = new HuespedData();
+    HabitacionData habDat = new HabitacionData();
+    private ArrayList<Habitacion> hab;
+    private DefaultTableModel modelo;
+    private DefaultTableModel modelo1;
+    private HabitacionData hd;
+    //private TipoDeHabitacionData tpd;
     
-    ReservaData rdat= new ReservaData();
-        HuespedData hdat = new HuespedData();
-        HabitacionData habDat= new HabitacionData();
-     //private ArrayList<Habitacion> hab;
- private DefaultTableModel modelo;
- 
+    
+    
+    
     public ReservaVista() {
+        modelo = new DefaultTableModel();
+        modelo1 = new DefaultTableModel();
+        tpd = new TipoDeHabitacionData();
+        tipha = (ArrayList<TipoDeHabitacion>) tpd .listhabN();
         initComponents();
-        diferenciaFechas();
-        cantPersonas();
+        //diferenciaFechas();
+        //cantPersonas();
         armarTitulos();
-        
-        
+        armarTabla2();
+
     }
 
     /**
@@ -132,7 +143,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Cantidad de Personas");
 
-        jCBTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standar Simple", "Doble", "Triple", "Suite de Lujo" }));
+        jCBTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simple", "Doble", "Triple", "Suite de Lujo" }));
         jCBTHab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBTHabActionPerformed(evt);
@@ -280,8 +291,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jCBMayores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(jCBMayores, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel6)
                                                     .addGap(160, 160, 160)
@@ -300,12 +311,12 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel1)
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(jDateIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(44, 44, 44)
+                                                    .addComponent(jDateIn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
                                                     .addComponent(jLabel3)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGap(39, 39, Short.MAX_VALUE)))
+                                                    .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(27, 27, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(115, 115, 115)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,13 +336,12 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel10))
                                         .addGap(17, 17, 17)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel9)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jTFDNI)
-                                                .addComponent(jTFNombre)
-                                                .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(27, 27, 27))
+                                            .addComponent(jTApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                            .addComponent(jTFNombre)
+                                            .addComponent(jTFDNI))
+                                        .addGap(11, 11, 11))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jBSalir)
                                         .addGap(41, 41, 41))))))
@@ -435,32 +445,32 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDateInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateInMouseClicked
-      if (jDateIn!=null){
-          ZoneId zoneIdDefault = null;
-          ZonedDateTime in=jDateIn.getDate().toInstant().atZone(zoneIdDefault);
-          
-      }
-        
+        if (jDateIn != null) {
+            ZoneId zoneIdDefault = null;
+            ZonedDateTime in = jDateIn.getDate().toInstant().atZone(zoneIdDefault);
+
+        }
+
     }//GEN-LAST:event_jDateInMouseClicked
 
     private void jDateOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateOutMouseClicked
-      if (jDateOut!=null){
-          ZoneId zoneIdDefault = null;
-          ZonedDateTime out =jDateOut.getDate().toInstant().atZone(zoneIdDefault);
-          
-      } 
+        if (jDateOut != null) {
+            ZoneId zoneIdDefault = null;
+            ZonedDateTime out = jDateOut.getDate().toInstant().atZone(zoneIdDefault);
+
+        }
     }//GEN-LAST:event_jDateOutMouseClicked
 
     private void jCBMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMayoresActionPerformed
-      if (jCBMayores!=null){
-          int may = (int) jCBMayores.getSelectedItem();
-      }
+        if (jCBMayores != null) {
+            int may = (int) jCBMayores.getSelectedItem();
+        }
     }//GEN-LAST:event_jCBMayoresActionPerformed
 
     private void jCBMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMenoresActionPerformed
-       if (jCBMayores!=null){
-          int men = (int) jCBMenores.getSelectedItem();
-      }
+        if (jCBMayores != null) {
+            int men = (int) jCBMenores.getSelectedItem();
+        }
     }//GEN-LAST:event_jCBMenoresActionPerformed
 
     private void jCBDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDNIActionPerformed
@@ -470,7 +480,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private void jCBTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTHabActionPerformed
         habporTipo();
         borrarFilas();
-        
+
     }//GEN-LAST:event_jCBTHabActionPerformed
 
     private void jTListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListadoMouseClicked
@@ -490,15 +500,15 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFDNIActionPerformed
 
     private void jBAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBAltaMouseClicked
-     Huesped h = new Huesped(Integer.parseInt(jTFDNI.getText()),jTApellido.getText(),jTFNombre.getText());
-   
-                if (hdat.buscarHuesped(Integer.parseInt(jTFDNI.getText())) == null) {
+        Huesped h = new Huesped(Integer.parseInt(jTFDNI.getText()), jTApellido.getText(), jTFNombre.getText());
 
-                    hdat.guardarHuesped(h);
+        if (hdat.buscarHuesped(Integer.parseInt(jTFDNI.getText())) == null) {
 
-                    JOptionPane.showMessageDialog(null, "Reserva guardada");
+            hdat.guardarHuesped(h);
 
-                } 
+            JOptionPane.showMessageDialog(null, "Reserva guardada");
+
+        }
     }//GEN-LAST:event_jBAltaMouseClicked
 
     private void jBBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBBajaMouseClicked
@@ -510,7 +520,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBModifMouseClicked
 
     private void jBSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBSalirMouseClicked
-      dispose();
+        dispose();
     }//GEN-LAST:event_jBSalirMouseClicked
 
     private void jBCalcuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalcuActionPerformed
@@ -559,82 +569,84 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jhabRes;
     // End of variables declaration//GEN-END:variables
 
-private void diferenciaFechas(){
-   LocalDate in = null ;
-   LocalDate out = null;
-   
-   int difDias = (int) ChronoUnit.DAYS.between(out,in);
-    
-   
-}
-private void cantPersonas(){
-    int may = 0;
-    int men = 0;
-    
- int total= may+men;
-    System.out.println("total"+total);
-}
+    private void calcularEstadia() {
+        TipoDeHabitacion a = (TipoDeHabitacion) jCBTHab.getSelectedItem();
+        tipha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());
+        for (TipoDeHabitacion tip : tipha) {
+            tip.getPrecio();
+        }
 
-///Calcular Estadìa
- private void calcularEstadia(){
-     
- 
- }
+        LocalDate in = null;
+        LocalDate out = null;
+        int may = (int) jCBMayores.getSelectedItem();
+        int men = (int) jCBMenores.getSelectedItem();
+        int difDias = (int) ChronoUnit.DAYS.between(out, in);
+        int total = may + men;
 
-
-  private void armarTitulos() {
-
-        modelo.addColumn("idHabitacion");
-        modelo.addColumn("Tipo");
-        modelo.addColumn("Capacidad");
-        modelo.addColumn("Precio");
-      
-        jTListado.setModel(modelo);
-
-}
- 
-   private void armarTabla2() {
-        ///seteamos cada columna para q aparezcan los sig titulos.
-        modelo.addColumn("Numero de habitacion");
-        modelo.addColumn("Estado de la habitacion");
-        modelo.addColumn("codigo");
-        jTable1.setModel(modelo);
+        double estadia = a.getPrecio() * difDias * total;/// si no funciona poner jCBTHab.getSelectedItem();
+        System.out.println(estadia);
     }
 
-//    private void cargarHabitaciones() {
-//
-//        for (TipoDeHabitacion tip : tha) {
-//            jComboBox2.addItem(tip);
-//        }
-//
-//    }
-  
-  
-  
-  
-  
-  
-   public void habporTipo() {
-        TipoDeHabitacion a = (TipoDeHabitacion) jCBTHab.getSelectedItem();
-       tipha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());
+//public void cantPersonas(){
+//    int may = 0;
+//    int men = 0;
+//    
+// int total= may+men;
+//    System.out.println("total"+total);
+//}
+///Calcular Estadìa
+// public void calcularEstadia(){
+// 
+// }
+    private void armarTitulos() {
+
+        modelo.addColumn("Còdigo");
+        //modelo.addColumn("Tipo");
+        modelo.addColumn("Capacidad");
+        modelo.addColumn("Precio");
+        jTable1.setModel(modelo);
+
+    }
+    // java.lang.NullPointerException
+
+    private void armarTabla2() {
+        ///seteamos cada columna para q aparezcan los sig titulos.
+        modelo1.addColumn("Numero de habitacion");
+        modelo1.addColumn("Estado de la habitacion");
+        modelo1.addColumn("codigo");
+        jTListado.setModel(modelo1);
+    }
+
+    public void habporTipo() {
+        TipoDeHabitacion a =  (TipoDeHabitacion) jCBTHab.getSelectedItem();
+        System.out.println("paso primero");
+        tipha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());      
         for (TipoDeHabitacion tip : tipha) {
-            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getPrecio(),tip.isEstado()});
+            modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getPrecio()});
+            System.out.println("paso");
         }
 /// como pedir idhabitacion?
     }
+
     private void borrarFilas() {
         int ind = modelo.getRowCount() - 1;
         for (int i = ind; i > -1; i--) {
             modelo.removeRow(i);
         }
     }
-//     public void xTipoDeso() {
-//        
-//        Habitacion a = (Habitacion) jCTipo.getSelectedItem();
-//        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
-//        for (Habitacion h : hab) {
-//            modeloH.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(),h.getTipo()});
-//        }
-//    
-//}  
+ private void borrarFilas1() {
+        int ind = modelo1.getRowCount() - 1;
+        for (int i = ind; i > -1; i--) {
+            modelo1.removeRow(i);
+        }
+    }
+    public void xTipoDeso() {
+
+        Habitacion a = (Habitacion) jCBTHab.getSelectedItem();
+        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
+        for (Habitacion h : hab) {
+            modelo1.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(), h.getTipo()});
+        }
+
+    }
 }

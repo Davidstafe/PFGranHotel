@@ -29,8 +29,7 @@ public class TipoDeHabitacion {
         this.precio = precio;
         this.estado = estado;
     }
-
-    public TipoDeHabitacion(int idTipo, int cantPers, int cantCamas, String tipoDeCamas, String tipoDeHabitacion, double precio, boolean estado) {
+public TipoDeHabitacion(int idTipo, int cantPers, int cantCamas, String tipoDeCamas, String tipoDeHabitacion, double precio, boolean estado) {
         this.idTipo = idTipo;
         this.cantPers = cantPers;
         this.cantCamas = cantCamas;
@@ -38,6 +37,13 @@ public class TipoDeHabitacion {
         this.tipoDeHabitacion = tipoDeHabitacion;
         this.precio = precio;
         this.estado = estado;
+    }
+
+    public TipoDeHabitacion(int idTipo, int cantPers, double precio) {
+        this.idTipo = idTipo;
+        this.cantPers = cantPers;
+        this.precio = precio;
+
     }
 
      public int getIdTipo() {
@@ -99,6 +105,10 @@ public class TipoDeHabitacion {
     @Override
     public String toString() {
         return  "tipoDeHabitacion : " + tipoDeHabitacion ;
+    }
+
+    public Object getTipo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

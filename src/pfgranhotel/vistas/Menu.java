@@ -49,10 +49,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        JMReserva = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmHab = new javax.swing.JMenuItem();
         jmABMhab = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
 
         jMenu4.setText("jMenu4");
 
@@ -64,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 835, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,14 +97,13 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("ABM Reserva");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JMReserva.setText("Reserva");
+        JMReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
+                JMReservaActionPerformed(evt);
             }
         });
-        jMenu2.add(jCheckBoxMenuItem1);
+        jMenu2.add(JMReserva);
 
         jMenuBar1.add(jMenu2);
 
@@ -127,15 +127,16 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu5.setText("Salir");
+        jMenuBar1.add(jMenu5);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,10 +157,6 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(factu);
        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     private void jmHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmHabActionPerformed
         // TODO add your handling code here:
@@ -192,6 +189,15 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.add(tHabVistas);
         jDesktopPane1.moveToFront(tHabVistas);
     }//GEN-LAST:event_jmABMhabActionPerformed
+
+    private void JMReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMReservaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ReservaVista ResVis = new ReservaVista();
+        ResVis.setVisible(true);
+        jDesktopPane1.add(ResVis);
+        jDesktopPane1.moveToFront(ResVis);
+    }//GEN-LAST:event_JMReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,12 +235,13 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenuItem JMReserva;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
