@@ -104,9 +104,9 @@ public class HabitacionData {
             if (rs.next()) {
                 hab = new Habitacion();
                 hab.setIdHabitacion(idHabitacion);
-                hab.setMant(rs.getBoolean("mantenimiento"));
+                ///hab.setMant(rs.getBoolean("mantenimiento"));
                 hab.setEstado(rs.getBoolean("estado"));
-//                hab.setTipo(tp.setIdTipo(rs.getInt("tipo")));               
+                hab.setTipo((rs.getInt("tipo")));               
 
                 JOptionPane.showMessageDialog(null, "habitacion encontrada");
             } else {

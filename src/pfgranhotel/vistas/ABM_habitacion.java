@@ -20,7 +20,9 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     public ABM_habitacion() {
         initComponents();
         hdat=new HabitacionData();
+        ///cargarTipoHabitaciones();
         limpiar();
+        
     }
 
    
@@ -47,6 +49,11 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         jLabel2.setText("Num habitacion");
 
         jbbuscar.setText("Buscar");
+        jbbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbbuscarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("tipo de habitacion");
 
@@ -86,16 +93,12 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         });
 
         jblimpiar.setText("LIMPIAR");
-
-        jcTipo.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                jcTipoPopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+        jblimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jblimpiarActionPerformed(evt);
             }
         });
+
         jcTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcTipoActionPerformed(evt);
@@ -131,12 +134,11 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jtnum, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(85, 85, 85)
-                                        .addComponent(jbbuscar))
-                                    .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtnum, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                                    .addComponent(jcTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(85, 85, 85)
+                                .addComponent(jbbuscar))
                             .addComponent(jrOcupada))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -160,7 +162,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                     .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jrOcupada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCrear)
                     .addComponent(jbmodificar)
@@ -209,17 +211,17 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                 ///Como traigo al tipo de habitaicon correctamente???
 //              Habitacion h= new Habitacion(Integer.parseInt(jtnum.getText()),(Integer.parseInt(jttipo.getText())),jrOcupada.isSelected();
 ////////////////////////como hago para llamar al tipo ese con error???////////////////////
-            ////   Habitacion h = new Habitacion((jtnum.getText()),, jrOcupada.isSelected());
-           TipoDeHabitacion ts=(TipoDeHabitacion)jcTipo.getSelectedItem();
-      /// Habitacion h= new Habitacion((Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
-       Habitacion h= new Habitacion(ts, isIcon, isIcon);
-            int numHab= Integer.parseInt(jtnum.getText());
-            String tipoHab=(String)jcTipo.getSelectedItem();
-            boolean ocupada= jrOcupada.isSelected();
-            
-            TipoDeHabitacion tipo = new TipoDeHabitacion();
-            tipo.setIdTipo(1);
-            
+                ////   Habitacion h = new Habitacion((jtnum.getText()),, jrOcupada.isSelected());
+                TipoDeHabitacion ts = (TipoDeHabitacion) jcTipo.getSelectedItem();
+                Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()), ts, jrOcupada.isSelected());
+
+                int numHab = Integer.parseInt(jtnum.getText());
+                String tipoHab = (String) jcTipo.getSelectedItem();
+                boolean ocupada = jrOcupada.isSelected();
+
+                TipoDeHabitacion tipo = new TipoDeHabitacion();
+                tipo.setIdTipo(1);
+
 
             if(hdat.BuscarHabitacion(Integer.parseInt(jtnum.getText()))==null){
                /// hdat.crearHabitacion(h);
@@ -240,19 +242,43 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jrOcupadaActionPerformed
 
+    private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
+        // TODO add your handling code here:1
+         try {
+
+            Habitacion h = hdat.BuscarHabitacion(Integer.parseInt(jtnum.getText()));
+            if (h != null) {
+               jtnum.setText(String.valueOf(h.getIdHabitacion()));
+               jcTipo.setSelectedItem(h);
+                if (h.isEstado() == true) {
+                    jrOcupada.setSelected(true);//boton apretado cliente de alta
+                } else {
+                    jrOcupada.setSelected(false);//boton no accionado cliente dado de baja
+                }
+
+               
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Habitacion no encontrado");
+
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingresar numero de habitacion" + e);
+    }//GEN-LAST:event_jbbuscarActionPerformed
+    }
+    private void jblimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jblimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_jblimpiarActionPerformed
+
     private void jcTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcTipoActionPerformed
-
-    private void jcTipoPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jcTipoPopupMenuWillBecomeInvisible
-    
+        cargarTipoHabitaciones();
         
-        TipoDeHabitacion  s=new TipoDeHabitacion();
-        for (TipoDeHabitacion tip : tHab ) {
-            jcTipo.addItem(tip);
-        }
-    }//GEN-LAST:event_jcTipoPopupMenuWillBecomeInvisible
-
+        
+    }//GEN-LAST:event_jcTipoActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -271,9 +297,14 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 
  public void limpiar(){
         jtnum.setText("");
-        
-        
-        
+        jrOcupada.setSelected(false);
+        jcTipo.setSelectedItem(0);
     }
+ 
+ private void cargarTipoHabitaciones() {
 
+        for (TipoDeHabitacion tip : tHab) {
+           jcTipo.addItem(tip);
+        }
+ }
 }

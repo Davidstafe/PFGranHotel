@@ -12,6 +12,12 @@ public class Habitacion {
     public Habitacion() {
     }
 
+    public Habitacion(int idHabitacion, TipoDeHabitacion tipo, boolean estado) {
+        this.idHabitacion = idHabitacion;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+
     public Habitacion(TipoDeHabitacion tipo, boolean estado,boolean mant) {
         this.tipo = tipo;
         this.estado = estado;
