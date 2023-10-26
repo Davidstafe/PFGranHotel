@@ -200,7 +200,36 @@ public class HabitacionData {
 
     }
 
-
+public ArrayList<Habitacion>lista(int idtipo){
+          ArrayList<Habitacion> tipo = new ArrayList<>();
+     String sql="SELECT*from tipoDeHabitacion where idtipo=? and estado=1"; 
+      Habitacion h=null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idtipo);
+             ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+             h = new Habitacion();
+              h.setIdHabitacion(rs.getInt("idhabitacion"));
+               h.setEstado(rs.getBoolean("estado"));
+             TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+                h.setTipo(a);
+                tipo.add(h);
+             
+                     
+//               JOptionPane.showMessageDialog(null, "huesped encontrado");
+        }else{
+//                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
+           }
+           ps.close();
+     
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar");
+        }
+      
+      
+  return tipo;
+  }
 }
 
                 

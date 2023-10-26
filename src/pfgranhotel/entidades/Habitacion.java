@@ -25,6 +25,16 @@ public class Habitacion {
         this.mant = mant;
     }
 
+  public Habitacion(int idHabitacion,boolean estado,TipoDeHabitacion tipo) {
+        this.idHabitacion = idHabitacion;
+        this.tipo = tipo;
+        this.estado = estado;
+      
+    }   
+    
+    
+    
+    
     public int getIdHabitacion() {
         return idHabitacion;
     }
