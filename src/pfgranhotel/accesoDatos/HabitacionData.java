@@ -103,10 +103,12 @@ public class HabitacionData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 hab = new Habitacion();
+                TipoDeHabitacion tp =new TipoDeHabitacion();
                 hab.setIdHabitacion(idHabitacion);
-                hab.setMant(rs.getBoolean("mantenimiento"));
-                hab.setEstado(rs.getBoolean("estado"));
-//                hab.setTipo(tp.setIdTipo(rs.getInt("tipo")));               
+//              hab.setEstado(rs.getBoolean("estado"));
+//              TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+//                h.setTipo(a);
+//                tipo.add(h);
 
                 JOptionPane.showMessageDialog(null, "habitacion encontrada");
             } else {
@@ -232,5 +234,5 @@ public ArrayList<Habitacion>lista(int idtipo){
   }
 }
 
-                
+    //OK            
 
