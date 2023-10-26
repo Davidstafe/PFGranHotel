@@ -208,7 +208,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
             Habitacion hab= new Habitacion(tipo, ocupada, ocupada);
 
             if(hdat.BuscarHabitacion(Integer.parseInt(jtnum.getText()))==null){
-                hdat.crearHabitacion(h);
+               /// hdat.crearHabitacion(h);
                 JOptionPane.showMessageDialog(null,"Habitacion creada");
             }
             }
