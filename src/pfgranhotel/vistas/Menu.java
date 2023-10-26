@@ -5,6 +5,7 @@
  */
 package pfgranhotel.vistas;
 
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.util.Locale;
 import pfgranhotel.accesoDatos.Conexion;
@@ -53,6 +54,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jmHab = new javax.swing.JMenuItem();
         jmABMhab = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenu4.setText("jMenu4");
@@ -117,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jmHab);
 
-        jmABMhab.setText("ABM Habitacion");
+        jmABMhab.setText("ABM Tipo habitacion");
         jmABMhab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmABMhabActionPerformed(evt);
@@ -125,9 +127,22 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jmABMhab);
 
+        jMenuItem4.setText("ABM Habitacion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Salir");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -199,6 +214,10 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(ResVis);
     }//GEN-LAST:event_JMReservaActionPerformed
 
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenu5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +265,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jmABMhab;
     private javax.swing.JMenuItem jmHab;
