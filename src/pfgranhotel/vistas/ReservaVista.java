@@ -52,6 +52,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         armarTitulos();
         armarTabla2();
         cargarTipoHabitaciones();
+    
     }
 
     /**
@@ -533,9 +534,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
      habporTipo();  
-     xTipoDeso();
+     //xTipoDeso();
       borrarFilas();
-        borrarFilas1();
+        //borrarFilas1();
     }//GEN-LAST:event_jCBTHabPopupMenuWillBecomeInvisible
 
 
@@ -655,6 +656,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
         for (Habitacion h : hab) {
             modelo1.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(), h.getTipo()});
+            
+            System.out.println("hola");
         }
 
     }
