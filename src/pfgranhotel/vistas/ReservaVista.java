@@ -45,13 +45,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         modelo1 = new DefaultTableModel();
         tpd = new TipoDeHabitacionData();
-        tha = (ArrayList<TipoDeHabitacion>) tpd .listhabN();
+        tha = (ArrayList<TipoDeHabitacion>) tpd.listhabN();
         initComponents();
         //diferenciaFechas();
         //cantPersonas();
         armarTitulos();
         armarTabla2();
-
+        cargarTipoHabitaciones();
     }
 
     /**
@@ -143,7 +143,15 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Cantidad de Personas");
 
-        jCBTHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Simple", "Doble", "Triple", "Suite de Lujo" }));
+        jCBTHab.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jCBTHabPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jCBTHab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBTHabActionPerformed(evt);
@@ -274,10 +282,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel14)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
@@ -325,7 +332,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                         .addComponent(jLabel3)))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,8 +415,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -475,11 +482,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jCBTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTHabActionPerformed
        
-        habporTipo();
-
-        xTipoDeso();
-        borrarFilas();
-        borrarFilas1();
+    
+     
+       
     }//GEN-LAST:event_jCBTHabActionPerformed
 
     private void jTListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListadoMouseClicked
@@ -526,6 +531,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         calcularEstadia();
     }//GEN-LAST:event_jBCalcuActionPerformed
 
+    private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
+     habporTipo();  
+     xTipoDeso();
+      borrarFilas();
+        borrarFilas1();
+    }//GEN-LAST:event_jCBTHabPopupMenuWillBecomeInvisible
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlta;
@@ -537,7 +549,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jCBDNI;
     private javax.swing.JComboBox<String> jCBMayores;
     private javax.swing.JComboBox<String> jCBMenores;
-    private javax.swing.JComboBox<String> jCBTHab;
+    private javax.swing.JComboBox<TipoDeHabitacion> jCBTHab;
     private javax.swing.JColorChooser jColorChooser1;
     private com.toedter.calendar.JDateChooser jDateIn;
     private com.toedter.calendar.JDateChooser jDateOut;
@@ -646,4 +658,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         }
 
     }
+    
+    private void cargarTipoHabitaciones() {
+
+        for (TipoDeHabitacion tip : tha) {
+           jCBTHab.addItem(tip);
+        }
+
+    }
+    
 }
