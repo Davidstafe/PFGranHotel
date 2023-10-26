@@ -5,6 +5,7 @@
  */
 package pfgranhotel.vistas;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import pfgranhotel.accesoDatos.HabitacionData;
 import pfgranhotel.entidades.Habitacion;
@@ -14,6 +15,8 @@ import pfgranhotel.entidades.TipoDeHabitacion;
 public class ABM_habitacion extends javax.swing.JInternalFrame {
 
     private HabitacionData hdat;
+    private ArrayList<Habitacion> h;
+    private ArrayList<TipoDeHabitacion> tHab;
     public ABM_habitacion() {
         initComponents();
         hdat=new HabitacionData();
@@ -84,7 +87,15 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 
         jblimpiar.setText("LIMPIAR");
 
-        jcTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "simple", "Item 2", "Item 3", "Item 4" }));
+        jcTipo.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jcTipoPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jcTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcTipoActionPerformed(evt);
@@ -199,6 +210,8 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 //              Habitacion h= new Habitacion(Integer.parseInt(jtnum.getText()),(Integer.parseInt(jttipo.getText())),jrOcupada.isSelected();
 ////////////////////////como hago para llamar al tipo ese con error???////////////////////
             ////   Habitacion h = new Habitacion((jtnum.getText()),, jrOcupada.isSelected());
+           TipoDeHabitacion ts=(TipoDeHabitacion)jcTipo.getSelectedItem();
+       Habitacion h= new Habitacion(Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
             int numHab= Integer.parseInt(jtnum.getText());
             String tipoHab=(String)jcTipo.getSelectedItem();
             boolean ocupada= jrOcupada.isSelected();
@@ -230,6 +243,15 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcTipoActionPerformed
 
+    private void jcTipoPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jcTipoPopupMenuWillBecomeInvisible
+    
+        
+        TipoDeHabitacion  s=new TipoDeHabitacion();
+        for (TipoDeHabitacion tip : tHab ) {
+            jcTipo.addItem(tip);
+        }
+    }//GEN-LAST:event_jcTipoPopupMenuWillBecomeInvisible
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -241,7 +263,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jblimpiar;
     private javax.swing.JButton jbmodificar;
     private javax.swing.JButton jbsalir;
-    private javax.swing.JComboBox<String> jcTipo;
+    private javax.swing.JComboBox<TipoDeHabitacion> jcTipo;
     private javax.swing.JRadioButton jrOcupada;
     private javax.swing.JTextField jtnum;
     // End of variables declaration//GEN-END:variables
@@ -253,5 +275,4 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         
     }
 
-///COMIT PABLO
 }
