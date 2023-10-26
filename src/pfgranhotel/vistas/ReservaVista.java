@@ -619,11 +619,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     public void habporTipo() {
         TipoDeHabitacion a =  (TipoDeHabitacion) jCBTHab.getSelectedItem();
-        System.out.println("paso primero");
         tipha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());      
         for (TipoDeHabitacion tip : tipha) {
             modelo.addRow(new Object[]{tip.getIdTipo(), tip.getCantPers(), tip.getPrecio()});
-            System.out.println("paso");
         }
 /// como pedir idhabitacion?
     }
