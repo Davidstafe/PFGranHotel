@@ -195,7 +195,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbeliminarActionPerformed
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
-        // TODO add your handling code here:
+       
         dispose();
     }//GEN-LAST:event_jbsalirActionPerformed
 
@@ -211,14 +211,15 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 ////////////////////////como hago para llamar al tipo ese con error???////////////////////
             ////   Habitacion h = new Habitacion((jtnum.getText()),, jrOcupada.isSelected());
            TipoDeHabitacion ts=(TipoDeHabitacion)jcTipo.getSelectedItem();
-       Habitacion h= new Habitacion(Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
+      /// Habitacion h= new Habitacion((Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
+       Habitacion h= new Habitacion(ts, isIcon, isIcon);
             int numHab= Integer.parseInt(jtnum.getText());
             String tipoHab=(String)jcTipo.getSelectedItem();
             boolean ocupada= jrOcupada.isSelected();
             
             TipoDeHabitacion tipo = new TipoDeHabitacion();
             tipo.setIdTipo(1);
-            Habitacion hab= new Habitacion(tipo, ocupada, ocupada);
+            
 
             if(hdat.BuscarHabitacion(Integer.parseInt(jtnum.getText()))==null){
                /// hdat.crearHabitacion(h);
