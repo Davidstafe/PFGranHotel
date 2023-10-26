@@ -84,7 +84,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 
         jblimpiar.setText("LIMPIAR");
 
-        jcTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "simple", "Item 2", "Item 3", "Item 4" }));
         jcTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcTipoActionPerformed(evt);
@@ -253,5 +253,5 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         
     }
 
-
+///COMIT PABLO
 }
