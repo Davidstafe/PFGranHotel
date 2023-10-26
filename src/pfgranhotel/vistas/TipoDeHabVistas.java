@@ -1,23 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pfgranhotel.vistas;
 
 import javax.swing.JOptionPane;
+import pfgranhotel.accesoDatos.*;
 import pfgranhotel.accesoDatos.TipoDeHabitacionData;
+import pfgranhotel.entidades.Habitacion;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
-/**
- *
- * @author david
- */
+
 public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
     private TipoDeHabitacionData thab;
+    private HabitacionData hdat;
     public TipoDeHabVistas() {
         thab=new TipoDeHabitacionData();
+        hdat=new HabitacionData();
         initComponents();
         limpiar();
     }
@@ -28,9 +25,6 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jtIdHab = new javax.swing.JTextField();
-        jbBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -44,20 +38,11 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         jrLibre = new javax.swing.JRadioButton();
         jbCrear = new javax.swing.JButton();
         jbElim = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbsalir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jbMod = new javax.swing.JButton();
 
-        jLabel1.setText("ABM HABITACION");
-
-        jLabel2.setText("ID habitacion");
-
-        jbBuscar.setText("BUSCAR");
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("ABM  TIPO DE HABITACION");
 
         jLabel3.setText("Cantidad de personas");
 
@@ -68,6 +53,12 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         jLabel6.setText("Tipo de habitacion");
 
         jLabel7.setText("Precio");
+
+        jtCantpers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCantpersActionPerformed(evt);
+            }
+        });
 
         jrLibre.setText("Activar ocupada");
         jrLibre.addActionListener(new java.awt.event.ActionListener() {
@@ -85,10 +76,10 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
 
         jbElim.setText("Eliminar");
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbsalir.setText("Salir");
+        jbsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbsalirActionPerformed(evt);
             }
         });
 
@@ -111,62 +102,48 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addComponent(jbCrear)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbMod)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbElim, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtIdHab))
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jbBuscar)
-                                .addGap(45, 45, 45))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtCantpers, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                                    .addComponent(jtCantCamas)
-                                    .addComponent(jtTiposCamas)
-                                    .addComponent(jtTipoHab)
-                                    .addComponent(jtPrecio))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jrLibre)
-                                .addGap(19, 19, 19))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtCantpers)
+                            .addComponent(jtCantCamas)
+                            .addComponent(jtTiposCamas)
+                            .addComponent(jtTipoHab)
+                            .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jrLibre)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbCrear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbMod)
-                        .addGap(12, 12, 12)
-                        .addComponent(jbElim, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addComponent(jbsalir)
+                        .addGap(0, 23, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtIdHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtCantpers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,13 +151,16 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jtCantCamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtTiposCamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jtTiposCamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
                         .addComponent(jrLibre)))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtTipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,33 +168,27 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCrear)
+                    .addComponent(jbMod)
                     .addComponent(jbElim)
-                    .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jbMod))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(jbsalir))
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
+        // ANDA  
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbsalirActionPerformed
     
     
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        
-        ///Habitacion h= thab
-    }//GEN-LAST:event_jbBuscarActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ///ANDA
         limpiar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -227,6 +201,7 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
                || jtTiposCamas.getText().isEmpty() || jtTipoHab.getText().isEmpty() || jtPrecio.getText().isEmpty()  ){
             JOptionPane.showMessageDialog(null, "Complete todos los campos"); 
         } else{
+            
             TipoDeHabitacion thabi= new TipoDeHabitacion(Integer.parseInt(jtCantpers.getText()),Integer.parseInt(jtCantCamas.getText()), jtTiposCamas.getText(), jtTipoHab.getText(), Double.parseDouble(jtPrecio.getText()),jrLibre.isSelected());
            thab.guardarHab(thabi);
            
@@ -263,28 +238,29 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
     private void jrLibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrLibreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jrLibreActionPerformed
+
+    private void jtCantpersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCantpersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCantpersActionPerformed
     
         
         
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbCrear;
     private javax.swing.JButton jbElim;
     private javax.swing.JButton jbMod;
+    private javax.swing.JButton jbsalir;
     private javax.swing.JRadioButton jrLibre;
     private javax.swing.JTextField jtCantCamas;
     private javax.swing.JTextField jtCantpers;
-    private javax.swing.JTextField jtIdHab;
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextField jtTipoHab;
     private javax.swing.JTextField jtTiposCamas;
