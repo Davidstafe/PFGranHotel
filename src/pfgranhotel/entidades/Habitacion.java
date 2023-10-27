@@ -71,8 +71,8 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Numero de : " + idHabitacion ;
+        return "Numero de : " + idHabitacion + estado ;
     }
     
-    
+  
 }
