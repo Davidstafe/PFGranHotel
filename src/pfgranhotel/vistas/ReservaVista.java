@@ -534,9 +534,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
      habporTipo();  
-     //xTipoDeso();
-      borrarFilas();
-        //borrarFilas1();
+     xTipoDeso();
+     borrarFilas();
+     borrarFilas1();
     }//GEN-LAST:event_jCBTHabPopupMenuWillBecomeInvisible
 
 
