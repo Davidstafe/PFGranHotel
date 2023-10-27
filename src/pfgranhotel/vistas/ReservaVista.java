@@ -52,7 +52,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         armarTitulos();
         armarTabla2();
         cargarTipoHabitaciones();
-    
+         limpiarCampos();
     }
 
     /**
@@ -102,6 +102,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         jhabRes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jBLimpiar = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -269,6 +270,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jBLimpiar.setText("Limpiar");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -334,7 +342,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel11)
@@ -348,6 +356,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                             .addComponent(jTFDNI))
                                         .addGap(11, 11, 11))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jBLimpiar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                         .addComponent(jBSalir)
                                         .addGap(41, 41, 41))))))
                     .addGroup(layout.createSequentialGroup()
@@ -441,7 +452,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                     .addComponent(jBBaja)
                     .addComponent(jBModif)
                     .addComponent(jBCalcu)
-                    .addComponent(jBSalir))
+                    .addComponent(jBSalir)
+                    .addComponent(jBLimpiar))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -534,16 +546,21 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
      habporTipo();  
-     xTipoDeso();
+    xTipoDeso();
      borrarFilas();
      borrarFilas1();
     }//GEN-LAST:event_jCBTHabPopupMenuWillBecomeInvisible
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlta;
     private javax.swing.JButton jBBaja;
     private javax.swing.JButton jBCalcu;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBModif;
     private javax.swing.JButton jBSalir;
     private javax.swing.JButton jButton1;
@@ -669,5 +686,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         }
 
     }
-    
+   
+   public void limpiarCampos(){
+        jTApellido.setText("");
+        jTFNombre.setText("");
+        jTFDNI.setText("");
+        
+    } 
 }
