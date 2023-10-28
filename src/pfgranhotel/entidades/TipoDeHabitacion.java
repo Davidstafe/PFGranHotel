@@ -107,9 +107,9 @@ public TipoDeHabitacion(int idTipo, int cantPers, int cantCamas, String tipoDeCa
         return  " " + tipoDeHabitacion ;
     }
 
-    public Object getTipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public Object getTipo() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     
     
     

@@ -182,20 +182,31 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Habitacion h = hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText()));
+            
             if (h != null) {
-                hdata.modificarHabitacion(h);
+                hdata.modificarHabABM(h);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingresar numeros en los campos");
             jtnum.setText("");
+            jTextField1.setText("");
 
         }
     }//GEN-LAST:event_jbmodificarActionPerformed
 
     //////***** ELIMINAR HABITACION *****\\\\\\                                                         REVISAR ELIMINAR
     private void jbeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarActionPerformed
-        ////      Habitacion elim = hdat.bajaHabitacion(Integer.parseInt(jtnum.getText()));
 
+        try{
+            Habitacion h= hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText()));
+            
+            if(h != null){
+                hdata.bajaHabitacion(h.getIdHabitacion());
+                JOptionPane.showMessageDialog(null,"Habitacion eliminada" );
+            }
+        }catch(NumberFormatException e){
+            
+        }
 
     }//GEN-LAST:event_jbeliminarActionPerformed
 
@@ -204,34 +215,45 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbsalirActionPerformed
 
-    //////******    CREAR HABITACION   *****\\\\\\\    No me lo crea                                      REVISAR
+    //////******    CREAR HABITACION   *****\\\\\\\    No me lo crea                                    REVISAR
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
 
         try {
             if (jtnum.getText().isEmpty() || jTextField1.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos" );
             } else {
+                    int numHab=Integer.parseInt(jtnum.getText());
+                    TipoDeHabitacion tHab= new TipoDeHabitacion();
+                    Habitacion habi = new Habitacion();
+                    HabitacionData  habData= new HabitacionData();
+                    tHab.setTipoDeHabitacion(toString());
+                    habData.crearHabABM(habi);
 
 
-                //////****** Crear una nueva habitacion   PODRA SER QUE NO ME DEJA POR EL AUTO INCREMENTAL??
-                
-                TipoDeHabitacion ts =new TipoDeHabitacion();
-                ts.setTipoDeHabitacion(jTextField1.getText());
-//                //Habitacion habi= new Habitacion();
+//                //////****** Crear una nueva habitacion   PODRA SER QUE NO ME DEJA POR EL AUTO INCREMENTAL??
+//                
+//                TipoDeHabitacion ts =new TipoDeHabitacion();
+//                ts.setTipoDeHabitacion(jTextField1.getText());
+//                Habitacion habi=  new Habitacion();//////(0,ts,jrOcupada.isSelected());
 //                habi.setIdHabitacion(Integer.parseInt(jtnum.getText()));
-//                habi.setTipo(ts);
+//              ///  habi.setTipo(ts);
+//              thab.setIdTipo(habi.getIdHabitacion());
 //                habi.setEstado(isSelected());
-                
-                Habitacion habi=  new Habitacion(Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
-                
-                /// String tipohab = ts.toString();
-             //  Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
-
-//                int numHab = Integer.parseInt(jtnum.getText());
-//                boolean ocupada = jrOcupada.isSelected();
-
-                hdata.crearHabABM(habi);
-              
+//                TipoDeHabitacion thab = thabdata.buscarThaHabitacioni(habi.getIdHabitacion());
+//                if (thab != null) {
+//                    jTextField1.setText(thab.toString());
+//                }
+//               
+//                
+//                /// String tipohab = ts.toString();
+//             //  Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
+//
+////                int numHab = Integer.parseInt(jtnum.getText());
+////                boolean ocupada = jrOcupada.isSelected();
+//
+//                hdata.crearHabABM(habi);
+//                limpiar();
+//              
                 
             }
         } catch (NumberFormatException e) {
@@ -252,7 +274,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jblimpiarActionPerformed
 
-    /////***** BUSCAR HABITACION *****\\\\\\\
+    /////***** BUSCAR HABITACION *****\\\\\\\                                                           ANDANDO
     private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
 
         try {
