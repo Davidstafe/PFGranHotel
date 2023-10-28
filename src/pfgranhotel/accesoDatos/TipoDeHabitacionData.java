@@ -269,7 +269,40 @@ ps.close();
         
     }
 
+ public ArrayList<TipoDeHabitacion> lista(int idtipo) {
+        ArrayList<TipoDeHabitacion> tipo = new ArrayList<>();
+        String sql = "SELECT*from tipoDeHabitacion where idtipo= ? and estado=1";
+       TipoDeHabitacion h = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idtipo);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                h = new TipoDeHabitacion();
+ 
+              h.setIdTipo(rs.getInt("idTipo"));
+              h.setCantPers(rs.getInt("cantPers"));
+              h.setCantCamas(rs.getInt("cantCamas"));
+              h.setTipoDeCamas(rs.getString("tipoDeCamas"));
+              h.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
+              h.setPrecio(rs.getInt("precio"));
+              h.setEstado(rs.getBoolean("estado"));
+              tipo.add(h);
+              
+               
+                
+             
 
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargar");
+            System.out.println(ex.getMessage());
+        }
+
+        return tipo;
+    }
 }
   
 

@@ -204,7 +204,7 @@ public class HabitacionData {
 
     public ArrayList<Habitacion> lista(int idtipo) {
         ArrayList<Habitacion> tipo = new ArrayList<>();
-        String sql = "SELECT*from tipoDeHabitacion where idtipo=? and estado=1";
+        String sql = "SELECT*from Habitacion where idtipo=? and estado=1";
         Habitacion h = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
