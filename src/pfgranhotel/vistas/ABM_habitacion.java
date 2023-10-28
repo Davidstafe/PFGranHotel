@@ -208,38 +208,34 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
 
         try {
-            if (jtnum.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Complete todos los campos" + ui);
+            if (jtnum.getText().isEmpty() || jTextField1.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Complete todos los campos" );
             } else {
 
-                ///Como traigo al tipo de habitaicon correctamente???
-///Habitacion h= new Habitacion(Integer.parseInt(jtnum.getText()),(Integer.parseInt(jttipo.getText())),jrOcupada.isSelected();
-/////////////como hago para llamar al tipo ese con error???////////////////////
-                ////   Habitacion h = new Habitacion((jtnum.getText()),, jrOcupada.isSelected());
-                ////Con un try catch podria solo dejar escribir los tipos de haitacion: simple,doble,etc
-                ///String ts =jTextField1.getText();
-                /////REVISARRRRR
+
+                //////****** Crear una nueva habitacion   PODRA SER QUE NO ME DEJA POR EL AUTO INCREMENTAL??
                 
                 TipoDeHabitacion ts =new TipoDeHabitacion();
-             ts.setIdTipo(Integer.parseInt(jTextField1.getText()));
+                ts.setTipoDeHabitacion(jTextField1.getText());
+//                //Habitacion habi= new Habitacion();
+//                habi.setIdHabitacion(Integer.parseInt(jtnum.getText()));
+//                habi.setTipo(ts);
+//                habi.setEstado(isSelected());
+                
+                Habitacion habi=  new Habitacion(Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
+                
                 /// String tipohab = ts.toString();
-                Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
+             //  Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
 
-                int numHab = Integer.parseInt(jtnum.getText());
+//                int numHab = Integer.parseInt(jtnum.getText());
+//                boolean ocupada = jrOcupada.isSelected();
 
-                //ESTOY¡ ME Suena raro
-                //  String tipoHab = (String) jcTipo.getSelectedItem();
-                boolean ocupada = jrOcupada.isSelected();
-
-                TipoDeHabitacion tipo = new TipoDeHabitacion();
-                tipo.setIdTipo(1);
-
-                if (hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText())) == null) {
-                    /// hdat.crearHabitacion(h);
-                    JOptionPane.showMessageDialog(null, "Habitacion creada");
-                }
+                hdata.crearHabABM(habi);
+              
+                
             }
         } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this," Habitacion no creada"+e);
         }
 
 
@@ -274,7 +270,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 
                 jrOcupada.setSelected(h.isEstado());  ////Aca no me lo trae al radio buton
                 if (h.isEstado() == true) {
-                    jrOcupada.setSelected(true);//boton apretado cliente de alta
+                    jrOcupada.setSelected(true);//boton apretado acliente de alta
                 } else {
                     jrOcupada.setSelected(false);//boton no accionado cliente dado de baja
                 }

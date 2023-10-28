@@ -300,7 +300,7 @@ private HuespedData hues;
     }//GEN-LAST:event_jBuscarActionPerformed
         
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-//guarda huesped nuevo
+    //guarda huesped nuevo
         try {
 
             if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jTDomicilio.getText().isEmpty() || jTCelular.getText().isEmpty() || jTCorreo.getText().isEmpty() || jTDocumento.getText().isEmpty()) {
