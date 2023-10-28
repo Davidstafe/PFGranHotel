@@ -222,7 +222,7 @@ public class HabitacionData {
                 h.setTipo(a);
                 tipo.add(h);
 
-                JOptionPane.showMessageDialog(null, "habitacion encontrada");
+//                JOptionPane.showMessageDialog(null, "habitacion encontrada");
             } else {
 //                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
             }

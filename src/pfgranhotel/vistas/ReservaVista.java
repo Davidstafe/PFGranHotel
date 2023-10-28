@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.Habitacion;
 import pfgranhotel.entidades.Huesped;
+import pfgranhotel.entidades.Reserva;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
 /**
@@ -570,7 +571,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
 
         }
     }//GEN-LAST:event_jBAltaMouseClicked
-
+Reserva a=new Reserva();
     
     private void jBBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBBajaMouseClicked
         // TODO add your handling code here:
