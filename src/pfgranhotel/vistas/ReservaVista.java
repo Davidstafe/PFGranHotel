@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -36,8 +37,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo1;
     private HabitacionData hd;
     //private TipoDeHabitacionData tpd;
-    
-    
+    private int may=0;
+    private int men=0;
+   private LocalDate in = null;
+        private LocalDate out = null;
     
     
     public ReservaVista() {
@@ -262,7 +265,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         jLabel15.setText("Total Estadìa ");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("Habitaciòn reservada");
+        jLabel16.setText("Nº Habitaciòn reservada");
 
         jBCalcu.setText("Calcular");
         jBCalcu.addActionListener(new java.awt.event.ActionListener() {
@@ -270,6 +273,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                 jBCalcuActionPerformed(evt);
             }
         });
+
+        jhabRes.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -326,7 +331,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jCBTHab, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
@@ -523,13 +528,13 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBMayoresActionPerformed
 
     private void jCBMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMenoresActionPerformed
-        if (jCBMayores != null) {
+        if (jCBMenores != null) {
             int men = (int) jCBMenores.getSelectedItem();
         }
     }//GEN-LAST:event_jCBMenoresActionPerformed
 
     private void jCBDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDNIActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_jCBDNIActionPerformed
 
     private void jCBTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTHabActionPerformed
@@ -545,7 +550,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBTHabActionPerformed
 
     private void jTListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListadoMouseClicked
-        // TODO add your handling code here:
+        int fila =jTListado.getSelectedRow();
+        if (fila !=-1){
+            int habRes=(Integer)jTListado.getValueAt(fila, 0);
+            jhabRes.setText(" "+ habRes);
+        }
     }//GEN-LAST:event_jTListadoMouseClicked
 
     private void jTApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidoActionPerformed
@@ -566,8 +575,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         if (hdat.buscarHuesped(Integer.parseInt(jTFDNI.getText())) == null) {
 
             hdat.guardarHuesped(h);
+            
+ 
 
             JOptionPane.showMessageDialog(null, "Reserva guardada");
+//da error  no guarda nro de habitaciòn
 
         }
     }//GEN-LAST:event_jBAltaMouseClicked
@@ -587,6 +599,7 @@ Reserva a=new Reserva();
 
     private void jBCalcuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalcuActionPerformed
         calcularEstadia();
+        
     }//GEN-LAST:event_jBCalcuActionPerformed
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
@@ -688,12 +701,17 @@ Reserva a=new Reserva();
 
         LocalDate in = null;
         LocalDate out = null;
-        int may = (int) jCBMayores.getSelectedItem();
-        int men = (int) jCBMenores.getSelectedItem();
-        int difDias = (int) ChronoUnit.DAYS.between(out, in);
+//        int may=0;
+//        int men=0;
+//        int may = (int) jCBMayores.getSelectedItem();
+//        int men = (int) jCBMenores.getSelectedItem();
+      // long difDias = (long) (ChronoUnit.DAYS.between(out, in));
+        long difDias = DAYS.between(out, in);
+       
         int total = may + men;
 
         double estadia = a.getPrecio() * difDias * total;/// si no funciona poner jCBTHab.getSelectedItem();
+        jLCalcRes.setText(" "+ estadia);
         System.out.println(estadia);
     }
 
