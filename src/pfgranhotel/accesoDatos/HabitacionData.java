@@ -1,4 +1,3 @@
-
 package pfgranhotel.accesoDatos;
 
 import java.sql.Connection;
@@ -17,8 +16,8 @@ import pfgranhotel.entidades.*;
 public class HabitacionData {
 
 //    private HabitacionData habD=new HabitacionData();
-    private TipoDeHabitacionData tH=new TipoDeHabitacionData();
-  
+    private TipoDeHabitacionData tH = new TipoDeHabitacionData();
+
     private Connection con = null;
 
     public HabitacionData() {
@@ -103,10 +102,14 @@ public class HabitacionData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 hab = new Habitacion();
-                TipoDeHabitacion tp =new TipoDeHabitacion();
+                ///ESTO ES NUEVO///*********
+                TipoDeHabitacion tp = new TipoDeHabitacion();
+                tp.setTipoDeHabitacion(toString());
+                /////*******
+
                 hab.setIdHabitacion(idHabitacion);
-//              hab.setEstado(rs.getBoolean("estado"));
-//              TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+              hab.setEstado(rs.getBoolean("estado"));
+                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
 //                h.setTipo(a);
 //                tipo.add(h);
 
@@ -169,70 +172,69 @@ public class HabitacionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de datos" + ex);
         }
-        
+
         return tipo;
-        
-    }  
-     public ArrayList<Habitacion> obtenerhabiIdhabD(int idHabitacion) {
+
+    }
+
+    public ArrayList<Habitacion> obtenerhabiIdhabD(int idHabitacion) {
         ArrayList<Habitacion> tipo = new ArrayList<>();
         String sql = "SELECT * FROM habitacion where idtipo=? and estado=0";
-         try {
-             PreparedStatement ps = con.prepareStatement(sql);
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
 
-             ps.setInt(1, idHabitacion);
-             ResultSet rs = ps.executeQuery();
-             while (rs.next()) {
+            ps.setInt(1, idHabitacion);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
 
-                 Habitacion h = new Habitacion();
+                Habitacion h = new Habitacion();
 
-                 h.setIdHabitacion(rs.getInt("idhabitacion"));
-                 h.setEstado(rs.getBoolean("Estado"));
-                 TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
-                 h.setTipo(a);
-                 
-                 tipo.add(h);
+                h.setIdHabitacion(rs.getInt("idhabitacion"));
+                h.setEstado(rs.getBoolean("Estado"));
+                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
+                h.setTipo(a);
 
-             }
-             ps.close();
-         } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null, "Error de datos" + ex);
+                tipo.add(h);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de datos" + ex);
         }
 
         return tipo;
 
     }
 
-public ArrayList<Habitacion>lista(int idtipo){
-          ArrayList<Habitacion> tipo = new ArrayList<>();
-     String sql="SELECT*from tipoDeHabitacion where idtipo=? and estado=1"; 
-      Habitacion h=null;
+    public ArrayList<Habitacion> lista(int idtipo) {
+        ArrayList<Habitacion> tipo = new ArrayList<>();
+        String sql = "SELECT*from tipoDeHabitacion where idtipo=? and estado=1";
+        Habitacion h = null;
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idtipo);
-             ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-             h = new Habitacion();
-              h.setIdHabitacion(rs.getInt("idhabitacion"));
-               h.setEstado(rs.getBoolean("estado"));
-             TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+                h = new Habitacion();
+                h.setIdHabitacion(rs.getInt("idhabitacion"));
+                h.setEstado(rs.getBoolean("estado"));
+                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
                 h.setTipo(a);
                 tipo.add(h);
-             
-                     
-//               JOptionPane.showMessageDialog(null, "huesped encontrado");
-        }else{
+
+                JOptionPane.showMessageDialog(null, "habitacion encontrada");
+            } else {
 //                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
-           }
-           ps.close();
-     
+            }
+            ps.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar");
         }
-      
-      
-  return tipo;
-  }
+
+        return tipo;
+    }
 }
 
-    //OK            
+//OK            
 

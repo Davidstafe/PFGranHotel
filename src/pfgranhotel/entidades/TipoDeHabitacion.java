@@ -104,7 +104,7 @@ public TipoDeHabitacion(int idTipo, int cantPers, int cantCamas, String tipoDeCa
 
     @Override
     public String toString() {
-        return  "tipoDeHabitacion : " + tipoDeHabitacion ;
+        return  " " + tipoDeHabitacion ;
     }
 
     public Object getTipo() {
