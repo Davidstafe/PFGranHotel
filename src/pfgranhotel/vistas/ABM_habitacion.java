@@ -219,10 +219,11 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                 ////Con un try catch podria solo dejar escribir los tipos de haitacion: simple,doble,etc
                 ///String ts =jTextField1.getText();
                 /////REVISARRRRR
-                TipoDeHabitacion ts = (TipoDeHabitacion) jTextField1.getText();
-
+                
+                TipoDeHabitacion ts =new TipoDeHabitacion();
+             ts.setIdTipo(Integer.parseInt(jTextField1.getText()));
                 /// String tipohab = ts.toString();
-                Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()), ts, jrOcupada.isSelected());
+                Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
 
                 int numHab = Integer.parseInt(jtnum.getText());
 
@@ -233,7 +234,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                 TipoDeHabitacion tipo = new TipoDeHabitacion();
                 tipo.setIdTipo(1);
 
-                if (hdat.BuscarHabitacion(Integer.parseInt(jtnum.getText())) == null) {
+                if (hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText())) == null) {
                     /// hdat.crearHabitacion(h);
                     JOptionPane.showMessageDialog(null, "Habitacion creada");
                 }
