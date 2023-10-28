@@ -5,19 +5,17 @@
  */
 package pfgranhotel.vistas;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.Habitacion;
 import pfgranhotel.entidades.Huesped;
-import pfgranhotel.entidades.Reserva;
 import pfgranhotel.entidades.TipoDeHabitacion;
 
 /**
@@ -45,7 +43,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         modelo1 = new DefaultTableModel();
         tpd = new TipoDeHabitacionData();
+        hd = new HabitacionData();
         tha = (ArrayList<TipoDeHabitacion>) tpd.listhabN();
+        hab = (ArrayList<Habitacion>) hd.listarHabitaciones();
         initComponents();
         //diferenciaFechas();
         //cantPersonas();
@@ -53,6 +53,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         armarTabla2();
         cargarTipoHabitaciones();
          limpiarCampos();
+//         cargarHabitaciones();
+         
     }
 
     /**
@@ -323,9 +325,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                 .addGap(56, 56, 56)
                                                 .addComponent(jBModif))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(115, 115, 115)
-                                                .addComponent(jCBTHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(230, 230, 230)
+                                                .addGap(373, 373, 373)
                                                 .addComponent(jLabel17))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -340,7 +340,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel3)))
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(139, 139, 139)
+                                                .addComponent(jCBTHab, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -430,7 +433,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,7 +457,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                     .addComponent(jBCalcu)
                     .addComponent(jBSalir)
                     .addComponent(jBLimpiar))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -494,10 +497,12 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBDNIActionPerformed
 
     private void jCBTHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTHabActionPerformed
-       
-    
-     
-       
+       borrarFilas1();
+        TipoDeHabitacion tiphab= (TipoDeHabitacion)jCBTHab.getSelectedItem();
+    List<Habitacion> lh = hd.lista(tiphab.getIdTipo());
+    for (Habitacion ha: lh){  
+            modelo1.addRow(new Object[] {ha.getIdHabitacion(),ha.isEstado()});
+                    }
     }//GEN-LAST:event_jCBTHabActionPerformed
 
     private void jTListadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTListadoMouseClicked
@@ -545,10 +550,10 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCalcuActionPerformed
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
-     habporTipo();  
-    xTipoDeso();
-     borrarFilas();
-     borrarFilas1();
+//     habporTipo();  
+//   //Tipox();
+//     borrarFilas();
+//     borrarFilas1();
     }//GEN-LAST:event_jCBTHabPopupMenuWillBecomeInvisible
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
@@ -642,7 +647,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         ///seteamos cada columna para q aparezcan los sig titulos.
         modelo1.addColumn("Numero de habitacion");
         modelo1.addColumn("Status");
-        modelo1.addColumn("codigo");
+        //modelo1.addColumn("codigo");
         jTListado.setModel(modelo1);
     }
 
@@ -667,17 +672,17 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             modelo1.removeRow(i);
         }
     }
-    public void xTipoDeso() {
-
-        Habitacion a = (Habitacion) jCBTHab.getSelectedItem();
-        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
-        for (Habitacion h : hab) {
-            modelo1.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(), h.getTipo()});
-            
-            System.out.println("hola");
-        }
-
-    }
+//    public void TipoDeso() {
+//
+//        Habitacion a =  jRadioButton1.isSelected(true);
+//        hab = (ArrayList) hd.listak(a.isEstado());
+//        for (Habitacion h : hab) {
+//            modelo1.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(), h.getTipo()});
+//            
+//            
+//        }
+//
+//    }
     
     private void cargarTipoHabitaciones() {
 
@@ -693,4 +698,23 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         jTFDNI.setText("");
         
     } 
+   
+//    private void cargarHabitaciones() {
+//
+//        for (Habitacion tip1 : hab) {
+//           jComboBox1.addItem(tip1);
+//        }
+//    }
+//  public void Tipox() {
+//
+//        Habitacion a = (Habitacion) jCBTHab.getSelectedItem();
+//        hab = (ArrayList) hd.obtenerhabiIdhabi(a.getIdHabitacion());
+//        for (Habitacion h : hab) {
+//            modelo1.addRow(new Object[]{h.getIdHabitacion(), h.isEstado(), h.getTipo()});
+//            
+//            System.out.println("hola");
+//        }
+//
+//    }  
+    
 }
