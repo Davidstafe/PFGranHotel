@@ -12,6 +12,13 @@ public class Habitacion {
     public Habitacion() {
     }
 
+    public Habitacion(int idHabitacion, TipoDeHabitacion tipo, boolean estado) {
+        this.idHabitacion = idHabitacion;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+
+    
     public Habitacion(TipoDeHabitacion tipo, boolean estado,boolean mant) {
         this.tipo = tipo;
         this.estado = estado;
@@ -71,8 +78,9 @@ public class Habitacion {
 
     @Override
     public String toString() {
-        return "Numero de : " + idHabitacion + estado ;
+       /// return "Numero de : " + idHabitacion ;
+       return ""+tipo;
     }
     
-  
+    
 }

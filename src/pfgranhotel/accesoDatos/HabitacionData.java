@@ -102,10 +102,14 @@ public class HabitacionData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 hab = new Habitacion();
+                ///ESTO ES NUEVO///*********
                 TipoDeHabitacion tp = new TipoDeHabitacion();
+                tp.setTipoDeHabitacion(toString());
+                /////*******
+
                 hab.setIdHabitacion(idHabitacion);
-//              hab.setEstado(rs.getBoolean("estado"));
-//              TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+              hab.setEstado(rs.getBoolean("estado"));
+                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
 //                h.setTipo(a);
 //                tipo.add(h);
 
@@ -210,34 +214,6 @@ public class HabitacionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idtipo);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                h = new Habitacion();
-                h.setIdHabitacion(rs.getInt(1));
-                h.setEstado(rs.getBoolean(3));
-                TipoDeHabitacion a = tH.buscarThaHabitacioni(idtipo);
-                h.setTipo(a);
-                tipo.add(h);
-
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar");
-            System.out.println(ex.getMessage());
-        }
-
-        return tipo;
-    }
-
-    public ArrayList<Habitacion> listak(boolean estado) {
-        ArrayList<Habitacion> tipo = new ArrayList<>();
-        String sql = "SELECT*from tipoDeHabitacion where estado=?";
-        Habitacion h = null;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setBoolean(1, estado);
-            ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 h = new Habitacion();
                 h.setIdHabitacion(rs.getInt("idhabitacion"));
@@ -246,7 +222,7 @@ public class HabitacionData {
                 h.setTipo(a);
                 tipo.add(h);
 
-//               JOptionPane.showMessageDialog(null, "huesped encontrado");
+                JOptionPane.showMessageDialog(null, "habitacion encontrada");
             } else {
 //                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
             }
@@ -259,3 +235,6 @@ public class HabitacionData {
         return tipo;
     }
 }
+
+//OK            
+

@@ -272,6 +272,7 @@ public class TipoDeHabVistas extends javax.swing.JInternalFrame {
         jtTiposCamas.setText("");
         jtTipoHab.setText("");
         jtPrecio.setText("");
+        jrLibre.setSelected(isIcon);
         
         
     }
