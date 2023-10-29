@@ -25,8 +25,8 @@ public class PFgranHotel {
 //        
 //        Habitacion a = new Habitacion(d, true, true);
 ////       w.BuscarHabitacion(6);
-//        Reserva res = new Reserva(h, a, LocalDate.of(2020, Month.MARCH, 25), LocalDate.of(2021, Month.MARCH, 25), 40000, 4, true);
-//        r.guardarReserva(res);
+//    Reserva res = new Reserva(h, a, LocalDate.of(2020, Month.MARCH, 25), LocalDate.of(2021, Month.MARCH, 25), 40000, 4, true);
+//     r.guardarReserva(res);
 
         ///creamos un huesped
 //        Huesped h = new Huesped(2,987654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, true);
@@ -54,6 +54,9 @@ public class PFgranHotel {
       
 
 ///
+
+// 
+
     }
    
 }
