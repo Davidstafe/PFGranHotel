@@ -6,8 +6,12 @@
 package pfgranhotel.vistas;
 
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.util.Locale;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 import pfgranhotel.accesoDatos.Conexion;
 import pfgranhotel.accesoDatos.HabitacionData;
 
@@ -24,12 +28,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         
-        con = Conexion.getConexion();
-    
-
-    
-       
-    
+        con = Conexion.getConexion();    
     }
 
     /**

@@ -18,13 +18,14 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     private TipoDeHabitacion thab;
     private TipoDeHabitacionData thabdata;
     private ArrayList<Habitacion> h;
-    private ArrayList<TipoDeHabitacion> tHab;
+    private ArrayList<TipoDeHabitacion> tHabArray;
 
     public ABM_habitacion() {
         initComponents();
         hdata = new HabitacionData();
         thab = new TipoDeHabitacion();
         thabdata = new TipoDeHabitacionData();
+        cargarHabitaciones();
         limpiar();
 
     }
@@ -45,6 +46,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         jbsalir = new javax.swing.JButton();
         jblimpiar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jcTipo = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("ABM HABITACIÓN");
@@ -109,6 +111,12 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jcTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcTipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,7 +148,9 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(37, 37, 37)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -162,7 +172,9 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jrOcupada)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,20 +194,31 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Habitacion h = hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText()));
+            
             if (h != null) {
-                hdata.modificarHabitacion(h);
+                hdata.modificarHabABM(h);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingresar numeros en los campos");
             jtnum.setText("");
+            jTextField1.setText("");
 
         }
     }//GEN-LAST:event_jbmodificarActionPerformed
 
     //////***** ELIMINAR HABITACION *****\\\\\\                                                         REVISAR ELIMINAR
     private void jbeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarActionPerformed
-        ////      Habitacion elim = hdat.bajaHabitacion(Integer.parseInt(jtnum.getText()));
 
+        try{
+            Habitacion h= hdata.BuscarHabitacion(Integer.parseInt(jtnum.getText()));
+            
+            if(h != null){
+                hdata.bajaHabitacion(h.getIdHabitacion());
+                JOptionPane.showMessageDialog(null,"Habitacion eliminada" );
+            }
+        }catch(NumberFormatException e){
+            
+        }
 
     }//GEN-LAST:event_jbeliminarActionPerformed
 
@@ -204,34 +227,56 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbsalirActionPerformed
 
-    //////******    CREAR HABITACION   *****\\\\\\\    No me lo crea                                      REVISAR
+    //////******    CREAR HABITACION   *****\\\\\\\    No me lo crea                                    REVISAR
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
 
         try {
             if (jtnum.getText().isEmpty() || jTextField1.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Complete todos los campos" );
             } else {
+                    int numHab=Integer.parseInt(jtnum.getText());
+                    TipoDeHabitacion tHab= new TipoDeHabitacion();
+                    Habitacion habi = new Habitacion();
+                    HabitacionData  habData= new HabitacionData();
+                    tHab.setTipoDeHabitacion(toString());
+                    habData.crearHabABM(habi);
 
 
-                //////****** Crear una nueva habitacion   PODRA SER QUE NO ME DEJA POR EL AUTO INCREMENTAL??
-                
-                TipoDeHabitacion ts =new TipoDeHabitacion();
-                ts.setTipoDeHabitacion(jTextField1.getText());
-//                //Habitacion habi= new Habitacion();
+//////////PROBANDO ALGO NUEVO/////////////  
+//                        
+//                      int numHab=Integer.parseInt(jtnum.getText());
+//                      String TipoDeHabi= jTextField1.getText();
+//                      boolean ocupada= jrOcupada.isSelected();
+//                      TipoDeHabitacion thabi= new TipoDeHabitacion();
+//                      thabi.setTipoDeHabitacion(TipoDeHabi);
+//                      Habitacion nuevaHab= new Habitacion(numHab,TipoDeHabi,ocupada);
+//                      hdata.crearHabABM(nuevaHab);
+//                      limpiar();
+
+//                //////****** Crear una nueva habitacion   PODRA SER QUE NO ME DEJA POR EL AUTO INCREMENTAL??
+//                
+//                TipoDeHabitacion ts =new TipoDeHabitacion();
+//                ts.setTipoDeHabitacion(jTextField1.getText());
+//                Habitacion habi=  new Habitacion();//////(0,ts,jrOcupada.isSelected());
 //                habi.setIdHabitacion(Integer.parseInt(jtnum.getText()));
-//                habi.setTipo(ts);
+//              ///  habi.setTipo(ts);
+//              thab.setIdTipo(habi.getIdHabitacion());
 //                habi.setEstado(isSelected());
-                
-                Habitacion habi=  new Habitacion(Integer.parseInt(jtnum.getText()),ts,jrOcupada.isSelected());
-                
-                /// String tipohab = ts.toString();
-             //  Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
-
-//                int numHab = Integer.parseInt(jtnum.getText());
-//                boolean ocupada = jrOcupada.isSelected();
-
-                hdata.crearHabABM(habi);
-              
+//                TipoDeHabitacion thab = thabdata.buscarThaHabitacioni(habi.getIdHabitacion());
+//                if (thab != null) {
+//                    jTextField1.setText(thab.toString());
+//                }
+//               
+//                
+//                /// String tipohab = ts.toString();
+//             //  Habitacion h = new Habitacion(Integer.parseInt(jtnum.getText()),ts, jrOcupada.isSelected());
+//
+////                int numHab = Integer.parseInt(jtnum.getText());
+////                boolean ocupada = jrOcupada.isSelected();
+//
+//                hdata.crearHabABM(habi);
+//                limpiar();
+//              
                 
             }
         } catch (NumberFormatException e) {
@@ -252,7 +297,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jblimpiarActionPerformed
 
-    /////***** BUSCAR HABITACION *****\\\\\\\
+    /////***** BUSCAR HABITACION *****\\\\\\\                                                           ANDANDO
     private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
 
         try {
@@ -291,6 +336,12 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jcTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcTipoActionPerformed
+
+        
+
+    }//GEN-LAST:event_jcTipoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -303,6 +354,7 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
     private javax.swing.JButton jblimpiar;
     private javax.swing.JButton jbmodificar;
     private javax.swing.JButton jbsalir;
+    private javax.swing.JComboBox<TipoDeHabitacion> jcTipo;
     private javax.swing.JRadioButton jrOcupada;
     private javax.swing.JTextField jtnum;
     // End of variables declaration//GEN-END:variables
@@ -318,4 +370,11 @@ public class ABM_habitacion extends javax.swing.JInternalFrame {
 //           jTextField1.add(tip);
 //        }
 //    }
+     private void cargarHabitaciones() {
+
+        for (TipoDeHabitacion tip : tHabArray) {
+            jcTipo.addItem(tip);
+        }
+
+    }
 }
