@@ -25,25 +25,10 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
       private Connection con = null;
-      private JDesktopPane imagen;
     public Menu() {
         initComponents();
         
-        con = Conexion.getConexion();
-        imagen = new JDesktopPane();
-        this.setContentPane(imagen);
-        
-       
-            
-            ImageIcon background = new ImageIcon("imagenes/imagen.jpg");
-            JLabel backgroundLabel = new JLabel(background);
-            backgroundLabel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
-            jDesktopPane1.add(backgroundLabel);
-        
-
-    
-       
-    
+        con = Conexion.getConexion();    
     }
 
     /**
