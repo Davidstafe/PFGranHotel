@@ -113,10 +113,16 @@ public class Huesped {
         this.estado = estado;
     }
 
+//    @Override
+//    public String toString() {
+//        return "orden " + idHuesped ;
+//    }
+
     @Override
     public String toString() {
         return "Huesped{" + "idHuesped=" + idHuesped + ", dni=" + dni + ", apellido=" + apellido + ", nombres=" + nombres + ", domicilio=" + domicilio + ", correo=" + correo + ", celular=" + celular + ", estado=" + estado + '}';
     }
+
     
 
     

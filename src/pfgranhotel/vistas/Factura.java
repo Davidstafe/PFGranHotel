@@ -5,7 +5,12 @@
  */
 package pfgranhotel.vistas;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.*;
 
@@ -14,13 +19,24 @@ import pfgranhotel.entidades.*;
  * @author HP
  */
 public class Factura extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelo;
    private HuespedData hues;
-   private Huesped h;
+   private ReservaData res;
+   private HabitacionData hab;
+   private ArrayList<Reserva> re;
+   private ArrayList<Huesped>hu;
+   private ArrayList<Habitacion>ha;
     public Factura() {
         initComponents();
         hues=new HuespedData();
-        h=new Huesped();
+        res=new ReservaData();
+        hab=new HabitacionData();
+        modelo=new DefaultTableModel();
+        ha=hab.listarHabitaciones();
+        hu=hues.listarHuesped();
+        re=res.listarR();
+         armarTabla();
+        cargarHabitaciones();
     }
 
     /**
@@ -40,7 +56,6 @@ public class Factura extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTFDNI = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLResultado = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
@@ -48,11 +63,9 @@ public class Factura extends javax.swing.JInternalFrame {
         jRmaster = new javax.swing.JRadioButton();
         jRclub = new javax.swing.JRadioButton();
         jRefectivo = new javax.swing.JRadioButton();
-        jBuscar = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jCdni = new javax.swing.JComboBox<>();
 
         jTextField1.setText("jTextField1");
 
@@ -98,26 +111,6 @@ public class Factura extends javax.swing.JInternalFrame {
             }
         });
 
-        jBuscar.setText("Buscar");
-        jBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarActionPerformed(evt);
-            }
-        });
-        jBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jBuscarKeyTyped(evt);
-            }
-        });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("numero de habitacion");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -130,6 +123,17 @@ public class Factura extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jCdni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCdniMouseClicked(evt);
+            }
+        });
+        jCdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCdniActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,13 +149,10 @@ public class Factura extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTFDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(jBuscar))
+                                .addGap(79, 79, 79)
+                                .addComponent(jCdni, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(88, 88, 88)
                                         .addComponent(jLabel5))
@@ -166,23 +167,21 @@ public class Factura extends javax.swing.JInternalFrame {
                                             .addComponent(jRclub)
                                             .addComponent(jRmaster))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jRefectivo)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jBSalir)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel3)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jDChOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addGap(213, 213, 213)
-                                                .addComponent(jRvisa))))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jRefectivo)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jBSalir)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel3)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jDChOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGap(213, 213, 213)
+                                            .addComponent(jRvisa)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -192,16 +191,11 @@ public class Factura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(20, 20, 20)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTFDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                    .addComponent(jCdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +210,7 @@ public class Factura extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRefectivo)
                             .addComponent(jRclub))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBSalir, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -234,31 +228,6 @@ public class Factura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-       Huesped h=hues.buscarHuesped(Integer.parseInt(jTFDNI.getText()));
-        if (h!=null) {
-            JOptionPane.showMessageDialog(null, "Huesped encontrado");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Huesped no encontrado");
-        }
-    }//GEN-LAST:event_jBuscarActionPerformed
-
-    private void jBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscarKeyTyped
-        int key = evt.getKeyChar();
-
-    boolean numeros = key >= 48 && key <= 57;
-        
-    if (!numeros)
-    {
-        evt.consume();
-    }
-
-    if (jTFDNI.getText().trim().length() == 10) {
-        evt.consume();
-    }
-    }//GEN-LAST:event_jBuscarKeyTyped
-
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
@@ -271,19 +240,63 @@ public class Factura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRefectivoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jCdniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCdniMouseClicked
+   borrarFilas();
+      reservaxdni();
+    }//GEN-LAST:event_jCdniMouseClicked
+
+    private void jCdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCdniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jCdniActionPerformed
 private void calcularDia(){
     
     
     
 }
+  private void armarTabla() {
+        ///seteamos cada columna para q aparezcan los sig titulos.
+        modelo.addColumn("Idreserva");
+        modelo.addColumn("huesped");
+        modelo.addColumn("habitacion");
+        modelo.addColumn("cantidad de personas");
+        modelo.addColumn("precio");
+        jTable1.setModel(modelo);
+    }
+ private void borrarFilas() {
+        int ind = modelo.getRowCount() - 1;
+        for (int i = ind; i > -1; i--) {
+            modelo.removeRow(i);
+        }
+    }
+     private void cargarHabitaciones() {
+
+        for (Huesped tipo : hu) {
+            jCdni.addItem(tipo);
+        }
+
+   }
+public void reservaxdni() {
+  Huesped a=(Huesped)jCdni.getSelectedItem();
+    re = (ArrayList) res.habitacionxHuesped(a.getIdHuesped());
+    for (Reserva reserva : re) {
+        modelo.addRow(new Object[]{reserva.getIdReserva()});
+    }
+   
+        
+    
+   
+
+    
+      
+    
+
+ }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JButton jBuscar;
+    private javax.swing.JComboBox<Huesped> jCdni;
     private com.toedter.calendar.JDateChooser jDCHIN;
     private com.toedter.calendar.JDateChooser jDChOut;
     private javax.swing.JLabel jLResultado;
@@ -292,15 +305,12 @@ private void calcularDia(){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRclub;
     private javax.swing.JRadioButton jRefectivo;
     private javax.swing.JRadioButton jRmaster;
     private javax.swing.JRadioButton jRvisa;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFDNI;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

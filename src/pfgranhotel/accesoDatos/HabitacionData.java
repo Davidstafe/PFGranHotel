@@ -107,9 +107,9 @@ public class HabitacionData {
             ps.setInt(1, idHabitacion);
             int filas = ps.executeUpdate();
             if (filas > 1) {
-                JOptionPane.showMessageDialog(null, "Habitacion dada de baja");
+                JOptionPane.showMessageDialog(null, "Habitacion dada de alta");
             } else {
-                JOptionPane.showMessageDialog(null, "Habitacion en estado de alta");
+                JOptionPane.showMessageDialog(null, "Habitacion dada de baja");
             }
 
         } catch (SQLException ex) {
@@ -131,10 +131,11 @@ public class HabitacionData {
                 TipoDeHabitacion tp = new TipoDeHabitacion();
                 tp.setTipoDeHabitacion(toString());
                 /////*******
-
+ TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
                 hab.setIdHabitacion(idHabitacion);
               hab.setEstado(rs.getBoolean("estado"));
-                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
+              hab.setTipo(a);
+               
 //                h.setTipo(a);
 //                tipo.add(h);
 

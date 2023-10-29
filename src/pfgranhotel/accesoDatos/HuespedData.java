@@ -74,7 +74,7 @@ public class HuespedData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Huesped no encontrado " + ex);
+//            JOptionPane.showMessageDialog(null, "Huesped no encontrado " + ex);
         }
     }
 
@@ -126,7 +126,7 @@ public class HuespedData {
                 h.setCelular(rs.getInt("Celular"));
                 h.setEstado(rs.getBoolean("Estado"));
                 huesped.add(h);
-                JOptionPane.showMessageDialog(null, huesped);//trae el huesped y lo muestra por ventana
+//                JOptionPane.showMessageDialog(null, huesped);//trae el huesped y lo muestra por ventana
             }
 
         } catch (SQLException ex) {
@@ -161,7 +161,7 @@ public class HuespedData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al cargar");
+            JOptionPane.showMessageDialog(null, "Error al cargarrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         }
 return huesped;
     }
@@ -185,5 +185,34 @@ return huesped;
         
         
     }
+      public Huesped buscarHuespedes(int idHuesped) {
+        String sql = "SELECT * FROM `huesped` WHERE idHuesped=? ";
+        Huesped huesped = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idHuesped);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                huesped = new Huesped();
+                huesped.setDni(rs.getInt("dni"));
+                huesped.setIdHuesped(idHuesped);
+                huesped.setApellido(rs.getString("Apellido"));
+                huesped.setNombres(rs.getString("Nombres"));
+                huesped.setDomicilio(rs.getString("Domicilio"));
+                huesped.setCorreo(rs.getString("Correo"));
+                huesped.setCelular(rs.getInt("Celular"));
+                huesped.setEstado(rs.getBoolean("Estado"));
+                
+               JOptionPane.showMessageDialog(null, "huesped encontrado");
+            }else{
+//                  JOptionPane.showMessageDialog(null, "huesped no encontrado");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cargareeeeeeeeeeeeee");
+        }
+return huesped;
     
+}
 }

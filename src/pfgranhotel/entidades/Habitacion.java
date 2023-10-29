@@ -25,12 +25,12 @@ public class Habitacion {
         this.mant  =mant;
     }
 
-    public Habitacion(int idHabitacion, TipoDeHabitacion tipo, boolean estado, boolean mant) {
-        this.idHabitacion = idHabitacion;
+    public Habitacion(TipoDeHabitacion tipo, boolean estado) {
         this.tipo = tipo;
         this.estado = estado;
-        this.mant = mant;
     }
+
+    
 
   public Habitacion(int idHabitacion,boolean estado,TipoDeHabitacion tipo) {
         this.idHabitacion = idHabitacion;
@@ -78,9 +78,11 @@ public class Habitacion {
 
     @Override
     public String toString() {
-       /// return "Numero de : " + idHabitacion ;
-       return ""+tipo;
+      
+       return ""+idHabitacion;
     }
+
+    
     
     
 }

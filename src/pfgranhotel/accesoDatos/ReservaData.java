@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -110,11 +109,12 @@ public class ReservaData {
     //HUESPED POR HABITACIÒN 
     public List<Reserva> huespedxHabitacion (int idHabitacion)throws SQLException {
          ArrayList<Reserva> reservas = new ArrayList<>();
-      String sql= "SELECT DNI, Apellido FROM 'huesped' JOIN 'reserva' ON huesped.idHuesped=reserva.idHuesped AND habitacion.idHabitacion =?";  
+      String sql= "SELECT DNI, Apellido FROM 'huesped' JOIN 'reserva' ON huesped.idHuesped=reserva.idHuesped AND reserva.idHabitacion =?";  
     try{  
 PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idHabitacion);  
         ResultSet rs= ps.executeQuery();
-        ps.setInt(1, idHabitacion);     
+   
         while(rs.next()) {
               Reserva r = new Reserva();  
               Huesped h= hData.buscarHuesped(rs.getInt("DNI"));
@@ -129,33 +129,109 @@ PreparedStatement ps = con.prepareStatement(sql);
     }  return reservas;  
     }
     // habitaciònxHuesped
-    
-    public List<Reserva> habitacionxHuesped(int DNI) throws SQLException {
-        ArrayList<Reserva> reservas = new ArrayList<>();
-        String sql = "SELECT idHabitacion,fechaIn,fechaOut FROM 'huesped' "
-                + "join 'reserva' on reserva.idHuesped= huesped.idHuesped AND DNI = ?";
+     
+    public List<Reserva> habitacionxHuesped(int idHuesped){
+        List<Reserva> reser = new ArrayList<>();
+          Reserva res=null;
+        String sql ="SELECT * FROM Reserva where idHuesped=?";
+      
         try{
         PreparedStatement ps = con.prepareStatement(sql);
-       ps.setInt(1, DNI);
-        ResultSet rs= ps.executeQuery();
-        while(rs.next()) {
-          Reserva r = new Reserva();  
-          Habitacion h=habData.BuscarHabitacion(rs.getInt("idHabitacion"));
-                  
-         r.setFechaIn(rs.getDate("fechaIn").toLocalDate());
-         r.setFechaOut(rs.getDate("fechaOut").toLocalDate());
-          reservas.add(r);
-          
-       
-          
-          
-        
+            ps.setInt(1, idHuesped);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+                res = new Reserva();
+                res.setIdReserva(rs.getInt("idReserva"));
+                
+                Huesped h = hData.buscarHuespedes(rs.getInt("idHuesped"));
+                Habitacion a = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+//                JOptionPane.showMessageDialog(null," huesped encontrada");
+                res.setHuesped(h);
+                res.setHabitacion(a);
+             
+                res.setFechaIn(rs.getDate("fechaIn").toLocalDate());
+                res.setFechaOut(rs.getDate("fechaOut").toLocalDate());
+                res.setPrecioTotal(rs.getDouble("precio total"));
+                
+                res.setEstado(rs.getBoolean("estado"));
+               
+                reser.add(res);
+//                JOptionPane.showMessageDialog(null, "holiiiiiiiiiiiiiiiis");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+//           JOptionPane.showMessageDialog(null, "huesped encontradomal"+ex);
+     }
+   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
+  return reser;  
     }
-        ps.close();
-}catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error al obtener habitaciones"+ex.getMessage());
-}
-       
-  return reservas;  }
+
+
+
+public ArrayList<Reserva>listarR() {
+       ArrayList<Reserva> reserv = new ArrayList<>();
+        String sql = "SELECT * FROM reserva where estado=1";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Reserva res = new Reserva();
+                res.setIdReserva(rs.getInt("idReserva"));
+                res.setCantPersonas(rs.getInt("cant camas"));
+                res.setFechaIn(rs.getDate("fechaIn").toLocalDate());
+                res.setFechaOut(rs.getDate("fechaOut").toLocalDate());
+                res.setPrecioTotal(rs.getDouble("precio total"));
+                res.setEstado(rs.getBoolean("estado"));
+                Huesped h = hData.buscarHuespedes(rs.getInt("idHuesped"));
+                Habitacion a = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+                res.setHuesped(h);
+                res.setHabitacion(a);
+                reserv.add(res);
+            }
+           
+        } catch (SQLException ex) {
+         
+        }
+ 
+        return reserv;
+    }
+     public Reserva Buscar(int idHuesped){
+          Reserva res=null;
+        String sql ="SELECT * FROM Reserva where idHuesped=?";
+      
+        try{
+        PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idHuesped);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+                res = new Reserva();
+                res.setIdReserva(rs.getInt("idReserva"));
+                
+                Huesped h = hData.buscarHuespedes(rs.getInt("idHuesped"));
+                Habitacion a = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+//                JOptionPane.showMessageDialog(null," huesped encontrada");
+                res.setHuesped(h);
+                res.setHabitacion(a);
+             
+                res.setFechaIn(rs.getDate("fechaIn").toLocalDate());
+                res.setFechaOut(rs.getDate("fechaOut").toLocalDate());
+                res.setPrecioTotal(rs.getDouble("precio total"));
+                
+                res.setEstado(rs.getBoolean("estado"));
+               
+                
+//                JOptionPane.showMessageDialog(null, "holiiiiiiiiiiiiiiiis");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+//           JOptionPane.showMessageDialog(null, "huesped encontradomal"+ex);
+     }
+   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
+  return res;   
+         
+     }
 }
 //mmm//
