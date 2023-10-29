@@ -5,6 +5,9 @@
  */
 package pfgranhotel.vistas;
 
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -12,6 +15,7 @@ import java.time.temporal.ChronoUnit;
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +46,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     //private int men=0;
    private LocalDate in = null;
         private LocalDate out = null;
-    
+   // JDateChooser in;
     
     public ReservaVista() {
         modelo = new DefaultTableModel();
@@ -108,6 +112,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jBLimpiar = new javax.swing.JButton();
         jCtipo2 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLDias = new javax.swing.JLabel();
+        jBDias = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -298,6 +305,21 @@ public class ReservaVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Cantidad de Dìas ");
+
+        jBDias.setText("Calcular Dìas ");
+        jBDias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBDiasMouseClicked(evt);
+            }
+        });
+        jBDias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDiasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -356,29 +378,39 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                                                     .addComponent(jDateOut, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(11, 11, 11)
-                                                .addComponent(jLabel6)
-                                                .addGap(54, 54, 54)
-                                                .addComponent(jCBMayores, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jBDias)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel6)
+                                                        .addGap(54, 54, 54)
+                                                        .addComponent(jCBMayores, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jCBDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(17, 17, 17)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jTApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addComponent(jTFNombre)
-                                            .addComponent(jTFDNI))
-                                        .addGap(11, 11, 11))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(29, 29, 29)
                                         .addComponent(jBLimpiar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                         .addComponent(jBSalir)
-                                        .addGap(41, 41, 41))))))
+                                        .addGap(41, 41, 41))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jLabel10)
+                                                    .addComponent(jCBDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(17, 17, 17)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jTApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                                    .addComponent(jTFNombre)
+                                                    .addComponent(jTFDNI)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(73, 73, 73)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGap(11, 11, 11))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(jLabel2)))
@@ -424,7 +456,9 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addComponent(jLabel1)))
-                        .addGap(65, 65, 65)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBDias)
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCBMayores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
@@ -437,7 +471,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jCtipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCtipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -446,7 +481,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jCBTHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,6 +493,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLDias, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -474,13 +511,14 @@ public class ReservaVista extends javax.swing.JInternalFrame {
                     .addComponent(jBCalcu)
                     .addComponent(jBSalir)
                     .addComponent(jBLimpiar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDateInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateInMouseClicked
+    
         if (jDateIn != null) {
             ZoneId zoneIdDefault = null;
             ZonedDateTime in = jDateIn.getDate().toInstant().atZone(zoneIdDefault);
@@ -490,11 +528,11 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDateInMouseClicked
 
     private void jDateOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateOutMouseClicked
-//        if (jDateOut != null) {
-//            ZoneId zoneIdDefault = null;
-//            ZonedDateTime out = jDateOut.getDate().toInstant().atZone(zoneIdDefault);
+        if (jDateOut != null) {
+            ZoneId zoneIdDefault = null;
+            ZonedDateTime out = jDateOut.getDate().toInstant().atZone(zoneIdDefault);
 
-//        }
+        }
     }//GEN-LAST:event_jDateOutMouseClicked
 
     private void jCBMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMayoresActionPerformed
@@ -569,7 +607,7 @@ Reserva a=new Reserva();
 
     private void jBCalcuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalcuActionPerformed
         //calcularEstadia();
-        calculoBiliar();
+        calculoEstadia2();
     }//GEN-LAST:event_jBCalcuActionPerformed
 
     private void jCBTHabPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jCBTHabPopupMenuWillBecomeInvisible
@@ -618,11 +656,20 @@ Reserva a=new Reserva();
     
     }//GEN-LAST:event_jTFNombreKeyTyped
 
+    private void jBDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDiasActionPerformed
+
+    private void jBDiasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBDiasMouseClicked
+       DifFechas ();
+    }//GEN-LAST:event_jBDiasMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlta;
     private javax.swing.JButton jBBaja;
     private javax.swing.JButton jBCalcu;
+    private javax.swing.JButton jBDias;
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBModif;
     private javax.swing.JButton jBSalir;
@@ -635,6 +682,7 @@ Reserva a=new Reserva();
     private com.toedter.calendar.JDateChooser jDateIn;
     private com.toedter.calendar.JDateChooser jDateOut;
     private javax.swing.JLabel jLCalcRes;
+    private javax.swing.JLabel jLDias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -646,6 +694,7 @@ Reserva a=new Reserva();
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -682,53 +731,68 @@ Reserva a=new Reserva();
 //        
 //    }
 
-  public void calculoBiliar() { 
+  public void calculoEstadia2() { 
      Reserva Resa = new Reserva();
-      //if (jCBMenores != null) {
-           /// int men =  (Integer) jCBMenores.getSelectedItem();
+      
    
-      if (jCBMayores != null) {
+ if (jCBMayores != null) {
          
-            int may = (int) jCBMayores.getSelectedIndex();
-           //System.out.println("hola");
-        }
-     /// hay que cambiar por local date 
-       if (jDateIn.getDate() != null) {
-          //  ZoneId zoneIdDefault = null;
-            LocalDate In= jDateIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-           // ZonedDateTime in = jDateIn.getDate().toInstant().atZone(zoneIdDefault);
+          int may = (int) jCBMayores.getSelectedIndex();
+        System.out.println("hola"+ may);
+    
+     
+
+                
+//       
+//      TipoDeHabitacion a = (TipoDeHabitacion) jCBTHab.getSelectedItem();
+//       tha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());
+//        for (TipoDeHabitacion tip : tha) {
+//            tip.getPrecio();
+   //     }  
+//       
+      double precio=0;   
+int fila1 =jTable1.getSelectedRow();
+         if (fila1 !=-1){
+            
+          precio=(double) jTable1.getValueAt(fila1, 4);}
+//           double precio =20000.00 ;
+      
+      
+
+        double estadia = precio * DifFechas()* may;
+        jLCalcRes.setText(" "+ estadia);
+       System.out.println("hola"+ estadia);
+ }
+    }                                
+  
+public long DifFechas (){
+        
+          if (jDateIn.getDate() != null) {
+          
+            LocalDate in= jDateIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+          
+           System.out.println(""+in); 
+           
        }
         if (jDateOut.getDate() != null) {
-           // ZoneId zoneIdDefault = null;
+          
             LocalDate out= jDateOut.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            //ZonedDateTime out = jDateOut.getDate().toInstant().atZone(zoneIdDefault);
+            System.out.println(""+out);
         }
-     // System.out.println("hola");
-      TipoDeHabitacion a = (TipoDeHabitacion) jCBTHab.getSelectedItem();
-        tha = (ArrayList) tpd.obtenerHabi(a.getTipoDeHabitacion());
-        for (TipoDeHabitacion tip : tha) {
-            tip.getPrecio();
-        }  
-      //  Hasta acà està bien 
-      long difDias = (long)(ChronoUnit.DAYS.between(out, in));
-     
-      // int total = may + men;
-System.out.println("hola1");
-        double estadia = a.getPrecio() * difDias * may;/// si no funciona poner jCBTHab.getSelectedItem();
-        jLCalcRes.setText(" "+ estadia);
-    }                                  
+long difDias;
+
+
+//difDias = DAYS.between(out, in);//Falla ... 1
+difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
+//difDias=out.until(in,DAYS) ;Falla ...3
+    jLDias.setText(" "+ difDias);
+    System.out.println("difDias"+difDias);
     
-//public void cantPersonas(){
-//    int may = 0;
-//    int men = 0;
-//    
-// int total= may+men;
-//    System.out.println("total"+total);
-//}
-///Calcular Estadìa
-// public void calcularEstadia(){
-// 
-// }
+    return  difDias;
+}
+            
+   
+
     private void armarTitulos() {
 
         modelo.addColumn("Còdigo");

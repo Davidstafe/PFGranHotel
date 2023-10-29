@@ -8,6 +8,8 @@ package pfgranhotel;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import jdk.nashorn.internal.runtime.Debug;
 import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.*;
@@ -53,6 +55,12 @@ public class PFgranHotel {
 ///hd.buscarHuesped(3036555);
       
 
+    
+  
+            
+            
+       
+     //difDias= in.until(out, ChronoUnit.DAYS)
 ///
 
 // 

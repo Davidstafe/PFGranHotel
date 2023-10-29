@@ -42,6 +42,7 @@ public class ReservaData {
         String sql = "INSERT INTO reserva( idHuesped, idHabitacion, fechaIn,fechaOut, precioTotal, cantPersonas, estado)"
                 + " VALUES (?,?,?,?,?,?,?)";
 
+        
         /// Marce, verificà que no me haya mandado alguna cagada
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
