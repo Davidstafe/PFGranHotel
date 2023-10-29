@@ -44,14 +44,15 @@ public class HabitacionData {
 //                habitacion.setEstado(rs.getBoolean(3));
 //                
 //     
-    String sql = "INSERT INTO habitacion (idHabitacion,idTipo, estado) VALUES (?,?,?)";
+    String sql = "INSERT INTO habitacion (idHabitacion,tipoDeHabitacion, estado) VALUES (?,?,?)";
     PreparedStatement ps;
     
     try {
         ps = con.prepareStatement(sql);
         ps.setInt(1, habitacion.getIdHabitacion());
-        ps.setInt(2, (habitacion.getTipo().getIdTipo()));
-        ps.setBoolean(3, habitacion.isEstado());
+       /// ps.setInt(2, (habitacion.getTipo().getIdTipo()));
+       ps.setString(3,habitacion.getTipo().getTipoDeHabitacion());
+       ps.setBoolean(3, habitacion.isEstado());
         ps.executeUpdate();
 
 //        ResultSet rs = ps.getGeneratedKeys();
