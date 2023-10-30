@@ -44,8 +44,8 @@ public class ReservaVista extends javax.swing.JInternalFrame {
     //private TipoDeHabitacionData tpd;
     private int may=0;
     //private int men=0;
-   private LocalDate in = null;
-        private LocalDate out = null;
+   private LocalDate in;
+        private LocalDate out;
    // JDateChooser in;
     
     public ReservaVista() {
@@ -63,7 +63,7 @@ public class ReservaVista extends javax.swing.JInternalFrame {
         cargarTipoHabitaciones();
          limpiarCampos();
        cargarHabitaciones();
-         
+        
     }
 
     /**
@@ -616,6 +616,9 @@ Reserva a=new Reserva();
 
     private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
         limpiarCampos();
+        borrarFilas();
+        borrarFilas1();
+        
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
     private void jCtipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCtipo2ActionPerformed
@@ -779,13 +782,18 @@ public long DifFechas (){
             LocalDate out= jDateOut.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             System.out.println(""+out);
         }
-long difDias;
+long difDias=0;
 
+difDias=(out.getDayOfYear()-in.getDayOfYear());////falta4
 
-//difDias = DAYS.between(out, in);//Falla ... 1
-difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
+    System.out.println("Di");
+
+//difDias = ChronoUnit.DAYS.between(out,in);//Falla ... 1
+//difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
+///long sa=difDias;
+       
 //difDias=out.until(in,DAYS) ;Falla ...3
-    jLDias.setText(" "+ difDias);
+  jLDias.setText(" "+ difDias);
     System.out.println("difDias"+difDias);
     
     return  difDias;
@@ -842,6 +850,7 @@ difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
         jTFNombre.setText("");
         jTFDNI.setText("");
         
+        
     } 
    
     private void cargarHabitaciones() {
@@ -868,6 +877,5 @@ difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
 //            System.out.println("hola");
 //        }
 //
-    }  
-    
+    } 
 }
