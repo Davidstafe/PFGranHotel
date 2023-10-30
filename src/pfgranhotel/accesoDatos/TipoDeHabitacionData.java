@@ -72,7 +72,7 @@ public class TipoDeHabitacionData {
             ps.setString(1, tipoDeHabitacion);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-<<<<<<< Updated upstream
+
              tp = new TipoDeHabitacion();
               tp.setIdTipo(rs.getInt("idTipo"));
               tp.setCantPers(rs.getInt("cantPers"));
@@ -88,23 +88,7 @@ public class TipoDeHabitacionData {
            }
            ps.close();
      
-=======
-                tp = new TipoDeHabitacion();
-                tp.setIdTipo(rs.getInt("idTipo"));
-                tp.setCantPers(rs.getInt("cantPers"));
-                tp.setCantCamas(rs.getInt("cantCamas"));
-                tp.setTipoDeCamas(rs.getString("tipoDeCamas"));
-                tp.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
-                tp.setPrecio(rs.getInt("precio"));
-                tp.setEstado(rs.getBoolean("estado"));
 
-                JOptionPane.showMessageDialog(null, "huesped encontrado");
-            } else {
-                JOptionPane.showMessageDialog(null, "huesped no encontrado");
-            }
-            ps.close();
-
->>>>>>> Stashed changes
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar");
         }
@@ -120,7 +104,7 @@ public class TipoDeHabitacionData {
             ps.setInt(1, idtipo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-<<<<<<< Updated upstream
+
              tp = new TipoDeHabitacion();
               tp.setIdTipo(rs.getInt("idTipo"));
               tp.setCantPers(rs.getInt("cantPers"));
@@ -136,23 +120,10 @@ public class TipoDeHabitacionData {
            }
            ps.close();
      
-=======
-                tp = new TipoDeHabitacion();
-                tp.setIdTipo(rs.getInt("idTipo"));
-                tp.setCantPers(rs.getInt("cantPers"));
-                tp.setCantCamas(rs.getInt("cantCamas"));
-                tp.setTipoDeCamas(rs.getString("tipoDeCamas"));
-                tp.setTipoDeHabitacion(rs.getString("tipoDeHabitacion"));
-                tp.setPrecio(rs.getInt("precio"));
-                tp.setEstado(rs.getBoolean("estado"));
 
-//               JOptionPane.showMessageDialog(null, "huesped encontrado");
-            } else {
-//                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
-            }
-            ps.close();
+                
 
->>>>>>> Stashed changes
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar");
         }

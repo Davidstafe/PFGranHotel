@@ -141,7 +141,7 @@ PreparedStatement ps = con.prepareStatement(sql);
         PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idHuesped);
             ResultSet rs = ps.executeQuery();
-             (rs.next()) {
+            if (rs.next()) {
 
                 res = new Reserva();
                 res.setIdReserva(rs.getInt("idReserva"));

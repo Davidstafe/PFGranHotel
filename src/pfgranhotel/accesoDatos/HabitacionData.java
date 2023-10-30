@@ -265,16 +265,16 @@ public class HabitacionData {
                
 
                 hab.setEstado(rs.getBoolean("estado"));
-<<<<<<< Updated upstream
+
 //                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
 
 //                h.setTipo(a);
-=======
+
                
                
-               TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
-                hab.setTipo(a);
->>>>>>> Stashed changes
+           ///    TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
+           ///     hab.setTipo(a);
+
 //                tipo.add(h);
 
                 JOptionPane.showMessageDialog(null, "habitacion encontrada");
