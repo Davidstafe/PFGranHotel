@@ -784,9 +784,12 @@ public long DifFechas (){
         }
 long difDias=0;
 
-difDias=(out.getDayOfYear()-in.getDayOfYear());////falta4
+difDias=(out.getDayOfYear())-(in.getDayOfYear());////falta4
 
-    System.out.println("Di");
+//int dout=(out.getDayOfYear()); falla 4
+//int din=(in.getDayOfYear());
+//int difDias1=dout-din;
+    
 
 //difDias = ChronoUnit.DAYS.between(out,in);//Falla ... 1
 //difDias= out.until(in,ChronoUnit.DAYS); //Falla ...2
