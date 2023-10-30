@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import jdk.nashorn.internal.runtime.Debug;
 import pfgranhotel.accesoDatos.*;
 import pfgranhotel.entidades.*;
@@ -21,7 +22,7 @@ public class PFgranHotel {
         HuespedData hd = new HuespedData();
         HabitacionData w = new HabitacionData();
         TipoDeHabitacionData t=new TipoDeHabitacionData();
-                
+             ArrayList<Reserva>rec=new ArrayList<>();   
         ReservaData r = new ReservaData();
         Habitacion a = new Habitacion();
 //        Huesped c = new Huesped();
@@ -100,9 +101,13 @@ TipoDeHabitacion z=new TipoDeHabitacion(1, 2, 25.1);
 
 Reserva g=new Reserva(h, s,LocalDate.of(2023, Month.MARCH, 25) , LocalDate.of(2023, Month.MARCH, 30), 25.6, 4, true);
 //    r.guardarReserva(g);
-    r.bajaReserva(g);
-
-
+//    r.bajaReserva(7);
+//r.Buscar(2);
+//r.habitacionxHuesped(2);
+r.listarR();
+        for ( Reserva de : r.listarR()) {
+            System.out.println("dfewf"+de);
+        }
     }
    
    

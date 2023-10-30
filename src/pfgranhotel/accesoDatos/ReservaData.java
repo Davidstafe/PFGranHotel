@@ -92,11 +92,12 @@ public class ReservaData {
     }
     //dAR DE BAJA RESERVA
 
-    public void bajaReserva(Reserva reserva) throws SQLException {
+    public void bajaReserva(int idReserva) throws SQLException {
 
-        String sql = " UPDATE `reserva` SET `estado`= 0 WHERE 'DNI'=? ";
+        String sql = " UPDATE `reserva` SET `estado`= 0 WHERE idReserva=? ";
 
         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idReserva);
         int fila = ps.executeUpdate();
 
         if (fila > 0) {
@@ -164,7 +165,7 @@ PreparedStatement ps = con.prepareStatement(sql);
         } catch (SQLException ex) {
 //           JOptionPane.showMessageDialog(null, "huesped encontradomal"+ex);
      }
-   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
+//   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
   return reser;  
     }
 
@@ -212,11 +213,11 @@ public ArrayList<Reserva>listarR() {
                 res.setIdReserva(rs.getInt("idReserva"));
                 
                 Huesped h = hData.buscarHuespedes(rs.getInt("idHuesped"));
-                Habitacion a = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+//                Habitacion a = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
 //                JOptionPane.showMessageDialog(null," huesped encontrada");
-                res.setHuesped(h);
-                res.setHabitacion(a);
-             
+             res.setHuesped(h);
+//                res.setHabitacion(a);
+//              JOptionPane.showMessageDialog(null, "encontrado");
                 res.setFechaIn(rs.getDate("fechaIn").toLocalDate());
                 res.setFechaOut(rs.getDate("fechaOut").toLocalDate());
                 res.setPrecioTotal(rs.getDouble("precio total"));
@@ -224,7 +225,10 @@ public ArrayList<Reserva>listarR() {
                 res.setEstado(rs.getBoolean("estado"));
                
                 
-              JOptionPane.showMessageDialog(null, "encontrado");
+             
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "no encontrado");
             }
             ps.close();
         } catch (SQLException ex) {
