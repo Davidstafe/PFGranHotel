@@ -44,22 +44,23 @@ public class HabitacionData {
 //                habitacion.setEstado(rs.getBoolean(3));
 //                
 //     
-    String sql = "INSERT INTO habitacion (idHabitacion,tipoDeHabitacion, estado) VALUES (?,?,?)";
+    String sql = "INSERT INTO habitacion (idTipo, estado) VALUES (?, ?)";
     PreparedStatement ps;
     
     try {
-        ps = con.prepareStatement(sql);
-        ps.setInt(1, habitacion.getIdHabitacion());
-       /// ps.setInt(2, (habitacion.getTipo().getIdTipo()));
-       ps.setString(3,habitacion.getTipo().getTipoDeHabitacion());
-       ps.setBoolean(3, habitacion.isEstado());
+        ps = con.prepareStatement(sql, RETURN_GENERATED_KEYS);
+        ps.setInt(1, habitacion.getTipo().getIdTipo());
+        ps.setBoolean(2, habitacion.isEstado());
         ps.executeUpdate();
 
-//        ResultSet rs = ps.getGeneratedKeys();
-//
-//        if (rs.next()) {
-//            habitacion.setIdHabitacion(rs.getInt(1));
-//        }
+        ResultSet rs = ps.getGeneratedKeys();
+        Habitacion hab = null;
+        if (rs.next()) {
+            hab = new Habitacion();
+            hab.setIdHabitacion(rs.getInt(1));
+            hab.setTipo(habitacion.getTipo());
+            hab.setEstado(habitacion.isEstado());
+        }
 
         JOptionPane.showMessageDialog(null, "Habitación creada");
     } catch (SQLException ex) {
@@ -68,14 +69,40 @@ public class HabitacionData {
 
 
 
+    /*String sql = "INSERT INTO habitacion (idHabitacion, idTipo, estado) VALUES (?, ?, ?)";                              ESTE METODO ANDA 
+    PreparedStatement ps;
+    
+    try {
+        ps = con.prepareStatement(sql, RETURN_GENERATED_KEYS);
+        ps.setInt(1, habitacion.getIdHabitacion());
+        ps.setInt(2, habitacion.getTipo().getIdTipo()); // Cambio idTipo aquí
+        ps.setBoolean(3, habitacion.isEstado());
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        Habitacion hab = null;
+        if (rs.next()) {
+            hab = new Habitacion();
+            hab.setIdHabitacion(rs.getInt(1));
+            hab.setTipo(habitacion.getTipo()); // No necesitas crear un nuevo objeto TipoDeHabitacion aquí
+            hab.setEstado(rs.getBoolean("estado"));
+        }
+
+        JOptionPane.showMessageDialog(null, "Habitación creada");
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error en la creación de la habitación: " + ex.getMessage());
     }
+*/
+}
+
     public void modificarHabABM(Habitacion habitacion) {
         try {
-            String sql = "UPDATE `habitacion` SET `idHabitacion`=?,`idTipo`=?,`estado`=? WHERE idhabitacion= ?";
+            String sql = "UPDATE `habitacion` SET `idTipo`=?,`estado`=? WHERE idHabitacion=? ";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, habitacion.getIdHabitacion());
-            ps.setString(2, habitacion.getTipo().getTipoDeHabitacion());
-            ps.setBoolean(3, habitacion.isEstado());
+            ps.setString(1, habitacion.getTipo().getTipoDeHabitacion());
+            ps.setBoolean(2, habitacion.isEstado());
+            ps.setInt(3, habitacion.getIdHabitacion());
+
 
             int exito = ps.executeUpdate();
 
@@ -92,6 +119,61 @@ public class HabitacionData {
         }
 
     }
+    
+    public Habitacion BuscarHabABM(int idHabitacion) {
+//    String sql = "SELECT * FROM habitacion WHERE idHabitacion = "+idHabitacion;
+//    Habitacion hab = null;
+//
+//    try {
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        ps.setInt(1, idHabitacion);
+//        ResultSet rs = ps.executeQuery();
+//
+//        if (rs.next()) {
+//            hab = new Habitacion();
+//            hab.setIdHabitacion(idHabitacion);
+//            hab.setEstado(rs.getBoolean("estado"));
+//            TipoDeHabitacion tipo = tH.buscarThaHabitacioni(rs.getInt("idTipo"));
+//            hab.setTipo(tipo);
+//
+//            JOptionPane.showMessageDialog(null, "Habitación encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Habitación no encontrada");
+//        }
+//
+//        ps.close();
+//    } catch (SQLException ex) {
+//        JOptionPane.showMessageDialog(null, "Error al cargar: " + ex.getMessage());
+//    }
+//    return hab;
+    String sql = "SELECT * FROM habitacion WHERE idHabitacion = " + idHabitacion;
+    Habitacion hab = null;
+
+    try {
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                hab = new Habitacion();
+                hab.setIdHabitacion(idHabitacion);
+                hab.setEstado(rs.getBoolean("estado"));
+                TipoDeHabitacion tipo = tH.buscarThaHabitacioni(rs.getInt("idTipo"));
+                hab.setTipo(tipo);
+                
+                JOptionPane.showMessageDialog(null, "Habitación encontrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Habitación no encontrada");
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al cargar: " + ex.getMessage());
+    }
+    return hab;
+
+
+    }
+
+
     
     public void crearHabitacion(Habitacion habitacion) {
 
@@ -183,9 +265,16 @@ public class HabitacionData {
                
 
                 hab.setEstado(rs.getBoolean("estado"));
+<<<<<<< Updated upstream
 //                TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));;
 
 //                h.setTipo(a);
+=======
+               
+               
+               TipoDeHabitacion a = tH.buscarThaHabitacioni(rs.getInt("idtipo"));
+                hab.setTipo(a);
+>>>>>>> Stashed changes
 //                tipo.add(h);
 
                 JOptionPane.showMessageDialog(null, "habitacion encontrada");

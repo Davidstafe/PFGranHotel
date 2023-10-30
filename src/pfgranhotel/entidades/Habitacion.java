@@ -7,6 +7,21 @@ public class Habitacion {
     private TipoDeHabitacion tipo;
     private boolean estado;
     private boolean mant;
+    private String crearTipo;
+
+    public String getCrearTipo() {
+        return crearTipo;
+    }
+
+    public void setCrearTipo(String crearTipo) {
+        this.crearTipo = crearTipo;
+    }
+
+    public Habitacion(int idHabitacion, boolean estado, String crearTipo) {
+        this.idHabitacion = idHabitacion;
+        this.estado = estado;
+        this.crearTipo = crearTipo;
+    }
     
 
     public Habitacion() {
