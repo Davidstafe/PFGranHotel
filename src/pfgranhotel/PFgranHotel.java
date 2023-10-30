@@ -43,7 +43,7 @@ public class PFgranHotel {
 //      hd.guardarHuesped(h);
       
         
-/////////////////++++++++++++++++++++++++++++++++++-----------------------------------------------+++++++++++++++++++++++++++++++++++++++        
+/////////////////++++++++++++++++++++++++++++++++++-----------------------------------------------+++++++++++++++++++++++++++++++++++++++        s
         
        // /BAJAMOS UN HUESPED
 //        hd.bajaHuesped(12345);
@@ -72,14 +72,37 @@ public class PFgranHotel {
 //        }
 //  ///////////////////////////////+++++++++++++++++++++++++++++++++++++----------------------------  
 ////crear Habitacion+++++++++++    
-TipoDeHabitacion z=new TipoDeHabitacion();
-  z=   t.buscarThaHabitacioni(4);
+//TipoDeHabitacion z=new TipoDeHabitacion(1, 2, 25.1);
 
-Habitacion s=new Habitacion(z,true);
+//  z=   t.buscarThaHabitacioni(4);
+
+
 //w.crearHabitacion(s);
 //w.bajaHabitacion(13);
-w.BuscarHabitacion(50);
-        System.out.println("");
+//w.BuscarHabitacion(12);
+//   Habitacion s=new Habitacion(12,z,true);    
+//    w.modificarHabABM(s);//// no sale ver
+       
+  ////////////////////////////////////*********************************************TIPODDEHABITACION+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+    ////////guardar
+//      TipoDeHabitacion j=new TipoDeHabitacion(2,4,"king","simple",200.1, true);
+//        t.guardarHab(j);
+////buscar
+//       t.buscarThaHabitacion("suite");
+////listar
+//        for (TipoDeHabitacion tr : t.listhabN()) {
+//            System.out.println(tr);
+//        }
+/////////////////////////////////+++++++++++++RESERVA----------------------------------
+Huesped h = new Huesped(2,9654321, "Caba", "Josefa", "9 de julio 253", "asd@gmail.com", 911542254, false);
+TipoDeHabitacion z=new TipoDeHabitacion(1, 2, 25.1);
+  Habitacion s=new Habitacion(12,z,true);  
+
+Reserva g=new Reserva(h, s,LocalDate.of(2023, Month.MARCH, 25) , LocalDate.of(2023, Month.MARCH, 30), 25.6, 4, true);
+//    r.guardarReserva(g);
+    r.bajaReserva(g);
+
+
     }
    
    

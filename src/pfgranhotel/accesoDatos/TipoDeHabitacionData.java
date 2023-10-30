@@ -80,9 +80,9 @@ public class TipoDeHabitacionData {
               tp.setPrecio(rs.getInt("precio"));
               tp.setEstado(rs.getBoolean("estado"));
                      
-               JOptionPane.showMessageDialog(null, "huesped encontrado");
+               JOptionPane.showMessageDialog(null, "habitacion encontrada");
         }else{
-                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
+                 JOptionPane.showMessageDialog(null, "habitacion no encontrada");
            }
            ps.close();
      
@@ -110,9 +110,9 @@ public class TipoDeHabitacionData {
               tp.setPrecio(rs.getInt("precio"));
               tp.setEstado(rs.getBoolean("estado"));
                      
-//               JOptionPane.showMessageDialog(null, "huesped encontrado");
+//              JOptionPane.showMessageDialog(null, "habitacion encontrada");
         }else{
-//                 JOptionPane.showMessageDialog(null, "huesped no encontrado");
+//                 JOptionPane.showMessageDialog(null, "habitacion no encontrado");
            }
            ps.close();
      

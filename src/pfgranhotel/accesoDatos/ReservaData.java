@@ -224,13 +224,13 @@ public ArrayList<Reserva>listarR() {
                 res.setEstado(rs.getBoolean("estado"));
                
                 
-//                JOptionPane.showMessageDialog(null, "holiiiiiiiiiiiiiiiis");
+              JOptionPane.showMessageDialog(null, "encontrado");
             }
             ps.close();
         } catch (SQLException ex) {
 //           JOptionPane.showMessageDialog(null, "huesped encontradomal"+ex);
      }
-   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
+//   JOptionPane.showMessageDialog(null, "holeeeeeeeeeeeis");
   return res;   
          
      }
