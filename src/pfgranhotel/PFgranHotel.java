@@ -104,7 +104,7 @@ Reserva g=new Reserva(h, s,LocalDate.of(2023, Month.MARCH, 25) , LocalDate.of(20
 //    r.bajaReserva(7);
 //r.Buscar(2);
 //r.habitacionxHuesped(2);
-r.listarR();
+//r.listarR(10);
         for ( Reserva de : r.listarR()) {
             System.out.println("dfewf"+de);
         }
