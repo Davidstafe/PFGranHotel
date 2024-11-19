@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pfgranhotel.accesoDatos;
 
 import java.sql.Connection;
@@ -10,10 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author basti
- */
+
 public class Conexion {
      private static final String URL="jdbc:mariadb://localhost/";
     private static final String DB="gran_hotel_91";

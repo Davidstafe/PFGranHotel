@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pfgranhotel.accesoDatos;
 
 import java.sql.Connection;
@@ -71,14 +67,34 @@ public class ReservaData {
     }
 
     public List<Reserva> reservar() {
-        List<Reserva> reserva = new ArrayList<>();
+        List<Reserva> reservas = new ArrayList<>();
         String sql = "SELECT `idReserva`, `DNI`, `idHabitacion` FROM `reserva`";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Reserva res = new Reserva();
+                Reserva reserva = new Reserva();
+                reserva.setIdReserva(rs.getInt("idReserva"));
+                reserva.setFechaIn(rs.getDate("fechaIn").toLocalDate());
+                reserva.setFechaOut(rs.getDate("fechaOut").toLocalDate());
+                reserva.setPrecioTotal(rs.getDouble("precioTotal"));
+                reserva.setCantPersonas(rs.getInt("cantPersonas"));
+                reserva.setEstado(rs.getBoolean("estado"));
+                
+                
+                
+            // Recuperar el Huesped relacionado
+            Huesped huesped = hData.buscarHuespedes(rs.getInt("idHuesped"));
+            reserva.setHuesped(huesped);
+
+            // Recuperar la Habitacion relacionada
+            Habitacion habitacion = habData.BuscarHabitacion(rs.getInt("idHabitacion"));
+            reserva.setHabitacion(habitacion);
+
+            // Añadir la reserva a la lista
+            reservas.add(reserva);
+                    
                 System.out.println("idReserva " + rs.getInt("idReserva"));
                 System.out.println("DNI " + rs.getInt("DNI"));
                 System.out.println("idHabitacion " + rs.getInt("idHabitacion"));
@@ -88,7 +104,7 @@ public class ReservaData {
             Logger.getLogger(ReservaData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return reserva;
+        return reservas;
     }
     //dAR DE BAJA RESERVA
 
@@ -154,7 +170,7 @@ PreparedStatement ps = con.prepareStatement(sql);
              
                 res.setFechaIn(rs.getDate("fechaIn").toLocalDate());
                 res.setFechaOut(rs.getDate("fechaOut").toLocalDate());
-                res.setPrecioTotal(rs.getDouble("precio total"));
+                res.setPrecioTotal(rs.getDouble("precioTotal"));
                 
                 res.setEstado(rs.getBoolean("estado"));
                
